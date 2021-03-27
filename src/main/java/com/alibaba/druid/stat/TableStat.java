@@ -441,6 +441,26 @@ public class TableStat {
             }
         }
 
+        public static long getHashCode64(String table,String name){
+            long hashCode64 = 0;
+            int p = table.indexOf('.');
+            if (p != -1) {
+                String dbType = null;
+                if (table.indexOf('`') != -1) {
+                    dbType = JdbcConstants.MYSQL;
+                } else if (table.indexOf('[') != -1) {
+                    dbType = JdbcConstants.SQL_SERVER;
+                } else if (table.indexOf('@') != -1) {
+                    dbType = JdbcConstants.ORACLE;
+                }
+                SQLExpr owner = SQLUtils.toSQLExpr(table, dbType);
+                hashCode64 = new SQLPropertyExpr(owner, name).hashCode64();
+            } else {
+                hashCode64 = FnvHash.hashCode64(table, name);
+            }
+            return hashCode64;
+        }
+
         public Column(String table, String name, long hashCode64){
             this.table = table;
             this.name = name;

@@ -189,6 +189,7 @@ public class SQLASTVisitorAdapter implements SQLASTVisitor {
     }
 
     public boolean visit(SQLVariantRefExpr x) {
+
         return true;
     }
 

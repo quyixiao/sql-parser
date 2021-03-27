@@ -21,6 +21,7 @@ import com.alibaba.druid.sql.ast.SQLObjectImpl;
 import com.alibaba.druid.sql.ast.SQLReplaceable;
 import com.alibaba.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.alibaba.druid.sql.ast.expr.SQLPropertyExpr;
+import com.alibaba.druid.sql.ast.expr.SQLVariantRefExpr;
 import com.alibaba.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLUpdateSetItem extends SQLObjectImpl implements SQLReplaceable {
@@ -63,8 +64,12 @@ public class SQLUpdateSetItem extends SQLObjectImpl implements SQLReplaceable {
     @Override
     protected void accept0(SQLASTVisitor visitor) {
         if (visitor.visit(this)) {
-            acceptChild(visitor, column);
-            acceptChild(visitor, value);
+            if(value instanceof SQLVariantRefExpr){
+                acceptChild(visitor, column);
+            }
+            // todo quyixiao
+            //acceptChild(visitor, column);
+            //acceptChild(visitor, value);
         }
 
         visitor.endVisit(this);
