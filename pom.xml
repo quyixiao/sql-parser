@@ -39,9 +39,12 @@
         </dependency>
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> version_1.0
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
