@@ -98,7 +98,8 @@ public class Test {
                 "        AND type=? ORDER BY ID DESC LIMIT 1";
         printSql(sql);
     }
-<<<<<<< HEAD
+
+
 
     @org.junit.Test
     public void test5() {
@@ -110,32 +111,6 @@ public class Test {
                 "        AND type=?\n" +
                 "        AND gmt_create  >=  \n" +
                 "        CAST(CAST(SYSDATE()AS DATE)AS DATETIME) ";
-        printSql(sql);
-    }
-
-
-
-    @org.junit.Test
-    public void test6() {
-        String sql = "   SELECT SUM(amount) FROM lt_expect_lend_time\n" +
-                "        WHERE is_delete=0\n" +
-                "        AND supplier_code = ?\n" +
-                "        AND quota_type = ?\n" +
-                "            AND rate_type = ?\n" +
-                "        AND DATE_FORMAT(expect_time,'%Y-%m-%d')=DATE_FORMAT(?,'%Y-%m-%d') ";
-=======
-
-    @org.junit.Test
-    public void test5() {
-        String sql = "  SELECT\n" +
-                "        COUNT(*)\n" +
-                "        FROM lt_code_record\n" +
-                "        WHERE is_delete = 0\n" +
-                "        AND send_account=?\n" +
-                "        AND type=?\n" +
-                "        AND gmt_create  >=  \n" +
-                "        CAST(CAST(SYSDATE()AS DATE)AS DATETIME) ";
->>>>>>> version_1.0
         printSql(sql);
     }
 

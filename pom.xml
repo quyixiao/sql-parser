@@ -30,21 +30,12 @@
             <version>1.18.4</version>
         </dependency>
 
-
-
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
 
-
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> version_1.0
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
