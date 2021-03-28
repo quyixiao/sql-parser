@@ -15,6 +15,8 @@
  */
 package com.alibaba.druid.sql.ast;
 
+import com.alibaba.druid.sql.ast.expr.SQLIdentifierExpr;
+import com.alibaba.druid.sql.ast.expr.SQLPropertyExpr;
 import com.alibaba.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.ArrayList;
@@ -58,6 +60,7 @@ public abstract class SQLObjectImpl implements SQLObject {
         if (child == null) {
             return;
         }
+
 
         child.accept(visitor);
     }
@@ -225,5 +228,12 @@ public abstract class SQLObjectImpl implements SQLObject {
 
     public SQLDataType computeDataType() {
         return null;
+    }
+
+    public boolean notIdentifierExpr(Object value){
+        if(value instanceof SQLPropertyExpr || value instanceof SQLIdentifierExpr){
+            return false;
+        }
+        return true;
     }
 }

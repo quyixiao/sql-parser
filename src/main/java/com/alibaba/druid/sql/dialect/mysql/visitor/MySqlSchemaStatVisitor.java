@@ -18,6 +18,7 @@ package com.alibaba.druid.sql.dialect.mysql.visitor;
 import com.alibaba.druid.sql.ast.SQLExpr;
 import com.alibaba.druid.sql.ast.SQLName;
 import com.alibaba.druid.sql.ast.SQLObject;
+import com.alibaba.druid.sql.ast.expr.SQLVariantRefExpr;
 import com.alibaba.druid.sql.ast.statement.*;
 import com.alibaba.druid.sql.dialect.mysql.ast.MySqlForceIndexHint;
 import com.alibaba.druid.sql.dialect.mysql.ast.MySqlIgnoreIndexHint;
@@ -60,6 +61,7 @@ public class MySqlSchemaStatVisitor extends SchemaStatVisitor implements MySqlAS
     public boolean visit(SQLSelectStatement x) {
         if (repository != null
                 && x.getParent() == null) {
+
             repository.resolve(x);
         }
 
@@ -127,8 +129,8 @@ public class MySqlSchemaStatVisitor extends SchemaStatVisitor implements MySqlAS
             stat.incrementInsertCount();
         }
 
-        accept(x.getColumns());
-        accept(x.getValuesList());
+        acceptOrigin(x.getColumns());
+        // accept(x.getValuesList());
         accept(x.getQuery());
         accept(x.getDuplicateKeyUpdate());
 
@@ -216,7 +218,7 @@ public class MySqlSchemaStatVisitor extends SchemaStatVisitor implements MySqlAS
 
         return true;
     }
-    
+
     @Override
     public void endVisit(MysqlDeallocatePrepareStatement x) {
     	
@@ -253,6 +255,15 @@ public class MySqlSchemaStatVisitor extends SchemaStatVisitor implements MySqlAS
     public void endVisit(SQLStartTransactionStatement x) {
 
     }
+
+
+
+    @Override
+    public boolean visit(SQLVariantRefExpr x) {
+        this.addColumnUnKown();
+        return true;
+    }
+
 
     @Override
     public boolean visit(SQLStartTransactionStatement x) {

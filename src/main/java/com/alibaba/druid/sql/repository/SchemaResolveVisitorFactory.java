@@ -494,6 +494,13 @@ class SchemaResolveVisitorFactory {
             return false;
         }
 
+
+        public boolean visit(SQLVariantRefExpr x) {
+
+            return false;
+        }
+
+
         public boolean visit(SQLSelectItem x) {
             SQLExpr expr = x.getExpr();
             if (expr instanceof SQLIdentifierExpr) {

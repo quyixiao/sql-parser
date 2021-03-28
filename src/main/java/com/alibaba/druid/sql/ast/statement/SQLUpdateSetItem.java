@@ -19,9 +19,7 @@ import com.alibaba.druid.sql.ast.SQLExpr;
 import com.alibaba.druid.sql.ast.SQLName;
 import com.alibaba.druid.sql.ast.SQLObjectImpl;
 import com.alibaba.druid.sql.ast.SQLReplaceable;
-import com.alibaba.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.alibaba.druid.sql.ast.expr.SQLPropertyExpr;
-import com.alibaba.druid.sql.ast.expr.SQLVariantRefExpr;
+import com.alibaba.druid.sql.ast.expr.*;
 import com.alibaba.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLUpdateSetItem extends SQLObjectImpl implements SQLReplaceable {
@@ -66,6 +64,15 @@ public class SQLUpdateSetItem extends SQLObjectImpl implements SQLReplaceable {
         if (visitor.visit(this)) {
             if(value instanceof SQLVariantRefExpr){
                 acceptChild(visitor, column);
+            }else if(value instanceof SQLBinaryOpExpr){
+                SQLExpr left = ((SQLBinaryOpExpr) value).getLeft();
+                if(notIdentifierExpr(left)){
+                    acceptChild(visitor, left);
+                }
+                SQLExpr right = ((SQLBinaryOpExpr) value).getRight();
+                if(notIdentifierExpr(right)){
+                    acceptChild(visitor, right);
+                }
             }
             // todo quyixiao
             //acceptChild(visitor, column);

@@ -130,25 +130,29 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
         return stat;
     }
 
-    protected Column addColumn(String tableName, String columnName) {
-        if("*".equals(columnName)){
+    public Column addColumnUnKown() {
+        return addColumn("UNKOWN", "?");
+    }
+
+    public Column addColumn(String tableName, String columnName) {
+        if ("*".equals(columnName)) {
             return null;
         }
         // todo quyixiao
         Column column = new Column(tableName, columnName);
         long tableHashCode64 = column.hashCode64();
         Column temp = this.columns.get(column.hashCode64());
-        int i = 0 ;
+        int i = 0;
         while (temp != null) {
-            tableHashCode64 = Column.getHashCode64(tableName,columnName + i);
+            tableHashCode64 = Column.getHashCode64(tableName, columnName + i);
             temp = this.columns.get(tableHashCode64);
-            i ++;
+            i++;
         }
         columns.put(tableHashCode64, column);
         return column;
     }
 
-    protected Column addColumn(SQLName table, String columnName) {
+    public Column addColumn(SQLName table, String columnName) {
         if ("*".equals(columnName)) {
             return null;
         }
@@ -491,7 +495,10 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
 
         for (SQLSelectOrderByItem orderByItem : x.getItems()) {
             // todo quyixiao
-            //statExpr(orderByItem.getExpr());
+            if (notIdentifierExpr(orderByItem.getExpr() )) {
+                statExpr(orderByItem.getExpr());
+            }
+
         }
 
         return false;
@@ -558,12 +565,18 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
         SQLExpr begin = x.getBeginExpr();
         SQLExpr end = x.getEndExpr();
 
-        statExpr(test);
-        statExpr(begin);
-        statExpr(end);
+        if (notIdentifierExpr(test)) {
+            statExpr(test);
+        }
 
+        if (notIdentifierExpr(begin)) {
+            statExpr(begin);
+        }
+
+        if (notIdentifierExpr(end)) {
+            statExpr(end);
+        }
         handleCondition(test, "BETWEEN", begin, end);
-
         return false;
     }
 
@@ -598,21 +611,29 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
                 handleCondition(right, x.getOperator().name, left);
                 handleRelationship(left, x.getOperator().name, right);
                 // todo quyixiao
-                if (right instanceof SQLVariantRefExpr) {
-                    if ("?".equals(((SQLVariantRefExpr) right).getName())) {
-                        statExpr(left);
-                        return false;
-                    }
-                }else{
-                    return false;
+                if (isIdentifierExpr(left) && right instanceof SQLVariantRefExpr) {
+                    rightFlag = false;
+                } else if (right instanceof SQLValuableExpr) {
+                    leftFlag = rightFlag = false;
+                } else if (isIdentifierExpr(left) && isIdentifierExpr(right)) {
+                    rightFlag = leftFlag = false;
+                } else if (isIdentifierExpr(left) && right instanceof SQLMethodInvokeExpr) {
+                    leftFlag = false;
+                } else if (left instanceof SQLMethodInvokeExpr && isIdentifierExpr(right)) {
+                    rightFlag = false;
+                } else if (isIdentifierExpr(left) && right instanceof SQLBinaryOpExpr) {
+                    leftFlag = false;
+                } else if (left instanceof SQLVariantRefExpr && isIdentifierExpr(right)) {        // ? = user.id
+                    leftFlag = false;
                 }
                 break;
             case Subtract:
             case Add:
-                if(left instanceof SQLIdentifierExpr){
+                if (isIdentifierExpr(left) && isIdentifierExpr(right)) {
+                    leftFlag = rightFlag = false;
+                } else if (isIdentifierExpr(left) && right instanceof SQLVariantRefExpr) {
                     leftFlag = false;
-                }
-                if(right instanceof  SQLIdentifierExpr){
+                } else if (left instanceof SQLVariantRefExpr && isIdentifierExpr(right)) {
                     rightFlag = false;
                 }
                 break;
@@ -626,7 +647,6 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
                         item.accept(this);
                     }
                 }
-
                 return false;
             }
             case Modulus:
@@ -641,12 +661,20 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
             default:
                 break;
         }
-        if(leftFlag){
-            statExpr(left);
+        if (leftFlag) {
+            if (left instanceof SQLVariantRefExpr) {
+                addColumnUnKown();
+            } else {
+                statExpr(left);
+            }
         }
 
-        if(rightFlag){
-            statExpr(right);
+        if (rightFlag) {
+            if (right instanceof SQLVariantRefExpr) {
+                addColumnUnKown();
+            } else {
+                statExpr(right);
+            }
         }
         return false;
     }
@@ -998,17 +1026,31 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
         }
     }
 
+    public boolean notIdentifierExpr(Object value) {
+        if (value instanceof SQLPropertyExpr || value instanceof SQLIdentifierExpr) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isIdentifierExpr(Object value) {
+        return !notIdentifierExpr(value);
+    }
+
     protected void accept(List<? extends SQLObject> nodes) {
         for (int i = 0, size = nodes.size(); i < size; ++i) {
             SQLObject sqlObject = nodes.get(i);
-            if(sqlObject instanceof  SQLIdentifierExpr) {
-
-            }else if (sqlObject instanceof SQLVariantRefExpr){
-                addColumn("UNKOWN","?");
-            }else{
+            if (notIdentifierExpr(sqlObject)) {
                 accept(sqlObject);
             }
+            // todo quyixiao
+        }
+    }
 
+    protected void acceptOrigin(List<? extends SQLObject> nodes) {
+        for (int i = 0, size = nodes.size(); i < size; ++i) {
+            SQLObject sqlObject = nodes.get(i);
+            accept(sqlObject);
             // todo quyixiao
         }
     }
@@ -1051,10 +1093,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
 
         for (SQLSelectItem selectItem : x.getSelectList()) {
             // todo quyixiao
-            if (selectItem.getExpr() instanceof SQLPropertyExpr ||
-                selectItem.getExpr() instanceof SQLIdentifierExpr) {
-
-            }else{
+            if (notIdentifierExpr(selectItem.getExpr())) {
                 statExpr(selectItem.getExpr());
             }
             //statExpr(selectItem.getExpr());
@@ -1078,7 +1117,10 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
         SQLSelectGroupByClause groupBy = x.getGroupBy();
         if (groupBy != null) {
             for (SQLExpr expr : groupBy.getItems()) {
-                statExpr(expr);
+                // todo quyixiao
+                if(notIdentifierExpr(expr)){
+                    statExpr(expr);
+                }
             }
         }
 
@@ -1087,10 +1129,14 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
             this.visit(orderBy);
         }
 
-        SQLExpr first = x.getFirst();
+
+        // todo quyixiao
+        /*  SQLExpr first = x.getFirst();
         if (first != null) {
             statExpr(first);
-        }
+        }*/
+
+
 
         List<SQLExpr> distributeBy = x.getDistributeBy();
         if (distributeBy != null) {
@@ -1102,7 +1148,19 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
         List<SQLSelectOrderByItem> sortBy = x.getSortBy();
         if (sortBy != null) {
             for (SQLSelectOrderByItem orderByItem : sortBy) {
-                visit(orderBy);
+                visit(orderByItem);
+            }
+        }
+
+        SQLLimit limit = x.getLimit();
+        if (limit != null) {
+            SQLExpr rowCount = limit.getRowCount();
+            if (rowCount != null && rowCount instanceof SQLVariantRefExpr) {
+                addColumnUnKown();
+            }
+            SQLExpr offset = limit.getOffset();
+            if (offset != null && offset instanceof SQLVariantRefExpr) {
+                addColumnUnKown();
             }
         }
 

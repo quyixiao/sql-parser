@@ -86,6 +86,7 @@ public class SQLVariantRefExpr extends SQLExprImpl {
     protected void accept0(SQLASTVisitor visitor) {
         visitor.visit(this);
 
+
         visitor.endVisit(this);
     }
 
