@@ -17,11 +17,8 @@ package com.lz.druid.sql.ast.expr;
 
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class SQLCastExpr extends SQLExprImpl implements SQLObjectWithDataType, SQLReplaceable {
@@ -29,7 +26,7 @@ public class SQLCastExpr extends SQLExprImpl implements SQLObjectWithDataType, S
     protected SQLExpr expr;
     protected SQLDataType dataType;
 
-    public SQLCastExpr(){
+    public SQLCastExpr() {
 
     }
 

@@ -15,26 +15,25 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLStatement;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OracleForStatement extends OracleStatementImpl {
 
-    private SQLName            index;
+    private SQLName index;
 
-    private SQLExpr            range;
+    private SQLExpr range;
 
     private List<SQLStatement> statements = new ArrayList<SQLStatement>();
 
-    private boolean            all;
+    private boolean all;
 
-    private SQLName           endLabel;
+    private SQLName endLabel;
 
     @Override
     public void accept0(OracleASTVisitor visitor) {

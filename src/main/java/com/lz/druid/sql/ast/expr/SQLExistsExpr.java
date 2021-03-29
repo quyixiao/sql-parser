@@ -15,29 +15,29 @@
  */
 package com.lz.druid.sql.ast.expr;
 
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.ast.statement.SQLSelect;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
+
 public final class SQLExistsExpr extends SQLExprImpl implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    public boolean            not              = false;
-    public SQLSelect          subQuery;
+    public boolean not = false;
+    public SQLSelect subQuery;
 
-    public SQLExistsExpr(){
+    public SQLExistsExpr() {
 
     }
 
-    public SQLExistsExpr(SQLSelect subQuery){
+    public SQLExistsExpr(SQLSelect subQuery) {
         this.setSubQuery(subQuery);
     }
 
-    public SQLExistsExpr(SQLSelect subQuery, boolean not){
+    public SQLExistsExpr(SQLSelect subQuery, boolean not) {
         this.setSubQuery(subQuery);
         this.not = not;
     }
@@ -108,7 +108,7 @@ public final class SQLExistsExpr extends SQLExprImpl implements Serializable {
         return true;
     }
 
-    public SQLExistsExpr clone () {
+    public SQLExistsExpr clone() {
         SQLExistsExpr x = new SQLExistsExpr();
 
         x.not = not;

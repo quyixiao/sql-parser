@@ -28,7 +28,7 @@ public class OracleAnalytic extends SQLOver implements OracleExpr {
 
     private OracleAnalyticWindowing windowing;
 
-    public OracleAnalytic(){
+    public OracleAnalytic() {
 
     }
 

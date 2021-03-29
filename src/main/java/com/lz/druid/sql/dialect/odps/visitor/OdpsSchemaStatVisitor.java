@@ -20,14 +20,6 @@ import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.dialect.hive.ast.HiveInsert;
 import com.lz.druid.sql.dialect.odps.ast.*;
-import com.lz.druid.sql.dialect.odps.ast.*;
-import com.lz.druid.sql.visitor.SchemaStatVisitor;
-import com.lz.druid.stat.TableStat;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.dialect.hive.ast.HiveInsert;
 import com.lz.druid.sql.visitor.SchemaStatVisitor;
 import com.lz.druid.stat.TableStat;
 import com.lz.druid.util.JdbcConstants;
@@ -141,12 +133,12 @@ public class OdpsSchemaStatVisitor extends SchemaStatVisitor implements OdpsASTV
     public boolean visit(OdpsSelectQueryBlock x) {
         return this.visit((SQLSelectQueryBlock) x);
     }
-    
+
     @Override
     public void endVisit(OdpsAnalyzeTableStatement x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsAnalyzeTableStatement x) {
         return true;
@@ -154,39 +146,39 @@ public class OdpsSchemaStatVisitor extends SchemaStatVisitor implements OdpsASTV
 
     @Override
     public void endVisit(OdpsAddStatisticStatement x) {
-        
+
     }
 
     @Override
     public boolean visit(OdpsAddStatisticStatement x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsRemoveStatisticStatement x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsRemoveStatisticStatement x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsStatisticClause.TableCount x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsStatisticClause.TableCount x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsStatisticClause.ExpressionCondition x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsStatisticClause.ExpressionCondition x) {
         return true;
@@ -194,49 +186,49 @@ public class OdpsSchemaStatVisitor extends SchemaStatVisitor implements OdpsASTV
 
     @Override
     public void endVisit(OdpsStatisticClause.NullValue x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsStatisticClause.NullValue x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsStatisticClause.ColumnSum x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsStatisticClause.ColumnSum x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsStatisticClause.ColumnMax x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsStatisticClause.ColumnMax x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsStatisticClause.ColumnMin x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsStatisticClause.ColumnMin x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsReadStatement x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsReadStatement x) {
         return true;
@@ -244,7 +236,7 @@ public class OdpsSchemaStatVisitor extends SchemaStatVisitor implements OdpsASTV
 
     @Override
     public void endVisit(OdpsShowGrantsStmt x) {
-        
+
     }
 
     @Override
@@ -254,7 +246,7 @@ public class OdpsSchemaStatVisitor extends SchemaStatVisitor implements OdpsASTV
 
     @Override
     public void endVisit(OdpsListStmt x) {
-        
+
     }
 
     @Override

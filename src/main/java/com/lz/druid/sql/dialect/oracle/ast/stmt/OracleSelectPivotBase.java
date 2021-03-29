@@ -15,17 +15,17 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class OracleSelectPivotBase extends OracleSQLObjectImpl {
 
     protected final List<SQLExpr> pivotFor = new ArrayList<SQLExpr>();
 
-    public OracleSelectPivotBase(){
+    public OracleSelectPivotBase() {
 
     }
 

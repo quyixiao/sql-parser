@@ -27,9 +27,9 @@ import java.util.Map;
 public class MapComparator<K extends Object, V extends Object> implements Comparator<Map<K, V>> {
 
     private boolean isDesc;
-    private K       orderByKey;
+    private K orderByKey;
 
-    public MapComparator(K orderByKey, boolean isDesc){
+    public MapComparator(K orderByKey, boolean isDesc) {
         this.orderByKey = orderByKey;
         this.isDesc = isDesc;
     }

@@ -28,12 +28,12 @@ public class MySqlOrderingExpr extends SQLExprImpl implements MySqlExpr {
 
     protected SQLExpr expr;
     protected SQLOrderingSpecification type;
-    
+
     public MySqlOrderingExpr() {
-        
+
     }
-    
-    public MySqlOrderingExpr(SQLExpr expr, SQLOrderingSpecification type){
+
+    public MySqlOrderingExpr(SQLExpr expr, SQLOrderingSpecification type) {
         super();
         setExpr(expr);
         this.type = type;

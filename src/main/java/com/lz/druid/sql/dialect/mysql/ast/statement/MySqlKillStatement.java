@@ -15,21 +15,21 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class MySqlKillStatement extends MySqlStatementImpl {
 
-    private Type          type;
+    private Type type;
     private List<SQLExpr> threadIds = new ArrayList<SQLExpr>();
 
     public static enum Type {
-                             CONNECTION, QUERY
+        CONNECTION, QUERY
     }
 
     public Type getType() {
@@ -47,7 +47,7 @@ public class MySqlKillStatement extends MySqlStatementImpl {
     public void setThreadId(SQLExpr threadId) {
         this.threadIds.set(0, threadId);
     }
-    
+
     public List<SQLExpr> getThreadIds() {
         return threadIds;
     }

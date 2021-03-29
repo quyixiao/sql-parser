@@ -35,6 +35,7 @@ public interface OracleConstraint extends OracleSQLObject, SQLConstraint, SQLTab
     void setEnable(Boolean enable);
 
     Boolean getValidate();
+
     void setValidate(Boolean validate);
 
     Initially getInitially();

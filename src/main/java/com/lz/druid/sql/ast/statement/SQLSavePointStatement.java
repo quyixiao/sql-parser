@@ -19,10 +19,6 @@ import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +26,13 @@ import java.util.List;
 public class SQLSavePointStatement extends SQLStatementImpl {
 
     private SQLExpr name;
-    
+
     public SQLSavePointStatement() {
-        
+
     }
-    
+
     public SQLSavePointStatement(String dbType) {
-        super (dbType);
+        super(dbType);
     }
 
     public SQLExpr getName() {

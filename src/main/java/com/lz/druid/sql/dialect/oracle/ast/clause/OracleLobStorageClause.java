@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.clause;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObject;
@@ -25,30 +22,33 @@ import com.lz.druid.sql.dialect.oracle.ast.OracleSegmentAttributesImpl;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OracleLobStorageClause extends OracleSegmentAttributesImpl implements OracleSQLObject {
 
-    private SQLName             segementName;
+    private SQLName segementName;
 
-    private final List<SQLName> items      = new ArrayList<SQLName>();
+    private final List<SQLName> items = new ArrayList<SQLName>();
 
-    private boolean             secureFile = false;
-    private boolean             basicFile  = false;
+    private boolean secureFile = false;
+    private boolean basicFile = false;
 
 
-    private Boolean             enable;
+    private Boolean enable;
 
-    private SQLExpr             chunk;
+    private SQLExpr chunk;
 
-    private Boolean             cache;
-    private Boolean             logging;
+    private Boolean cache;
+    private Boolean logging;
 
-    private Boolean             compress;
-    private Boolean             keepDuplicate;
-    private boolean             retention;
+    private Boolean compress;
+    private Boolean keepDuplicate;
+    private boolean retention;
 
     private OracleStorageClause storageClause;
 
-    private SQLExpr             pctversion;
+    private SQLExpr pctversion;
 
     protected void accept0(SQLASTVisitor visitor) {
         this.accept0((OracleASTVisitor) visitor);

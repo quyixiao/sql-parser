@@ -22,10 +22,10 @@ public class OracleGotoStatement extends OracleStatementImpl {
 
     private SQLName label;
 
-    public OracleGotoStatement(){
+    public OracleGotoStatement() {
     }
 
-    public OracleGotoStatement(SQLName label){
+    public OracleGotoStatement(SQLName label) {
         this.label = label;
     }
 

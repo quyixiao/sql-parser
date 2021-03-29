@@ -15,11 +15,11 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.statement.SQLColumnDefinition;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OracleAlterTableModify extends OracleAlterTableItem {
 

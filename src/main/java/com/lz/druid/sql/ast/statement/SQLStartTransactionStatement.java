@@ -15,22 +15,21 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.Collections;
-import java.util.List;
-
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.sql.ast.SQLCommentHint;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.SQLStatementImpl;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
+import java.util.Collections;
+import java.util.List;
 
 public class SQLStartTransactionStatement extends SQLStatementImpl {
 
-    private boolean              consistentSnapshot = false;
+    private boolean consistentSnapshot = false;
 
-    private boolean              begin              = false;
-    private boolean              work               = false;
+    private boolean begin = false;
+    private boolean work = false;
     private SQLExpr name;
 
     private List<SQLCommentHint> hints;

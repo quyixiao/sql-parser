@@ -15,23 +15,20 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.ast.SQLName;
+import com.lz.druid.sql.ast.SQLObjectImpl;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLAlterTableDropColumnItem extends SQLObjectImpl implements SQLAlterTableItem {
 
     private List<SQLName> columns = new ArrayList<SQLName>();
 
-    private boolean       cascade = false;
+    private boolean cascade = false;
 
-    public SQLAlterTableDropColumnItem(){
+    public SQLAlterTableDropColumnItem() {
 
     }
 
@@ -46,7 +43,7 @@ public class SQLAlterTableDropColumnItem extends SQLObjectImpl implements SQLAlt
     public List<SQLName> getColumns() {
         return columns;
     }
-    
+
     public void addColumn(SQLName column) {
         if (column != null) {
             column.setParent(this);

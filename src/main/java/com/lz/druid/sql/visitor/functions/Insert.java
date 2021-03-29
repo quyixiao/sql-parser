@@ -15,11 +15,11 @@
  */
 package com.lz.druid.sql.visitor.functions;
 
-import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
 import com.lz.druid.sql.visitor.SQLEvalVisitor;
+
+import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
 
 public class Insert implements Function {
 
@@ -61,23 +61,23 @@ public class Insert implements Function {
         int pos = ((Number) param1Value).intValue();
         int len = ((Number) param2Value).intValue();
         String newstr = (String) param3Value;
-        
+
         if (pos <= 0) {
             return str;
         }
-        
+
         if (pos == 1) {
             if (len > str.length()) {
                 return newstr;
             }
             return newstr + str.substring(len);
         }
-        
+
         String first = str.substring(0, pos - 1);
         if (pos + len - 1 > str.length()) {
             return first + newstr;
         }
-        
+
         return first + newstr + str.substring(pos + len - 1);
     }
 }

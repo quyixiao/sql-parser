@@ -15,40 +15,32 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.statement.SQLSelectItem;
-import com.lz.druid.sql.ast.statement.SQLSelectQueryBlock;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlObject;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectQueryBlock;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.JdbcConstants;
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
+import com.lz.druid.sql.ast.statement.SQLSelectQueryBlock;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlObject;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
 
-public class MySqlSelectQueryBlock extends SQLSelectQueryBlock implements MySqlObject {
-    private boolean              hignPriority;
-    private boolean              straightJoin;
-    private boolean              smallResult;
-    private boolean              bigResult;
-    private boolean              bufferResult;
-    private Boolean              cache;
-    private boolean              calcFoundRows;
-    private SQLName procedureName;
-    private List<SQLExpr>        procedureArgumentList;
-    private boolean              lockInShareMode;
-    private SQLName              forcePartition; // for petadata
+import java.util.ArrayList;
+import java.util.List;
 
-    public MySqlSelectQueryBlock(){
+public class MySqlSelectQueryBlock extends SQLSelectQueryBlock implements MySqlObject {
+    private boolean hignPriority;
+    private boolean straightJoin;
+    private boolean smallResult;
+    private boolean bigResult;
+    private boolean bufferResult;
+    private Boolean cache;
+    private boolean calcFoundRows;
+    private SQLName procedureName;
+    private List<SQLExpr> procedureArgumentList;
+    private boolean lockInShareMode;
+    private SQLName forcePartition; // for petadata
+
+    public MySqlSelectQueryBlock() {
         dbType = JdbcConstants.MYSQL;
     }
 

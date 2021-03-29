@@ -19,19 +19,15 @@ import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public abstract class OdpsObjectImpl extends SQLObjectImpl implements OdpsObject {
     @Override
     protected void accept0(SQLASTVisitor visitor) {
         accept0((OdpsASTVisitor) visitor);
     }
-    
+
     public abstract void accept0(OdpsASTVisitor visitor);
-    
+
     public String toString() {
         return SQLUtils.toOdpsString(this);
     }

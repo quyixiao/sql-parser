@@ -17,16 +17,15 @@ package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public class OracleLabelStatement extends OracleStatementImpl {
 
     private SQLName label;
 
-    public OracleLabelStatement(){
+    public OracleLabelStatement() {
     }
 
-    public OracleLabelStatement(SQLName label){
+    public OracleLabelStatement(SQLName label) {
         this.label = label;
     }
 

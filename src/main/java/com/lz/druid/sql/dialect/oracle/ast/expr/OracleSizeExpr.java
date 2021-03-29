@@ -19,8 +19,6 @@ import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,13 +26,13 @@ import java.util.List;
 public class OracleSizeExpr extends OracleSQLObjectImpl implements OracleExpr {
 
     private SQLExpr value;
-    private Unit    unit;
+    private Unit unit;
 
-    public OracleSizeExpr(){
+    public OracleSizeExpr() {
 
     }
 
-    public OracleSizeExpr(SQLExpr value, Unit unit){
+    public OracleSizeExpr(SQLExpr value, Unit unit) {
         super();
         this.value = value;
         this.unit = unit;

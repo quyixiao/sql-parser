@@ -24,7 +24,6 @@ import com.lz.druid.sql.dialect.hive.ast.HiveInsertStatement;
 import com.lz.druid.sql.dialect.hive.ast.HiveMultiInsertStatement;
 import com.lz.druid.sql.dialect.hive.stmt.HiveCreateTableStatement;
 import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
-import com.lz.druid.sql.ast.statement.*;
 
 import java.util.List;
 import java.util.Map;

@@ -15,30 +15,26 @@
  */
 package com.lz.druid.sql.ast.expr;
 
+import com.lz.druid.sql.ast.SQLExpr;
+import com.lz.druid.sql.ast.SQLExprImpl;
+import com.lz.druid.sql.ast.SQLObject;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
-
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLUnaryExpr extends SQLExprImpl implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private SQLExpr expr;
-    private SQLUnaryOperator  operator;
+    private SQLUnaryOperator operator;
 
-    public SQLUnaryExpr(){
+    public SQLUnaryExpr() {
 
     }
 
-    public SQLUnaryExpr(SQLUnaryOperator operator, SQLExpr expr){
+    public SQLUnaryExpr(SQLUnaryOperator operator, SQLExpr expr) {
         this.operator = operator;
         this.setExpr(expr);
     }

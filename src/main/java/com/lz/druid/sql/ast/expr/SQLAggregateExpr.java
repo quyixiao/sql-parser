@@ -15,41 +15,36 @@
  */
 package com.lz.druid.sql.ast.expr;
 
+import com.lz.druid.sql.SQLUtils;
+import com.lz.druid.sql.ast.*;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+import com.lz.druid.util.FnvHash;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.FnvHash;
 
 public class SQLAggregateExpr extends SQLExprImpl implements Serializable, SQLReplaceable {
 
-    private static final long     serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-    protected String              methodName;
-    protected long                methodNameHashCod64;
+    protected String methodName;
+    protected long methodNameHashCod64;
 
-    protected SQLAggregateOption  option;
-    protected final List<SQLExpr> arguments        = new ArrayList<SQLExpr>();
+    protected SQLAggregateOption option;
+    protected final List<SQLExpr> arguments = new ArrayList<SQLExpr>();
     protected SQLKeep keep;
-    protected SQLExpr             filter;
+    protected SQLExpr filter;
     protected SQLOver over;
-    protected SQLName             overRef;
-    protected SQLOrderBy          withinGroup;
-    protected Boolean             ignoreNulls      = false;
+    protected SQLName overRef;
+    protected SQLOrderBy withinGroup;
+    protected Boolean ignoreNulls = false;
 
-    public SQLAggregateExpr(String methodName){
+    public SQLAggregateExpr(String methodName) {
         this.methodName = methodName;
     }
 
-    public SQLAggregateExpr(String methodName, SQLAggregateOption option){
+    public SQLAggregateExpr(String methodName, SQLAggregateOption option) {
         this.methodName = methodName;
         this.option = option;
     }
@@ -92,7 +87,7 @@ public class SQLAggregateExpr extends SQLExprImpl implements Serializable, SQLRe
     public List<SQLExpr> getArguments() {
         return this.arguments;
     }
-    
+
     public void addArgument(SQLExpr argument) {
         if (argument != null) {
             argument.setParent(this);
@@ -121,7 +116,7 @@ public class SQLAggregateExpr extends SQLExprImpl implements Serializable, SQLRe
         }
         this.overRef = x;
     }
-    
+
     public SQLKeep getKeep() {
         return keep;
     }
@@ -132,7 +127,7 @@ public class SQLAggregateExpr extends SQLExprImpl implements Serializable, SQLRe
         }
         this.keep = keep;
     }
-    
+
     public boolean isIgnoreNulls() {
         return this.ignoreNulls != null && this.ignoreNulls;
     }

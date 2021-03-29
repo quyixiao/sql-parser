@@ -18,22 +18,20 @@ package com.lz.druid.sql.dialect.oracle.ast.stmt;
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.ast.expr.SQLCharExpr;
-import com.lz.druid.sql.ast.statement.SQLExplainStatement;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public class OracleRunStatement extends SQLStatementImpl implements OracleStatement {
 
-    private SQLExpr     expr;
+    private SQLExpr expr;
 
     public OracleRunStatement() {
-        super (JdbcConstants.ORACLE);
+        super(JdbcConstants.ORACLE);
     }
+
     public OracleRunStatement(SQLExpr expr) {
-        super (JdbcConstants.ORACLE);
+        super(JdbcConstants.ORACLE);
         this.setExpr(expr);
     }
 

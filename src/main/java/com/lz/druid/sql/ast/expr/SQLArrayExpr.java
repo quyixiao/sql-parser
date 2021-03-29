@@ -15,17 +15,13 @@
  */
 package com.lz.druid.sql.ast.expr;
 
+import com.lz.druid.sql.ast.SQLExpr;
+import com.lz.druid.sql.ast.SQLExprImpl;
+import com.lz.druid.sql.ast.SQLObject;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLArrayExpr extends SQLExprImpl {
 
@@ -101,7 +97,6 @@ public class SQLArrayExpr extends SQLExprImpl {
         } else if (!values.equals(other.values)) return false;
         return true;
     }
-
 
 
 }

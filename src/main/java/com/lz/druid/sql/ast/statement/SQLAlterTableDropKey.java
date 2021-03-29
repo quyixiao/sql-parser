@@ -18,9 +18,6 @@ package com.lz.druid.sql.ast.statement;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLAlterTableDropKey extends SQLObjectImpl implements SQLAlterTableItem {
 
@@ -36,7 +33,7 @@ public class SQLAlterTableDropKey extends SQLObjectImpl implements SQLAlterTable
 
     @Override
     protected void accept0(SQLASTVisitor visitor) {
-        if(visitor.visit(this)) {
+        if (visitor.visit(this)) {
             acceptChild(visitor, keyName);
         }
         visitor.endVisit(this);

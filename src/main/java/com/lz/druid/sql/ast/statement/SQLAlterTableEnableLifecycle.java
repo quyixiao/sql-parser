@@ -15,13 +15,11 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.ast.SQLObjectImpl;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLAlterTableEnableLifecycle extends SQLObjectImpl implements SQLAlterTableItem {
 

@@ -19,9 +19,6 @@ import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.statement.SQLSelect;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,11 +27,11 @@ public final class SQLAllExpr extends SQLExprImpl {
 
     public SQLSelect subQuery;
 
-    public SQLAllExpr(){
+    public SQLAllExpr() {
 
     }
 
-    public SQLAllExpr(SQLSelect select){
+    public SQLAllExpr(SQLSelect select) {
         setSubQuery(select);
     }
 

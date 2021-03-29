@@ -15,28 +15,23 @@
  */
 package com.lz.druid.sql.ast.expr;
 
+import com.lz.druid.sql.SQLUtils;
+import com.lz.druid.sql.ast.*;
+import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLCaseExpr extends SQLExprImpl implements SQLReplaceable, Serializable {
 
     private static final long serialVersionUID = 1L;
-    private final List<Item>  items            = new ArrayList<Item>();
+    private final List<Item> items = new ArrayList<Item>();
     private SQLExpr valueExpr;
-    private SQLExpr           elseExpr;
+    private SQLExpr elseExpr;
 
-    public SQLCaseExpr(){
+    public SQLCaseExpr() {
 
     }
 
@@ -113,14 +108,14 @@ public class SQLCaseExpr extends SQLExprImpl implements SQLReplaceable, Serializ
     public static class Item extends SQLObjectImpl implements SQLReplaceable, Serializable {
 
         private static final long serialVersionUID = 1L;
-        private SQLExpr           conditionExpr;
-        private SQLExpr           valueExpr;
+        private SQLExpr conditionExpr;
+        private SQLExpr valueExpr;
 
-        public Item(){
+        public Item() {
 
         }
 
-        public Item(SQLExpr conditionExpr, SQLExpr valueExpr){
+        public Item(SQLExpr conditionExpr, SQLExpr valueExpr) {
 
             setConditionExpr(conditionExpr);
             setValueExpr(valueExpr);
@@ -150,10 +145,10 @@ public class SQLCaseExpr extends SQLExprImpl implements SQLReplaceable, Serializ
 
         protected void accept0(SQLASTVisitor visitor) {
             if (visitor.visit(this)) {
-                if(notIdentifierExpr(this.conditionExpr)){
+                if (notIdentifierExpr(this.conditionExpr)) {
                     acceptChild(visitor, this.conditionExpr);
                 }
-                if(notIdentifierExpr(this.valueExpr)){
+                if (notIdentifierExpr(this.valueExpr)) {
                     acceptChild(visitor, this.valueExpr);
                 }
             }
@@ -292,7 +287,7 @@ public class SQLCaseExpr extends SQLExprImpl implements SQLReplaceable, Serializ
             }
         }
 
-        if(elseExpr != null) {
+        if (elseExpr != null) {
             return elseExpr.computeDataType();
         }
 

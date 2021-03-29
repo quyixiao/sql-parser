@@ -16,23 +16,22 @@
 package com.lz.druid.sql.dialect.oracle.visitor;
 
 import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
-import com.lz.druid.sql.visitor.*;
 import com.lz.druid.sql.visitor.ParameterizedVisitor;
 import com.lz.druid.sql.visitor.VisitorFeature;
 
 public class OracleParameterizedOutputVisitor extends OracleOutputVisitor implements ParameterizedVisitor {
 
-    public OracleParameterizedOutputVisitor(){
+    public OracleParameterizedOutputVisitor() {
         this(new StringBuilder());
         this.config(VisitorFeature.OutputParameterized, true);
     }
 
-    public OracleParameterizedOutputVisitor(Appendable appender){
+    public OracleParameterizedOutputVisitor(Appendable appender) {
         super(appender);
         this.config(VisitorFeature.OutputParameterized, true);
     }
 
-    public OracleParameterizedOutputVisitor(Appendable appender, boolean printPostSemi){
+    public OracleParameterizedOutputVisitor(Appendable appender, boolean printPostSemi) {
         super(appender, printPostSemi);
         this.config(VisitorFeature.OutputParameterized, true);
     }

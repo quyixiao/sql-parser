@@ -18,11 +18,7 @@ package com.lz.druid.sql.ast.expr;
 import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

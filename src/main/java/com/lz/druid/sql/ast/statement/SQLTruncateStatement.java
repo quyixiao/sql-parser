@@ -15,40 +15,36 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.ast.SQLName;
+import com.lz.druid.sql.ast.SQLStatementImpl;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-
 public class SQLTruncateStatement extends SQLStatementImpl {
 
-    protected List<SQLExprTableSource> tableSources               = new ArrayList<SQLExprTableSource>(2);
+    protected List<SQLExprTableSource> tableSources = new ArrayList<SQLExprTableSource>(2);
 
-    private boolean                    purgeSnapshotLog           = false;
+    private boolean purgeSnapshotLog = false;
 
-    private boolean                    only;
-    private Boolean                    restartIdentity;
-    private Boolean                    cascade;
+    private boolean only;
+    private Boolean restartIdentity;
+    private Boolean cascade;
 
     // db2
-    private boolean                    dropStorage                = false;
-    private boolean                    reuseStorage               = false;
-    private boolean                    immediate                  = false;
-    private boolean                    ignoreDeleteTriggers       = false;
-    private boolean                    restrictWhenDeleteTriggers = false;
-    private boolean                    continueIdentity           = false;
+    private boolean dropStorage = false;
+    private boolean reuseStorage = false;
+    private boolean immediate = false;
+    private boolean ignoreDeleteTriggers = false;
+    private boolean restrictWhenDeleteTriggers = false;
+    private boolean continueIdentity = false;
 
-    public SQLTruncateStatement(){
+    public SQLTruncateStatement() {
 
     }
 
-    public SQLTruncateStatement(String dbType){
+    public SQLTruncateStatement(String dbType) {
         super(dbType);
     }
 

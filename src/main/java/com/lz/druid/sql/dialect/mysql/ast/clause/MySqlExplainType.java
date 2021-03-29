@@ -17,7 +17,7 @@ package com.lz.druid.sql.dialect.mysql.ast.clause;
 
 public enum MySqlExplainType {
 
-	EXTENDED,
-	PARTITIONS,
-	FORMAT
+    EXTENDED,
+    PARTITIONS,
+    FORMAT
 }

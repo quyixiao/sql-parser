@@ -19,23 +19,19 @@ import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLDropTableSpaceStatement extends SQLStatementImpl implements SQLDropStatement {
 
     private SQLName name;
     private boolean ifExists;
     private SQLExpr engine;
-    
+
     public SQLDropTableSpaceStatement() {
-        
+
     }
-    
+
     public SQLDropTableSpaceStatement(String dbType) {
-        super (dbType);
+        super(dbType);
     }
 
     @Override

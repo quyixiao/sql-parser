@@ -49,7 +49,7 @@ public class PhoenixLexer extends Lexer {
         DEFAULT_PHOENIX_KEYWORDS = new Keywords(map);
     }
 
-    public PhoenixLexer(String input){
+    public PhoenixLexer(String input) {
         super(input);
         super.keywods = DEFAULT_PHOENIX_KEYWORDS;
     }

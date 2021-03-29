@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
@@ -25,22 +22,25 @@ import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.ast.expr.SQLVariantRefExpr;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLCallStatement extends SQLStatementImpl {
 
-    private boolean             brace      = false;
+    private boolean brace = false;
 
     private SQLVariantRefExpr outParameter;
 
     private SQLName procedureName;
 
     private final List<SQLExpr> parameters = new ArrayList<SQLExpr>();
-    
+
     public SQLCallStatement() {
-        
+
     }
-    
+
     public SQLCallStatement(String dbType) {
-        super (dbType);
+        super(dbType);
     }
 
     public SQLVariantRefExpr getOutParameter() {

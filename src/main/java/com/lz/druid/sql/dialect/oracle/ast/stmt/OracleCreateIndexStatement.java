@@ -16,25 +16,22 @@
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
 import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.statement.SQLCreateIndexStatement;
 import com.lz.druid.sql.ast.statement.SQLCreateStatement;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSegmentAttributes;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSegmentAttributes;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OracleCreateIndexStatement extends SQLCreateIndexStatement implements OracleDDLStatement, OracleSegmentAttributes, SQLCreateStatement {
 
-    private boolean online            = false;
+    private boolean online = false;
 
     private boolean indexOnlyTopLevel = false;
-    private boolean cluster           = false;
+    private boolean cluster = false;
 
     private boolean noParallel;
 
@@ -58,12 +55,12 @@ public class OracleCreateIndexStatement extends SQLCreateIndexStatement implemen
     protected SQLName tablespace;
     protected SQLObject storage;
 
-    private Boolean enable            = null;
+    private Boolean enable = null;
 
     private boolean computeStatistics = false;
-    
+
     public OracleCreateIndexStatement() {
-        super (JdbcConstants.ORACLE);
+        super(JdbcConstants.ORACLE);
     }
 
     public SQLExpr getParallel() {

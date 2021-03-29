@@ -15,21 +15,21 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.ast.SQLStatement;
 import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLIfStatement extends SQLStatementImpl {
 
     private SQLExpr condition;
     private List<SQLStatement> statements = new ArrayList<SQLStatement>();
-    private List<ElseIf>       elseIfList = new ArrayList<ElseIf>();
-    private Else               elseItem;
+    private List<ElseIf> elseIfList = new ArrayList<ElseIf>();
+    private Else elseItem;
 
     public SQLIfStatement clone() {
         SQLIfStatement x = new SQLIfStatement();
@@ -101,7 +101,7 @@ public class SQLIfStatement extends SQLStatementImpl {
 
     public static class ElseIf extends SQLObjectImpl {
 
-        private SQLExpr            condition;
+        private SQLExpr condition;
         private List<SQLStatement> statements = new ArrayList<SQLStatement>();
 
         @Override

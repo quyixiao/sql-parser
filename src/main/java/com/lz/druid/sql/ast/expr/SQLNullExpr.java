@@ -17,18 +17,14 @@ package com.lz.druid.sql.ast.expr;
 
 import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.sql.visitor.SQLEvalVisitor;
 
 import java.util.Collections;
 import java.util.List;
 
-import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE_NULL;
-
 public final class SQLNullExpr extends SQLExprImpl implements SQLLiteralExpr, SQLValuableExpr {
 
-    public SQLNullExpr(){
+    public SQLNullExpr() {
 
     }
 

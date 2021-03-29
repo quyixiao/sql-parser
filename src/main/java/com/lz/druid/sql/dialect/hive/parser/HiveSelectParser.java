@@ -16,14 +16,6 @@
 package com.lz.druid.sql.dialect.hive.parser;
 
 import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLOrderBy;
-import com.lz.druid.sql.ast.SQLOrderingSpecification;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.parser.SQLExprParser;
-import com.lz.druid.sql.parser.SQLSelectListCache;
-import com.lz.druid.sql.parser.SQLSelectParser;
-import com.lz.druid.sql.parser.Token;
-import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLOrderingSpecification;
 import com.lz.druid.sql.ast.statement.SQLSelectOrderByItem;
 import com.lz.druid.sql.ast.statement.SQLSelectQueryBlock;
@@ -34,15 +26,15 @@ import com.lz.druid.sql.parser.Token;
 
 public class HiveSelectParser extends SQLSelectParser {
 
-    public HiveSelectParser(SQLExprParser exprParser){
+    public HiveSelectParser(SQLExprParser exprParser) {
         super(exprParser);
     }
 
-    public HiveSelectParser(SQLExprParser exprParser, SQLSelectListCache selectListCache){
+    public HiveSelectParser(SQLExprParser exprParser, SQLSelectListCache selectListCache) {
         super(exprParser, selectListCache);
     }
 
-    public HiveSelectParser(String sql){
+    public HiveSelectParser(String sql) {
         this(new HiveExprParser(sql));
     }
 
@@ -54,7 +46,7 @@ public class HiveSelectParser extends SQLSelectParser {
         if (lexer.token() == Token.SORT) {
             lexer.nextToken();
             accept(Token.BY);
-            for (;;) {
+            for (; ; ) {
                 SQLExpr expr = this.expr();
 
                 SQLSelectOrderByItem sortByItem = new SQLSelectOrderByItem(expr);

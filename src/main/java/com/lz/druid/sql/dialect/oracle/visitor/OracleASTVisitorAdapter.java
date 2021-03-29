@@ -20,25 +20,8 @@ import com.lz.druid.sql.ast.statement.SQLMergeStatement.MergeUpdateClause;
 import com.lz.druid.sql.ast.statement.SQLScriptCommitStatement;
 import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalDay;
 import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalYear;
-import com.lz.druid.sql.dialect.oracle.ast.clause.CycleClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.CellAssignment;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.CellAssignmentItem;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.MainModelClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelColumn;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelColumnClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelRulesClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.QueryPartitionClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ReturnRowsClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleLobStorageClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleReturningClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleStorageClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleWithSubqueryEntry;
-import com.lz.druid.sql.dialect.oracle.ast.clause.PartitionExtensionClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.SampleClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.SearchClause;
-import com.lz.druid.sql.dialect.oracle.ast.expr.*;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
+import com.lz.druid.sql.dialect.oracle.ast.clause.*;
+import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.*;
 import com.lz.druid.sql.dialect.oracle.ast.expr.*;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleMultiInsertStatement.ConditionalInsertClause;
@@ -1019,6 +1002,7 @@ public class OracleASTVisitorAdapter extends SQLASTVisitorAdapter implements Ora
     public void endVisit(OracleExecuteImmediateStatement x) {
 
     }
+
     @Override
     public boolean visit(OracleTreatExpr x) {
         return true;

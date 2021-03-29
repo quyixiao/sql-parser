@@ -20,14 +20,6 @@ import com.lz.druid.sql.ast.statement.SQLCreateTableStatement;
 import com.lz.druid.sql.dialect.db2.ast.DB2Statement;
 import com.lz.druid.sql.dialect.db2.visitor.DB2ASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.statement.SQLCreateTableStatement;
-import com.lz.druid.sql.dialect.db2.ast.DB2Statement;
-import com.lz.druid.sql.dialect.db2.visitor.DB2ASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DB2CreateTableStatement extends SQLCreateTableStatement implements DB2Statement {
     private boolean dataCaptureNone;

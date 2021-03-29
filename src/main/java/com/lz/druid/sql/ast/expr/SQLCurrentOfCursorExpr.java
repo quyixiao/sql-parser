@@ -19,10 +19,6 @@ import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
@@ -31,11 +27,11 @@ public class SQLCurrentOfCursorExpr extends SQLExprImpl {
 
     private SQLName cursorName;
 
-    public SQLCurrentOfCursorExpr(){
+    public SQLCurrentOfCursorExpr() {
 
     }
 
-    public SQLCurrentOfCursorExpr(SQLName cursorName){
+    public SQLCurrentOfCursorExpr(SQLName cursorName) {
         this.cursorName = cursorName;
     }
 

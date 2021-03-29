@@ -19,7 +19,6 @@ import com.lz.druid.sql.ast.SQLArgument;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.SQLCharExpr;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +33,10 @@ public class OracleExecuteImmediateStatement extends OracleStatementImpl {
 
     private final List<SQLExpr> returnInto = new ArrayList<SQLExpr>();
 
-    public OracleExecuteImmediateStatement(){
+    public OracleExecuteImmediateStatement() {
     }
 
-    public OracleExecuteImmediateStatement(String dynamicSql){
+    public OracleExecuteImmediateStatement(String dynamicSql) {
         this.setDynamicSql(dynamicSql);
     }
 

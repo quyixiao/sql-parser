@@ -15,40 +15,35 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
+import com.lz.druid.sql.ast.SQLExpr;
+import com.lz.druid.sql.ast.SQLName;
+import com.lz.druid.sql.ast.SQLObject;
+import com.lz.druid.sql.ast.expr.SQLLiteralExpr;
+import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.expr.SQLLiteralExpr;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.expr.SQLLiteralExpr;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-
 public class MySqlLoadXmlStatement extends MySqlStatementImpl {
 
-    private boolean             lowPriority = false;
-    private boolean             concurrent  = false;
-    private boolean             local       = false;
+    private boolean lowPriority = false;
+    private boolean concurrent = false;
+    private boolean local = false;
 
     private SQLLiteralExpr fileName;
 
-    private boolean             replicate   = false;
-    private boolean             ignore      = false;
+    private boolean replicate = false;
+    private boolean ignore = false;
 
     private SQLName tableName;
 
-    private String              charset;
+    private String charset;
 
     private SQLExpr rowsIdentifiedBy;
 
-    private SQLExpr             ignoreLinesNumber;
+    private SQLExpr ignoreLinesNumber;
 
-    private final List<SQLExpr> setList     = new ArrayList<SQLExpr>();
+    private final List<SQLExpr> setList = new ArrayList<SQLExpr>();
 
     public SQLExpr getRowsIdentifiedBy() {
         return rowsIdentifiedBy;

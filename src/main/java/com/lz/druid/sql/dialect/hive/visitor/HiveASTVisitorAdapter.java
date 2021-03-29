@@ -20,9 +20,6 @@ import com.lz.druid.sql.dialect.hive.ast.HiveInsertStatement;
 import com.lz.druid.sql.dialect.hive.ast.HiveMultiInsertStatement;
 import com.lz.druid.sql.dialect.hive.stmt.HiveCreateTableStatement;
 import com.lz.druid.sql.visitor.SQLASTVisitorAdapter;
-import com.lz.druid.sql.dialect.hive.ast.HiveInsertStatement;
-import com.lz.druid.sql.dialect.hive.ast.HiveMultiInsertStatement;
-import com.lz.druid.sql.visitor.SQLASTVisitorAdapter;
 
 public class HiveASTVisitorAdapter extends SQLASTVisitorAdapter implements HiveASTVisitor {
     @Override

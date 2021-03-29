@@ -21,19 +21,14 @@ import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLDataType;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLAlterTableAlterColumn extends SQLObjectImpl implements SQLAlterTableItem {
     private SQLName originColumn;
     private SQLColumnDefinition column;
-    private boolean             setNotNull;
-    private boolean             dropNotNull;
+    private boolean setNotNull;
+    private boolean dropNotNull;
     private SQLExpr setDefault;
-    private boolean             dropDefault;
+    private boolean dropDefault;
     private SQLDataType dataType;
 
     @Override

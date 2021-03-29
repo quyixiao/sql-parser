@@ -20,31 +20,10 @@ import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.expr.SQLVariantRefExpr;
 import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlForceIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlIgnoreIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlKey;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlPrimaryKey;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlUnique;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlUseIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MysqlForeignKey;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlCaseStatement;
+import com.lz.druid.sql.dialect.mysql.ast.*;
+import com.lz.druid.sql.dialect.mysql.ast.clause.*;
 import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlCaseStatement.MySqlWhenStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlCursorDeclareStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlDeclareConditionStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlDeclareHandlerStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlDeclareStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlIterateStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlLeaveStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlRepeatStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlSelectIntoStatement;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlCharExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlExtractExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlMatchAgainstExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlOrderingExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlOutFileExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlUserName;
-import com.lz.druid.sql.dialect.mysql.ast.statement.*;
+import com.lz.druid.sql.dialect.mysql.ast.expr.*;
 import com.lz.druid.sql.dialect.mysql.ast.statement.*;
 import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement.TableSpaceOption;
 import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlCreateUserStatement.UserSpecification;
@@ -57,7 +36,7 @@ import com.lz.druid.util.JdbcUtils;
 public class MySqlSchemaStatVisitor extends SchemaStatVisitor implements MySqlASTVisitor {
 
     public MySqlSchemaStatVisitor() {
-        super (JdbcConstants.MYSQL);
+        super(JdbcConstants.MYSQL);
     }
 
     public boolean visit(SQLSelectStatement x) {
@@ -223,12 +202,12 @@ public class MySqlSchemaStatVisitor extends SchemaStatVisitor implements MySqlAS
 
     @Override
     public void endVisit(MysqlDeallocatePrepareStatement x) {
-    	
+
     }
-    
+
     @Override
     public boolean visit(MysqlDeallocatePrepareStatement x) {
-    	return true;
+        return true;
     }
 
     @Override
@@ -257,7 +236,6 @@ public class MySqlSchemaStatVisitor extends SchemaStatVisitor implements MySqlAS
     public void endVisit(SQLStartTransactionStatement x) {
 
     }
-
 
 
     @Override
@@ -440,7 +418,7 @@ public class MySqlSchemaStatVisitor extends SchemaStatVisitor implements MySqlAS
         for (SQLExpr item : x.getReturning()) {
             item.accept(this);
         }
-        
+
         return false;
     }
 
@@ -1255,25 +1233,25 @@ public class MySqlSchemaStatVisitor extends SchemaStatVisitor implements MySqlAS
 
     }
 
-	@Override
-	public boolean visit(MySqlDeclareHandlerStatement x) {
-		return false;
-	}
+    @Override
+    public boolean visit(MySqlDeclareHandlerStatement x) {
+        return false;
+    }
 
-	@Override
-	public void endVisit(MySqlDeclareHandlerStatement x) {
+    @Override
+    public void endVisit(MySqlDeclareHandlerStatement x) {
 
-	}
+    }
 
-	@Override
-	public boolean visit(MySqlDeclareConditionStatement x) {
-		return false;
-	}
+    @Override
+    public boolean visit(MySqlDeclareConditionStatement x) {
+        return false;
+    }
 
-	@Override
-	public void endVisit(MySqlDeclareConditionStatement x) {
+    @Override
+    public void endVisit(MySqlDeclareConditionStatement x) {
 
-	}
+    }
 
     @Override
     public boolean visit(MySqlFlushStatement x) {

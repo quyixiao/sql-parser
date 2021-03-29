@@ -21,19 +21,13 @@ import com.lz.druid.sql.ast.statement.SQLCreateTableStatement;
 import com.lz.druid.sql.ast.statement.SQLTableElement;
 import com.lz.druid.sql.ast.statement.SQLUniqueConstraint;
 import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.statement.SQLColumnDefinition;
-import com.lz.druid.sql.ast.statement.SQLCreateTableStatement;
-import com.lz.druid.sql.ast.statement.SQLTableElement;
-import com.lz.druid.sql.ast.statement.SQLUniqueConstraint;
-import com.lz.druid.util.FnvHash;
 
 /**
  * Created by wenshao on 08/06/2017.
  */
 public class SchemaObjectImpl implements SchemaObject {
     private final String name;
-    private final long   hashCode64;
+    private final long hashCode64;
 
     private final SchemaObjectType type;
     private SQLStatement statement;

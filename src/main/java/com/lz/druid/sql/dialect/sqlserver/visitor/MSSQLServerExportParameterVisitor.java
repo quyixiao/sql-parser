@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.sqlserver.visitor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLOrderBy;
 import com.lz.druid.sql.ast.expr.SQLBetweenExpr;
 import com.lz.druid.sql.ast.expr.SQLInListExpr;
@@ -27,6 +24,9 @@ import com.lz.druid.sql.ast.statement.SQLSelectItem;
 import com.lz.druid.sql.visitor.ExportParameterVisitor;
 import com.lz.druid.sql.visitor.ExportParameterVisitorUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MSSQLServerExportParameterVisitor extends SQLServerOutputVisitor implements ExportParameterVisitor {
 
     /**
@@ -34,7 +34,7 @@ public class MSSQLServerExportParameterVisitor extends SQLServerOutputVisitor im
      */
     private final boolean requireParameterizedOutput;
 
-    public MSSQLServerExportParameterVisitor(final List<Object> parameters,final Appendable appender,final boolean wantParameterizedOutput){
+    public MSSQLServerExportParameterVisitor(final List<Object> parameters, final Appendable appender, final boolean wantParameterizedOutput) {
         super(appender, true);
         this.parameters = parameters;
         this.requireParameterizedOutput = wantParameterizedOutput;
@@ -44,21 +44,21 @@ public class MSSQLServerExportParameterVisitor extends SQLServerOutputVisitor im
         this(new ArrayList<Object>());
     }
 
-    public MSSQLServerExportParameterVisitor(final List<Object> parameters){
-        this(parameters,new StringBuilder(),false);
+    public MSSQLServerExportParameterVisitor(final List<Object> parameters) {
+        this(parameters, new StringBuilder(), false);
     }
 
     public MSSQLServerExportParameterVisitor(final Appendable appender) {
-        this(new ArrayList<Object>(),appender,true);
+        this(new ArrayList<Object>(), appender, true);
     }
-    
+
     public List<Object> getParameters() {
         return parameters;
     }
 
     @Override
     public boolean visit(SQLSelectItem x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         return false;
@@ -66,7 +66,7 @@ public class MSSQLServerExportParameterVisitor extends SQLServerOutputVisitor im
 
     @Override
     public boolean visit(SQLOrderBy x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         return false;
@@ -74,7 +74,7 @@ public class MSSQLServerExportParameterVisitor extends SQLServerOutputVisitor im
 
     @Override
     public boolean visit(SQLSelectGroupByClause x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         return false;
@@ -82,10 +82,10 @@ public class MSSQLServerExportParameterVisitor extends SQLServerOutputVisitor im
 
     @Override
     public boolean visit(SQLMethodInvokeExpr x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
-        
+
         ExportParameterVisitorUtils.exportParamterAndAccept(this.parameters, x.getParameters());
 
         return true;
@@ -93,7 +93,7 @@ public class MSSQLServerExportParameterVisitor extends SQLServerOutputVisitor im
 
     @Override
     public boolean visit(SQLInListExpr x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         ExportParameterVisitorUtils.exportParamterAndAccept(this.parameters, x.getTargetList());
@@ -103,7 +103,7 @@ public class MSSQLServerExportParameterVisitor extends SQLServerOutputVisitor im
 
     @Override
     public boolean visit(SQLBetweenExpr x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         ExportParameterVisitorUtils.exportParameter(this.parameters, x);

@@ -15,32 +15,32 @@
  */
 package com.lz.druid.sql.ast.expr;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLDataType;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 public final class SQLInListExpr extends SQLExprImpl implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private boolean           not              = false;
+    private boolean not = false;
     private SQLExpr expr;
-    private List<SQLExpr>     targetList       = new ArrayList<SQLExpr>();
+    private List<SQLExpr> targetList = new ArrayList<SQLExpr>();
 
-    public SQLInListExpr(){
+    public SQLInListExpr() {
 
     }
 
-    public SQLInListExpr(SQLExpr expr){
+    public SQLInListExpr(SQLExpr expr) {
         this.setExpr(expr);
     }
 
-    public SQLInListExpr(SQLExpr expr, boolean not){
+    public SQLInListExpr(SQLExpr expr, boolean not) {
         this.setExpr(expr);
         this.not = not;
     }
@@ -75,7 +75,7 @@ public final class SQLInListExpr extends SQLExprImpl implements Serializable {
         if (expr != null) {
             expr.setParent(this);
         }
-        
+
         this.expr = expr;
     }
 
@@ -90,9 +90,9 @@ public final class SQLInListExpr extends SQLExprImpl implements Serializable {
     protected void accept0(SQLASTVisitor visitor) {
         if (visitor.visit(this)) {
             // todo quyixiao
-            if( this.targetList !=null &&  this.targetList.size() > 0 ){
-                SQLExpr object =   this.targetList.get(0);
-                if(object instanceof SQLVariantRefExpr){
+            if (this.targetList != null && this.targetList.size() > 0) {
+                SQLExpr object = this.targetList.get(0);
+                if (object instanceof SQLVariantRefExpr) {
                     acceptChild(visitor, this.expr);
                 }
             }

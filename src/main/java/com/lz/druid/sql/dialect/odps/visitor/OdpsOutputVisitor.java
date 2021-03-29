@@ -15,25 +15,17 @@
  */
 package com.lz.druid.sql.dialect.odps.visitor;
 
+import com.lz.druid.sql.ast.*;
+import com.lz.druid.sql.ast.expr.SQLCharExpr;
+import com.lz.druid.sql.ast.statement.*;
+import com.lz.druid.sql.dialect.hive.ast.HiveInsert;
+import com.lz.druid.sql.dialect.odps.ast.*;
+import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
+import com.lz.druid.util.JdbcConstants;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLCharExpr;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.statement.SQLJoinTableSource.JoinType;
-import com.lz.druid.sql.dialect.hive.ast.HiveInsert;
-import com.lz.druid.sql.dialect.odps.ast.*;
-import com.lz.druid.sql.dialect.odps.ast.*;
-import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLCharExpr;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.dialect.hive.ast.HiveInsert;
-import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
-import com.lz.druid.util.JdbcConstants;
 
 public class OdpsOutputVisitor extends SQLASTOutputVisitor implements OdpsASTVisitor {
 
@@ -52,11 +44,11 @@ public class OdpsOutputVisitor extends SQLASTOutputVisitor implements OdpsASTVis
         builtInFunctions.add("EXPLODE");
         builtInFunctions.add("LEAST");
         builtInFunctions.add("GREATEST");
-        
+
         groupItemSingleLine = true;
     }
 
-    public OdpsOutputVisitor(Appendable appender){
+    public OdpsOutputVisitor(Appendable appender) {
         super(appender, JdbcConstants.ODPS);
     }
 
@@ -77,12 +69,12 @@ public class OdpsOutputVisitor extends SQLASTOutputVisitor implements OdpsASTVis
         int size = x.getTableElementList().size();
         if (size > 0) {
             print0(" (");
-            
+
             if (this.isPrettyFormat() && x.hasBodyBeforeComment()) {
                 print(' ');
                 printlnComment(x.getBodyBeforeCommentsDirect());
             }
-            
+
             this.indentCount++;
             println();
             for (int i = 0; i < size; ++i) {
@@ -784,7 +776,8 @@ public class OdpsOutputVisitor extends SQLASTOutputVisitor implements OdpsASTVis
 
         if (x.isLabel()) {
             print0(ucase ? "LABEL " : "label ");
-            x.getLabel().accept(this);;
+            x.getLabel().accept(this);
+            ;
         } else {
             printAndAccept(x.getPrivileges(), ", ");
         }
@@ -796,7 +789,7 @@ public class OdpsOutputVisitor extends SQLASTOutputVisitor implements OdpsASTVis
                 print(' ');
             }
             x.getOn().accept(this);
-            
+
             if (x.getColumns().size() > 0) {
                 print('(');
                 printAndAccept(x.getColumns(), ", ");
@@ -820,7 +813,7 @@ public class OdpsOutputVisitor extends SQLASTOutputVisitor implements OdpsASTVis
 
         return false;
     }
-    
+
     public boolean visit(SQLCharExpr x) {
         String text = x.getText();
         if (text == null) {

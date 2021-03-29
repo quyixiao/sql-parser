@@ -27,8 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HiveInsertStatement extends SQLInsertStatement implements SQLStatement {
-    private boolean              overwrite  = false;
-    private List<SQLAssignItem>  partitions = new ArrayList<SQLAssignItem>();
+    private boolean overwrite = false;
+    private List<SQLAssignItem> partitions = new ArrayList<SQLAssignItem>();
 
     public HiveInsertStatement() {
         dbType = JdbcConstants.HIVE;

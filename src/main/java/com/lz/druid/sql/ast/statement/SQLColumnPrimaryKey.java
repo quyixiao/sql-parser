@@ -16,7 +16,6 @@
 package com.lz.druid.sql.ast.statement;
 
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLColumnPrimaryKey extends SQLConstraintImpl implements SQLColumnConstraint {
     public SQLColumnPrimaryKey() {

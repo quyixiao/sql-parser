@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.ast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLPartitionByList extends SQLPartitionBy {

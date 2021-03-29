@@ -27,21 +27,11 @@ import com.lz.druid.sql.dialect.hive.stmt.HiveCreateTableStatement;
 import com.lz.druid.sql.visitor.SchemaStatVisitor;
 import com.lz.druid.stat.TableStat;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.statement.SQLAssignItem;
-import com.lz.druid.sql.ast.statement.SQLCreateTableStatement;
-import com.lz.druid.sql.ast.statement.SQLExprTableSource;
-import com.lz.druid.sql.dialect.hive.ast.HiveInsertStatement;
-import com.lz.druid.sql.dialect.hive.ast.HiveMultiInsertStatement;
-import com.lz.druid.sql.visitor.SchemaStatVisitor;
-import com.lz.druid.stat.TableStat;
-import com.lz.druid.util.JdbcConstants;
 
 public class HiveSchemaStatVisitor extends SchemaStatVisitor implements HiveASTVisitor {
 
     public HiveSchemaStatVisitor() {
-        super (JdbcConstants.HIVE);
+        super(JdbcConstants.HIVE);
     }
 
     @Override

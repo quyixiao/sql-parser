@@ -28,16 +28,16 @@ public class OracleSelectJoin extends SQLJoinTableSource implements OracleSelect
 
     protected OracleSelectPivotBase pivot;
 
-    public OracleSelectJoin(String alias){
+    public OracleSelectJoin(String alias) {
         super(alias);
     }
 
-    public OracleSelectJoin(){
+    public OracleSelectJoin() {
 
     }
 
-    public OracleSelectJoin(SQLTableSource left, JoinType joinType, SQLTableSource right, SQLExpr condition){
-        super (left, joinType, right, condition);
+    public OracleSelectJoin(SQLTableSource left, JoinType joinType, SQLTableSource right, SQLExpr condition) {
+        super(left, joinType, right, condition);
     }
 
     public OracleSelectPivotBase getPivot() {
@@ -107,7 +107,7 @@ public class OracleSelectJoin extends SQLJoinTableSource implements OracleSelect
         return result;
     }
 
-    public String toString () {
+    public String toString() {
         return SQLUtils.toOracleString(this);
     }
 

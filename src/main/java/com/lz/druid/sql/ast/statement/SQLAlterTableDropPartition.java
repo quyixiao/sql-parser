@@ -15,12 +15,12 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLAlterTableDropPartition extends SQLObjectImpl implements SQLAlterTableItem {
 
@@ -33,7 +33,7 @@ public class SQLAlterTableDropPartition extends SQLObjectImpl implements SQLAlte
     public List<SQLObject> getPartitions() {
         return partitions;
     }
-    
+
     public void addPartition(SQLObject partition) {
         if (partition != null) {
             partition.setParent(this);

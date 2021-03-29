@@ -17,18 +17,16 @@ package com.lz.druid.sql.ast.statement;
 
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLCheck extends SQLConstraintImpl implements SQLTableElement, SQLTableConstraint {
 
     private SQLExpr expr;
 
-    public SQLCheck(){
+    public SQLCheck() {
 
     }
 
-    public SQLCheck(SQLExpr expr){
+    public SQLCheck(SQLExpr expr) {
         this.setExpr(expr);
     }
 

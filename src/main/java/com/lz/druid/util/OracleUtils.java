@@ -17,15 +17,11 @@ package com.lz.druid.util;
 
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.statement.SQLCreateTableStatement;
-import com.lz.druid.sql.SQLUtils;
-
 
 import java.sql.*;
 import java.util.*;
 
 public class OracleUtils {
-
-
 
 
     private static Set<String> builtinFunctions;

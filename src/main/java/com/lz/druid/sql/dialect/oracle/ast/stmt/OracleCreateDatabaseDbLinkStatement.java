@@ -19,7 +19,6 @@ import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.statement.SQLCreateStatement;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public class OracleCreateDatabaseDbLinkStatement extends OracleStatementImpl implements SQLCreateStatement {
 
@@ -30,12 +29,12 @@ public class OracleCreateDatabaseDbLinkStatement extends OracleStatementImpl imp
 
     private SQLName user;
 
-    private String  password;
+    private String password;
 
     private SQLExpr using;
 
     private SQLExpr authenticatedUser;
-    private String  authenticatedPassword;
+    private String authenticatedPassword;
 
     public boolean isShared() {
         return shared;

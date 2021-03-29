@@ -18,9 +18,6 @@ package com.lz.druid.sql.ast.statement;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLAlterTableDropIndex extends SQLObjectImpl implements SQLAlterTableItem {
 

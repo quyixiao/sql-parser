@@ -20,10 +20,6 @@ import com.lz.druid.sql.dialect.mysql.ast.MySqlObject;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlObjectImpl;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlObject;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlObjectImpl;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class MySqlAlterTableDiscardTablespace extends MySqlObjectImpl implements SQLAlterTableItem, MySqlObject {
 

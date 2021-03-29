@@ -15,44 +15,28 @@
  */
 package com.lz.druid.sql.dialect.mysql.parser;
 
-import com.lz.druid.sql.ast.SQLDataTypeImpl;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLOrderingSpecification;
-import com.lz.druid.sql.ast.SQLPartition;
-import com.lz.druid.sql.ast.SQLPartitionBy;
-import com.lz.druid.sql.ast.SQLPartitionByHash;
-import com.lz.druid.sql.ast.SQLPartitionByList;
-import com.lz.druid.sql.ast.SQLPartitionByRange;
-import com.lz.druid.sql.ast.SQLSubPartitionBy;
-import com.lz.druid.sql.ast.SQLSubPartitionByHash;
+import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.lz.druid.sql.ast.expr.SQLIntegerExpr;
 import com.lz.druid.sql.ast.expr.SQLNumberExpr;
-import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlKey;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlPrimaryKey;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlUnique;
 import com.lz.druid.sql.dialect.mysql.ast.MysqlForeignKey;
 import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlOrderingExpr;
-import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement;
+import com.lz.druid.sql.dialect.mysql.ast.statement.*;
 import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement.TableSpaceOption;
-import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlPartitionByKey;
-import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlSubPartitionByKey;
-import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlSubPartitionByList;
-import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlTableIndex;
 import com.lz.druid.sql.parser.*;
 import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.parser.*;
 
 public class MySqlCreateTableParser extends SQLCreateTableParser {
 
-    public MySqlCreateTableParser(String sql){
+    public MySqlCreateTableParser(String sql) {
         super(new MySqlExprParser(sql));
     }
 
-    public MySqlCreateTableParser(SQLExprParser exprParser){
+    public MySqlCreateTableParser(SQLExprParser exprParser) {
         super(exprParser);
     }
 
@@ -107,7 +91,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
                 SQLSelect query = new MySqlSelectParser(this.exprParser).select();
                 stmt.setSelect(query);
             } else {
-                for (;;) {
+                for (; ; ) {
                     if (lexer.token() == Token.FULLTEXT) {
                         Lexer.SavePoint mark = lexer.mark();
                         lexer.nextToken();
@@ -188,7 +172,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
                             }
 
                             accept(Token.LPAREN);
-                            for (;;) {
+                            for (; ; ) {
                                 idx.addColumn(this.exprParser.parseSelectOrderByItem());
                                 if (!(lexer.token() == (Token.COMMA))) {
                                     break;
@@ -219,7 +203,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
 
                     SQLColumnDefinition column = null;
                     if (lexer.token() == Token.IDENTIFIER //
-                        || lexer.token() == Token.LITERAL_CHARS) {
+                            || lexer.token() == Token.LITERAL_CHARS) {
                         column = this.exprParser.parseColumn();
                         stmt.getTableElementList().add(column);
 
@@ -227,8 +211,8 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
                             column.addAfterComment(lexer.readAndResetComments());
                         }
                     } else if (lexer.token() == Token.CONSTRAINT //
-                               || lexer.token() == Token.PRIMARY //
-                               || lexer.token() == Token.UNIQUE) {
+                            || lexer.token() == Token.PRIMARY //
+                            || lexer.token() == Token.UNIQUE) {
                         SQLTableConstraint constraint = this.parseConstraint();
                         constraint.setParent(stmt);
                         stmt.getTableElementList().add(constraint);
@@ -250,7 +234,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
                         }
 
                         accept(Token.LPAREN);
-                        for (;;) {
+                        for (; ; ) {
                             idx.addColumn(this.exprParser.parseSelectOrderByItem());
                             if (!(lexer.token() == (Token.COMMA))) {
                                 break;
@@ -259,7 +243,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
                             }
                         }
                         accept(Token.RPAREN);
-                        
+
                         if (lexer.identifierEquals("USING")) {
                             lexer.nextToken();
                             idx.setIndexType(lexer.stringVal());
@@ -313,7 +297,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
             accept(Token.RPAREN);
         }
 
-        for (;;) {
+        for (; ; ) {
             if (lexer.token() == Token.COMMA) {
                 lexer.nextToken();
             }
@@ -650,7 +634,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
 
             accept(Token.LPAREN);
             if (lexer.token() != Token.RPAREN) {
-                for (;;) {
+                for (; ; ) {
                     clause.addColumn(this.exprParser.name());
                     if (lexer.token() == Token.COMMA) {
                         lexer.nextToken();
@@ -706,7 +690,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
             } else {
                 acceptIdentifier("COLUMNS");
                 accept(Token.LPAREN);
-                for (;;) {
+                for (; ; ) {
                     clause.addColumn(this.exprParser.name());
                     if (lexer.token() == Token.COMMA) {
                         lexer.nextToken();
@@ -725,7 +709,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
 
         if (lexer.token() == Token.LPAREN) {
             lexer.nextToken();
-            for (;;) {
+            for (; ; ) {
                 SQLPartition partitionDef = this.getExprParser().parsePartition();
 
                 partitionClause.addPartition(partitionDef);
@@ -755,7 +739,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
         } else {
             acceptIdentifier("COLUMNS");
             accept(Token.LPAREN);
-            for (;;) {
+            for (; ; ) {
                 clause.addColumn(this.exprParser.name());
                 if (lexer.token() == Token.COMMA) {
                     lexer.nextToken();
@@ -816,7 +800,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
                 }
 
                 accept(Token.LPAREN);
-                for (;;) {
+                for (; ; ) {
                     subPartitionKey.addColumn(this.exprParser.name());
                     if (lexer.token() == Token.COMMA) {
                         lexer.nextToken();
@@ -871,7 +855,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
                 } else {
                     acceptIdentifier("COLUMNS");
                     accept(Token.LPAREN);
-                    for (;;) {
+                    for (; ; ) {
                         subPartitionList.addColumn(this.exprParser.parseColumn());
                         if (lexer.token() == Token.COMMA) {
                             lexer.nextToken();
@@ -896,7 +880,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
 
                 subPartitionByClause.getOptions().add(option);
             }
-            
+
             if (lexer.identifierEquals("SUBPARTITIONS")) {
                 lexer.nextToken();
                 Number intValue = lexer.integerValue();
@@ -986,7 +970,7 @@ public class MySqlCreateTableParser extends SQLCreateTableParser {
             }
 
             accept(Token.LPAREN);
-            for (;;) {
+            for (; ; ) {
                 SQLExpr expr;
                 if (lexer.token() == Token.LITERAL_ALIAS) {
                     expr = this.exprParser.name();

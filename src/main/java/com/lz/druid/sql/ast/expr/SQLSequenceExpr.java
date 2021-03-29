@@ -28,11 +28,11 @@ public class SQLSequenceExpr extends SQLExprImpl {
     private SQLName sequence;
     private Function function;
 
-    public SQLSequenceExpr(){
+    public SQLSequenceExpr() {
 
     }
 
-    public SQLSequenceExpr(SQLName sequence, Function function){
+    public SQLSequenceExpr(SQLName sequence, Function function) {
         this.sequence = sequence;
         this.function = function;
     }
@@ -55,12 +55,12 @@ public class SQLSequenceExpr extends SQLExprImpl {
     }
 
     public static enum Function {
-                                 NextVal("NEXTVAL"), CurrVal("CURRVAL"), PrevVal("PREVVAL");
+        NextVal("NEXTVAL"), CurrVal("CURRVAL"), PrevVal("PREVVAL");
 
         public final String name;
         public final String name_lcase;
 
-        private Function(String name){
+        private Function(String name) {
             this.name = name;
             this.name_lcase = name.toLowerCase();
         }

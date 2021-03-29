@@ -15,15 +15,15 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLSubPartitionBy;
 import com.lz.druid.sql.ast.statement.SQLColumnDefinition;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlObject;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySqlSubPartitionByList extends SQLSubPartitionBy implements MySqlObject {
 
@@ -39,7 +39,7 @@ public class MySqlSubPartitionByList extends SQLSubPartitionBy implements MySqlO
             throw new IllegalArgumentException("not support visitor type : " + visitor.getClass().getName());
         }
     }
-    
+
     @Override
     public void accept0(MySqlASTVisitor visitor) {
         if (visitor.visit(this)) {

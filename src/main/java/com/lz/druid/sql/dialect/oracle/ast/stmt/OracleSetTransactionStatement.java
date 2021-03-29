@@ -16,10 +16,6 @@
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
 import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.sqlserver.ast.SQLServerStatementImpl;
-import com.lz.druid.sql.dialect.sqlserver.visitor.SQLServerASTVisitor;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public class OracleSetTransactionStatement extends OracleStatementImpl implements OracleStatement {

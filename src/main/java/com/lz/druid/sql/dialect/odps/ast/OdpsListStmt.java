@@ -25,7 +25,7 @@ public class OdpsListStmt extends SQLStatementImpl {
 
     private SQLExpr object;
 
-    public OdpsListStmt(){
+    public OdpsListStmt() {
         super(JdbcConstants.ODPS);
     }
 

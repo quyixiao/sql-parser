@@ -17,8 +17,6 @@ package com.lz.druid.sql.ast.expr;
 
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,11 +25,11 @@ public class SQLRealExpr extends SQLNumericLiteralExpr implements SQLValuableExp
 
     private Float value;
 
-    public SQLRealExpr(){
+    public SQLRealExpr() {
 
     }
 
-    public SQLRealExpr(Float value){
+    public SQLRealExpr(Float value) {
         super();
         this.value = value;
     }
@@ -63,6 +61,7 @@ public class SQLRealExpr extends SQLNumericLiteralExpr implements SQLValuableExp
 
         visitor.endVisit(this);
     }
+
     @Override
     public int hashCode() {
         final int prime = 31;

@@ -15,41 +15,30 @@
  */
 package com.lz.druid.sql.dialect.oracle.visitor;
 
+import com.lz.druid.sql.ast.expr.*;
+import com.lz.druid.sql.visitor.SQLEvalVisitor;
+import com.lz.druid.sql.visitor.SQLEvalVisitorUtils;
+import com.lz.druid.sql.visitor.functions.Function;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
-import com.lz.druid.sql.ast.expr.SQLCaseExpr;
-import com.lz.druid.sql.ast.expr.SQLCharExpr;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLInListExpr;
-import com.lz.druid.sql.ast.expr.SQLIntegerExpr;
-import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
-import com.lz.druid.sql.ast.expr.SQLNullExpr;
-import com.lz.druid.sql.ast.expr.SQLNumberExpr;
-import com.lz.druid.sql.ast.expr.SQLQueryExpr;
-import com.lz.druid.sql.ast.expr.SQLUnaryExpr;
-import com.lz.druid.sql.ast.expr.SQLVariantRefExpr;
-import com.lz.druid.sql.visitor.SQLEvalVisitor;
-import com.lz.druid.sql.visitor.SQLEvalVisitorUtils;
-import com.lz.druid.sql.visitor.functions.Function;
-
 public class OracleEvalVisitor extends OracleASTVisitorAdapter implements SQLEvalVisitor {
 
-    private Map<String, Function> functions        = new HashMap<String, Function>();
-    private List<Object>          parameters       = new ArrayList<Object>();
+    private Map<String, Function> functions = new HashMap<String, Function>();
+    private List<Object> parameters = new ArrayList<Object>();
 
-    private int                   variantIndex     = -1;
+    private int variantIndex = -1;
 
-    private boolean               markVariantIndex = true;
+    private boolean markVariantIndex = true;
 
-    public OracleEvalVisitor(){
+    public OracleEvalVisitor() {
         this(new ArrayList<Object>(1));
     }
 
-    public OracleEvalVisitor(List<Object> parameters){
+    public OracleEvalVisitor(List<Object> parameters) {
         this.parameters = parameters;
     }
 
@@ -135,7 +124,7 @@ public class OracleEvalVisitor extends OracleASTVisitorAdapter implements SQLEva
     public void registerFunction(String funcName, Function function) {
         functions.put(funcName, function);
     }
-    
+
     @Override
     public void unregisterFunction(String funcName) {
         functions.remove(funcName);

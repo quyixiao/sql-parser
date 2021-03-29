@@ -17,8 +17,6 @@ package com.lz.druid.sql.dialect.mysql.ast.statement;
 
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
 public class MySqlShowProcessListStatement extends MySqlStatementImpl implements MySqlShowStatement {
 

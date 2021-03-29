@@ -15,18 +15,16 @@
  */
 package com.lz.druid.sql.dialect.postgresql.ast.stmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.statement.SQLSelectQuery;
 import com.lz.druid.sql.dialect.postgresql.ast.PGSQLObjectImpl;
 import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitor;
-import com.lz.druid.sql.dialect.postgresql.ast.PGSQLObjectImpl;
-import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PGValuesQuery extends PGSQLObjectImpl implements SQLSelectQuery {
-    private boolean          bracket  = false;
+    private boolean bracket = false;
 
     private List<SQLExpr> values = new ArrayList<SQLExpr>();
 

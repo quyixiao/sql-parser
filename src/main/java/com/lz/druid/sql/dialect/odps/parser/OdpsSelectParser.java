@@ -31,12 +31,12 @@ import com.lz.druid.sql.parser.SQLSelectParser;
 import com.lz.druid.sql.parser.Token;
 
 public class OdpsSelectParser extends SQLSelectParser {
-    public OdpsSelectParser(SQLExprParser exprParser){
+    public OdpsSelectParser(SQLExprParser exprParser) {
         super(exprParser.getLexer());
         this.exprParser = exprParser;
     }
 
-    public OdpsSelectParser(SQLExprParser exprParser, SQLSelectListCache selectListCache){
+    public OdpsSelectParser(SQLExprParser exprParser, SQLSelectListCache selectListCache) {
         super(exprParser.getLexer());
         this.exprParser = exprParser;
         this.selectListCache = selectListCache;
@@ -54,13 +54,13 @@ public class OdpsSelectParser extends SQLSelectParser {
         }
 
         OdpsSelectQueryBlock queryBlock = new OdpsSelectQueryBlock();
-        
+
         if (lexer.hasComment() && lexer.isKeepComments()) {
             queryBlock.addBeforeComment(lexer.readAndResetComments());
         }
-        
+
         accept(Token.SELECT);
-        
+
         if (lexer.token() == Token.HINT) {
             this.exprParser.parseHints(queryBlock.getHints());
         }
@@ -89,7 +89,7 @@ public class OdpsSelectParser extends SQLSelectParser {
         parseGroupBy(queryBlock);
 
         queryBlock.setOrderBy(this.exprParser.parseOrderBy());
-        
+
         if (lexer.token() == Token.DISTRIBUTE) {
             lexer.nextToken();
             accept(Token.BY);
@@ -98,12 +98,12 @@ public class OdpsSelectParser extends SQLSelectParser {
             if (lexer.identifierEquals("SORT")) {
                 lexer.nextToken();
                 accept(Token.BY);
-                
-                for (;;) {
+
+                for (; ; ) {
                     SQLExpr expr = this.expr();
-                    
+
                     SQLSelectOrderByItem sortByItem = new SQLSelectOrderByItem(expr);
-                    
+
                     if (lexer.token() == Token.ASC) {
                         sortByItem.setType(SQLOrderingSpecification.ASC);
                         lexer.nextToken();
@@ -111,9 +111,9 @@ public class OdpsSelectParser extends SQLSelectParser {
                         sortByItem.setType(SQLOrderingSpecification.DESC);
                         lexer.nextToken();
                     }
-                    
+
                     queryBlock.getSortBy().add(sortByItem);
-                    
+
                     if (lexer.token() == Token.COMMA) {
                         lexer.nextToken();
                     } else {
@@ -136,7 +136,7 @@ public class OdpsSelectParser extends SQLSelectParser {
             lexer.nextToken();
             OdpsValuesTableSource tableSource = new OdpsValuesTableSource();
 
-            for (;;) {
+            for (; ; ) {
                 accept(Token.LPAREN);
                 SQLListExpr listExpr = new SQLListExpr();
                 this.exprParser.exprList(listExpr.getItems(), listExpr);

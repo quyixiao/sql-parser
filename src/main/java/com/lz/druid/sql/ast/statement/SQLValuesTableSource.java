@@ -19,10 +19,6 @@ import com.lz.druid.sql.ast.SQLHint;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.expr.SQLListExpr;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLHint;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.expr.SQLListExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.ArrayList;
 import java.util.List;

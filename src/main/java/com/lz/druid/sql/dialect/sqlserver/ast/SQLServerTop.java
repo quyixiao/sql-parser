@@ -18,7 +18,6 @@ package com.lz.druid.sql.dialect.sqlserver.ast;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.SQLIntegerExpr;
 import com.lz.druid.sql.dialect.sqlserver.visitor.SQLServerASTVisitor;
-import com.lz.druid.sql.dialect.sqlserver.visitor.SQLServerASTVisitor;
 
 public class SQLServerTop extends SQLServerObjectImpl {
 
@@ -26,11 +25,11 @@ public class SQLServerTop extends SQLServerObjectImpl {
     private boolean percent;
     private boolean withTies;
 
-    public SQLServerTop(){
+    public SQLServerTop() {
 
     }
 
-    public SQLServerTop(SQLExpr expr){
+    public SQLServerTop(SQLExpr expr) {
         this.setExpr(expr);
     }
 

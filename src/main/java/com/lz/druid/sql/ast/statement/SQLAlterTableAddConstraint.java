@@ -17,19 +17,17 @@ package com.lz.druid.sql.ast.statement;
 
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLAlterTableAddConstraint extends SQLObjectImpl implements SQLAlterTableItem {
 
     private SQLConstraint constraint;
-    private boolean      withNoCheck = false;
+    private boolean withNoCheck = false;
 
-    public SQLAlterTableAddConstraint(){
+    public SQLAlterTableAddConstraint() {
 
     }
 
-    public SQLAlterTableAddConstraint(SQLConstraint constraint){
+    public SQLAlterTableAddConstraint(SQLConstraint constraint) {
         this.setConstraint(constraint);
     }
 

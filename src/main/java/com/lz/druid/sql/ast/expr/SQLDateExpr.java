@@ -30,7 +30,7 @@ public class SQLDateExpr extends SQLExprImpl implements SQLLiteralExpr, SQLValua
 
     private SQLExpr literal;
 
-    public SQLDateExpr(){
+    public SQLDateExpr() {
 
     }
 

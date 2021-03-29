@@ -5,8 +5,6 @@ import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.visitor.SQLEvalVisitor;
 import com.lz.druid.sql.visitor.SQLEvalVisitorUtils;
 import com.lz.druid.sql.visitor.functions.Nil;
@@ -30,15 +28,14 @@ import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
 public class WallVisitorUtils {
 
 
-    public final static String   HAS_TRUE_LIKE = "hasTrueLike";
+    public final static String HAS_TRUE_LIKE = "hasTrueLike";
 
-    private static ThreadLocal<WallConditionContext>    wallConditionContextLocal    = new ThreadLocal<WallConditionContext>();
+    private static ThreadLocal<WallConditionContext> wallConditionContextLocal = new ThreadLocal<WallConditionContext>();
     private static ThreadLocal<WallTopStatementContext> wallTopStatementContextLocal = new ThreadLocal<WallTopStatementContext>();
 
     public static WallConditionContext getWallConditionContext() {
         return wallConditionContextLocal.get();
     }
-
 
 
     public static boolean isSimpleCountTableSource(WallVisitor visitor, SQLSelect select) {
@@ -316,7 +313,7 @@ public class WallVisitorUtils {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new InputStreamReader(in));
-            for (;;) {
+            for (; ; ) {
                 String line = reader.readLine();
                 if (line == null) {
                     break;
@@ -335,8 +332,8 @@ public class WallVisitorUtils {
 
     public static class WallTopStatementContext {
 
-        private boolean fromSysTable    = false;
-        private boolean fromSysSchema   = false;
+        private boolean fromSysTable = false;
+        private boolean fromSysSchema = false;
 
         private boolean fromPermitTable = false;
 
@@ -368,11 +365,11 @@ public class WallVisitorUtils {
 
     public static class WallConditionContext {
 
-        private boolean partAlwayTrue   = false;
-        private boolean partAlwayFalse  = false;
+        private boolean partAlwayTrue = false;
+        private boolean partAlwayFalse = false;
         private boolean constArithmetic = false;
-        private boolean xor             = false;
-        private boolean bitwise         = false;
+        private boolean xor = false;
+        private boolean bitwise = false;
 
         public boolean hasPartAlwayTrue() {
             return partAlwayTrue;
@@ -415,7 +412,6 @@ public class WallVisitorUtils {
         }
 
     }
-
 
 
     public static String form(String name) {

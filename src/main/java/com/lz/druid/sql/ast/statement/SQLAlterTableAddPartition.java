@@ -15,19 +15,19 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLAlterTableAddPartition extends SQLObjectImpl implements SQLAlterTableItem {
 
-    private boolean               ifNotExists = false;
+    private boolean ifNotExists = false;
 
-    private final List<SQLObject> partitions  = new ArrayList<SQLObject>(4);
+    private final List<SQLObject> partitions = new ArrayList<SQLObject>(4);
 
     private SQLExpr partitionCount;
 

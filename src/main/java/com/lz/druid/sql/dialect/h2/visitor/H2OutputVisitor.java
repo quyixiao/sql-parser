@@ -20,11 +20,6 @@ import com.lz.druid.sql.ast.expr.SQLQueryExpr;
 import com.lz.druid.sql.ast.statement.SQLInsertStatement;
 import com.lz.druid.sql.ast.statement.SQLReplaceStatement;
 import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.expr.SQLQueryExpr;
-import com.lz.druid.sql.ast.statement.SQLInsertStatement;
-import com.lz.druid.sql.ast.statement.SQLReplaceStatement;
-import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
 
 import java.util.List;
 

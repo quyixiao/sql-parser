@@ -230,8 +230,8 @@ public abstract class SQLObjectImpl implements SQLObject {
         return null;
     }
 
-    public boolean notIdentifierExpr(Object value){
-        if(value instanceof SQLPropertyExpr || value instanceof SQLIdentifierExpr){
+    public boolean notIdentifierExpr(Object value) {
+        if (value instanceof SQLPropertyExpr || value instanceof SQLIdentifierExpr) {
             return false;
         }
         return true;

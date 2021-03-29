@@ -15,45 +15,38 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.ast.SQLExpr;
+import com.lz.druid.sql.ast.SQLName;
+import com.lz.druid.sql.ast.SQLObject;
+import com.lz.druid.sql.ast.SQLStatementImpl;
+import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
+import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLCreateIndexStatement extends SQLStatementImpl implements SQLCreateStatement {
 
     private SQLName name;
 
-    private SQLTableSource             table;
+    private SQLTableSource table;
 
     private List<SQLSelectOrderByItem> items = new ArrayList<SQLSelectOrderByItem>();
 
-    private String                     type;
-    
+    private String type;
+
     // for mysql
-    private String                     using;
+    private String using;
 
     private SQLExpr comment;
 
-    public SQLCreateIndexStatement(){
+    public SQLCreateIndexStatement() {
 
     }
-    
-    public SQLCreateIndexStatement(String dbType){
-        super (dbType);
+
+    public SQLCreateIndexStatement(String dbType) {
+        super(dbType);
     }
 
     public SQLTableSource getTable() {
@@ -107,7 +100,7 @@ public class SQLCreateIndexStatement extends SQLStatementImpl implements SQLCrea
     public void setType(String type) {
         this.type = type;
     }
-    
+
     public String getUsing() {
         return using;
     }

@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
@@ -28,31 +25,25 @@ import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
 import com.lz.druid.sql.repository.SchemaObject;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLReplaceable;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.FnvHash;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLExprTableSource extends SQLTableSourceImpl implements SQLReplaceable {
 
     protected SQLExpr expr;
     private List<SQLName> partitions;
-    private SchemaObject  schemaObject;
+    private SchemaObject schemaObject;
 
-    public SQLExprTableSource(){
+    public SQLExprTableSource() {
 
     }
 
-    public SQLExprTableSource(SQLExpr expr){
+    public SQLExprTableSource(SQLExpr expr) {
         this(expr, null);
     }
 
-    public SQLExprTableSource(SQLExpr expr, String alias){
+    public SQLExprTableSource(SQLExpr expr, String alias) {
         this.setExpr(expr);
         this.setAlias(alias);
     }
@@ -113,10 +104,10 @@ public class SQLExprTableSource extends SQLTableSourceImpl implements SQLReplace
         if (this.partitions == null) {
             this.partitions = new ArrayList<SQLName>(2);
         }
-        
+
         return partitions;
     }
-    
+
     public int getPartitionSize() {
         if (this.partitions == null) {
             return 0;
@@ -128,7 +119,7 @@ public class SQLExprTableSource extends SQLTableSourceImpl implements SQLReplace
         if (partition != null) {
             partition.setParent(this);
         }
-        
+
         if (this.partitions == null) {
             this.partitions = new ArrayList<SQLName>(2);
         }
@@ -170,7 +161,7 @@ public class SQLExprTableSource extends SQLTableSourceImpl implements SQLReplace
 
         if (alias == null) {
             if (expr instanceof SQLName) {
-                alias =((SQLName) expr).getSimpleName();
+                alias = ((SQLName) expr).getSimpleName();
             }
         }
 

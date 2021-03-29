@@ -20,11 +20,6 @@ import com.lz.druid.sql.dialect.hive.ast.HiveInsertStatement;
 import com.lz.druid.sql.dialect.hive.ast.HiveMultiInsertStatement;
 import com.lz.druid.sql.dialect.hive.stmt.HiveCreateTableStatement;
 import com.lz.druid.sql.dialect.odps.ast.*;
-import com.lz.druid.sql.dialect.odps.ast.*;
-import com.lz.druid.sql.visitor.SQLASTVisitorAdapter;
-import com.lz.druid.sql.dialect.hive.ast.HiveInsert;
-import com.lz.druid.sql.dialect.hive.ast.HiveInsertStatement;
-import com.lz.druid.sql.dialect.hive.ast.HiveMultiInsertStatement;
 import com.lz.druid.sql.visitor.SQLASTVisitorAdapter;
 
 
@@ -32,7 +27,7 @@ public class OdpsASTVisitorAdapter extends SQLASTVisitorAdapter implements OdpsA
 
     @Override
     public void endVisit(OdpsCreateTableStatement x) {
-        
+
     }
 
     @Override
@@ -42,7 +37,7 @@ public class OdpsASTVisitorAdapter extends SQLASTVisitorAdapter implements OdpsA
 
     @Override
     public void endVisit(OdpsInsertStatement x) {
-        
+
     }
 
     @Override
@@ -52,7 +47,7 @@ public class OdpsASTVisitorAdapter extends SQLASTVisitorAdapter implements OdpsA
 
     @Override
     public void endVisit(HiveInsert x) {
-        
+
     }
 
     public boolean visit(HiveCreateTableStatement x) {
@@ -86,7 +81,7 @@ public class OdpsASTVisitorAdapter extends SQLASTVisitorAdapter implements OdpsA
 
     @Override
     public void endVisit(OdpsUDTFSQLSelectItem x) {
-        
+
     }
 
     @Override
@@ -96,7 +91,7 @@ public class OdpsASTVisitorAdapter extends SQLASTVisitorAdapter implements OdpsA
 
     @Override
     public void endVisit(OdpsShowPartitionsStmt x) {
-        
+
     }
 
     @Override
@@ -106,7 +101,7 @@ public class OdpsASTVisitorAdapter extends SQLASTVisitorAdapter implements OdpsA
 
     @Override
     public void endVisit(OdpsShowStatisticStmt x) {
-        
+
     }
 
     @Override
@@ -116,7 +111,7 @@ public class OdpsASTVisitorAdapter extends SQLASTVisitorAdapter implements OdpsA
 
     @Override
     public void endVisit(OdpsSetLabelStatement x) {
-        
+
     }
 
     @Override
@@ -126,19 +121,19 @@ public class OdpsASTVisitorAdapter extends SQLASTVisitorAdapter implements OdpsA
 
     @Override
     public void endVisit(OdpsSelectQueryBlock x) {
-        
+
     }
 
     @Override
     public boolean visit(OdpsSelectQueryBlock x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsAnalyzeTableStatement x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsAnalyzeTableStatement x) {
         return true;
@@ -146,89 +141,89 @@ public class OdpsASTVisitorAdapter extends SQLASTVisitorAdapter implements OdpsA
 
     @Override
     public void endVisit(OdpsAddStatisticStatement x) {
-        
+
     }
 
     @Override
     public boolean visit(OdpsAddStatisticStatement x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsRemoveStatisticStatement x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsRemoveStatisticStatement x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsStatisticClause.TableCount x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsStatisticClause.TableCount x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsStatisticClause.ExpressionCondition x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsStatisticClause.ExpressionCondition x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsStatisticClause.NullValue x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsStatisticClause.NullValue x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsStatisticClause.ColumnSum x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsStatisticClause.ColumnSum x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsStatisticClause.ColumnMax x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsStatisticClause.ColumnMax x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsStatisticClause.ColumnMin x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsStatisticClause.ColumnMin x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(OdpsReadStatement x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(OdpsReadStatement x) {
         return true;
@@ -236,7 +231,7 @@ public class OdpsASTVisitorAdapter extends SQLASTVisitorAdapter implements OdpsA
 
     @Override
     public void endVisit(OdpsShowGrantsStmt x) {
-        
+
     }
 
     @Override
@@ -246,7 +241,7 @@ public class OdpsASTVisitorAdapter extends SQLASTVisitorAdapter implements OdpsA
 
     @Override
     public void endVisit(OdpsListStmt x) {
-        
+
     }
 
     @Override
@@ -256,7 +251,7 @@ public class OdpsASTVisitorAdapter extends SQLASTVisitorAdapter implements OdpsA
 
     @Override
     public void endVisit(OdpsGrantStmt x) {
-        
+
     }
 
     @Override

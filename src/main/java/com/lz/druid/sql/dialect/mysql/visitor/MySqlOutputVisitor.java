@@ -18,42 +18,14 @@ package com.lz.druid.sql.dialect.mysql.visitor;
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlForceIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlIgnoreIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlKey;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlPrimaryKey;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlUnique;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlUseIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MysqlForeignKey;
-import com.lz.druid.sql.dialect.mysql.ast.clause.ConditionValue;
+import com.lz.druid.sql.dialect.mysql.ast.*;
+import com.lz.druid.sql.dialect.mysql.ast.clause.*;
 import com.lz.druid.sql.dialect.mysql.ast.clause.ConditionValue.ConditionType;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlCaseStatement;
 import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlCaseStatement.MySqlWhenStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlCursorDeclareStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlDeclareConditionStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlDeclareHandlerStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlDeclareStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlIterateStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlLeaveStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlRepeatStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlSelectIntoStatement;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlCharExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlExtractExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlMatchAgainstExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlOrderingExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlOutFileExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlUserName;
-import com.lz.druid.sql.dialect.mysql.ast.statement.*;
+import com.lz.druid.sql.dialect.mysql.ast.expr.*;
 import com.lz.druid.sql.dialect.mysql.ast.statement.*;
 import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement.TableSpaceOption;
 import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlCreateUserStatement.UserSpecification;
-import com.lz.druid.sql.visitor.*;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlForceIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlUnique;
 import com.lz.druid.sql.visitor.ExportParameterVisitorUtils;
 import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
 import com.lz.druid.sql.visitor.VisitorFeature;
@@ -685,7 +657,7 @@ public class MySqlOutputVisitor extends SQLASTOutputVisitor implements MySqlASTV
             }
 
             appender.append('\'');
-        return false;
+            return false;
         } catch (IOException e) {
             throw new RuntimeException("println error", e);
         }
@@ -703,7 +675,7 @@ public class MySqlOutputVisitor extends SQLASTOutputVisitor implements MySqlASTV
 
         if (x.isGlobal()) {
             print0("@@global.");
-        }else if(x.isSession()){
+        } else if (x.isSession()) {
             print0("@@session.");
         }
 
@@ -967,7 +939,7 @@ public class MySqlOutputVisitor extends SQLASTOutputVisitor implements MySqlASTV
             }
         }
 
-        List<SQLInsertStatement.ValuesClause>  valuesList = x.getValuesList();
+        List<SQLInsertStatement.ValuesClause> valuesList = x.getValuesList();
         if (!valuesList.isEmpty()) {
             println();
             printValuesList(valuesList);
@@ -2623,7 +2595,7 @@ public class MySqlOutputVisitor extends SQLASTOutputVisitor implements MySqlASTV
     public boolean visit(MySqlLockTableStatement x) {
         print0(ucase ? "LOCK TABLES" : "lock tables");
         List<MySqlLockTableStatement.Item> items = x.getItems();
-        if(items.size() > 0) {
+        if (items.size() > 0) {
             print(' ');
             printAndAccept(items, ", ");
         }
@@ -3684,7 +3656,7 @@ public class MySqlOutputVisitor extends SQLASTOutputVisitor implements MySqlASTV
             print0(ucase ? " LOCAL" : " local");
         }
 
-        if(x.isBinaryLogs()) {
+        if (x.isBinaryLogs()) {
             print0(ucase ? " BINARY LOGS" : " binary logs");
         }
         if (x.isDesKeyFile()) {
@@ -3732,7 +3704,7 @@ public class MySqlOutputVisitor extends SQLASTOutputVisitor implements MySqlASTV
             print0(ucase ? " USER_RESOURCES" : " user_resources");
         }
 
-        if(x.isTableOption()){
+        if (x.isTableOption()) {
             print0(ucase ? " TABLES" : " tables");
 
             List<SQLExprTableSource> tables = x.getTables();

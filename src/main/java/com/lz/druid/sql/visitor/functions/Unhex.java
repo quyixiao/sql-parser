@@ -15,15 +15,15 @@
  */
 package com.lz.druid.sql.visitor.functions;
 
-import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_EXPR;
-import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
-
-import java.io.UnsupportedEncodingException;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
 import com.lz.druid.sql.visitor.SQLEvalVisitor;
 import com.lz.druid.util.HexBin;
+
+import java.io.UnsupportedEncodingException;
+
+import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_EXPR;
+import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
 
 public class Unhex implements Function {
 
@@ -64,7 +64,7 @@ public class Unhex implements Function {
             if (bytes == null) {
                 return SQLEvalVisitor.EVAL_VALUE_NULL;
             }
-            
+
             String result;
             try {
                 result = new String(bytes, "UTF-8");

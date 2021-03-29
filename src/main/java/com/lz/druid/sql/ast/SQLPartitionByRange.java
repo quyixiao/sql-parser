@@ -15,13 +15,10 @@
  */
 package com.lz.druid.sql.ast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLPartitionByRange extends SQLPartitionBy {
-    protected SQLExpr       interval;
+    protected SQLExpr interval;
 
     public SQLPartitionByRange() {
 
@@ -35,7 +32,7 @@ public class SQLPartitionByRange extends SQLPartitionBy {
         if (interval != null) {
             interval.setParent(this);
         }
-        
+
         this.interval = interval;
     }
 

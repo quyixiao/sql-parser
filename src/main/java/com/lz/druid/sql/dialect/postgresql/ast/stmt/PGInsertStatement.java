@@ -15,30 +15,28 @@
  */
 package com.lz.druid.sql.dialect.postgresql.ast.stmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.statement.SQLInsertStatement;
 import com.lz.druid.sql.ast.statement.SQLUpdateSetItem;
-import com.lz.druid.sql.ast.statement.SQLWithSubqueryClause;
 import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PGInsertStatement extends SQLInsertStatement implements PGSQLStatement {
 
 
-    private List<ValuesClause>     valuesList = new ArrayList<ValuesClause>();
-    private SQLExpr                returning;
-    private boolean			       defaultValues = false;
+    private List<ValuesClause> valuesList = new ArrayList<ValuesClause>();
+    private SQLExpr returning;
+    private boolean defaultValues = false;
 
-    private List<SQLExpr>          onConflictTarget;
-    private SQLName                onConflictConstraint;
-    private SQLExpr                onConflictWhere;
-    private boolean                onConflictDoNothing;
+    private List<SQLExpr> onConflictTarget;
+    private SQLName onConflictConstraint;
+    private SQLExpr onConflictWhere;
+    private boolean onConflictDoNothing;
     private List<SQLUpdateSetItem> onConflictUpdateSetItems;
 
     public PGInsertStatement() {
@@ -92,14 +90,14 @@ public class PGInsertStatement extends SQLInsertStatement implements PGSQLStatem
     }
 
     public boolean isDefaultValues() {
-		return defaultValues;
-	}
+        return defaultValues;
+    }
 
-	public void setDefaultValues(boolean defaultValues) {
-		this.defaultValues = defaultValues;
-	}
+    public void setDefaultValues(boolean defaultValues) {
+        this.defaultValues = defaultValues;
+    }
 
-	protected void accept0(SQLASTVisitor visitor) {
+    protected void accept0(SQLASTVisitor visitor) {
         accept0((PGASTVisitor) visitor);
     }
 

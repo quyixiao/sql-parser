@@ -17,20 +17,6 @@ package com.lz.druid.sql.repository;
 
 import com.lz.druid.exception.DruidRuntimeException;
 import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLAllColumnExpr;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.dialect.mysql.ast.statement.*;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitorAdapter;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleCreateTableStatement;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitorAdapter;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitorAdapter;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.exception.DruidRuntimeException;
-import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLDataType;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
@@ -52,7 +38,10 @@ import com.lz.druid.util.JdbcConstants;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wenshao on 03/06/2017.
@@ -298,8 +287,8 @@ public class SchemaRepository {
     public String resolve(String input) {
         SchemaResolveVisitor visitor
                 = createResolveVisitor(
-                    SchemaResolveVisitor.Option.ResolveAllColumn,
-                    SchemaResolveVisitor.Option.ResolveIdentifierAlias);
+                SchemaResolveVisitor.Option.ResolveAllColumn,
+                SchemaResolveVisitor.Option.ResolveIdentifierAlias);
 
         List<SQLStatement> stmtList = SQLUtils.parseStatements(input, dbType);
 

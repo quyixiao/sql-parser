@@ -22,10 +22,10 @@ import com.lz.druid.util.JdbcConstants;
 
 public class PGUpdateStatement extends SQLUpdateStatement implements PGSQLStatement {
 
-    private boolean        only      = false;
+    private boolean only = false;
 
-    public PGUpdateStatement(){
-        super (JdbcConstants.POSTGRESQL);
+    public PGUpdateStatement() {
+        super(JdbcConstants.POSTGRESQL);
     }
 
     public boolean isOnly() {

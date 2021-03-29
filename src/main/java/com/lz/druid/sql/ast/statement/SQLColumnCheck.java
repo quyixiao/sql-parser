@@ -17,18 +17,16 @@ package com.lz.druid.sql.ast.statement;
 
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLColumnCheck extends SQLConstraintImpl implements SQLColumnConstraint {
 
     private SQLExpr expr;
 
-    public SQLColumnCheck(){
+    public SQLColumnCheck() {
 
     }
 
-    public SQLColumnCheck(SQLExpr expr){
+    public SQLColumnCheck(SQLExpr expr) {
         this.setExpr(expr);
     }
 

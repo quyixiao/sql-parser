@@ -15,13 +15,13 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLCommentHint;
 import com.lz.druid.sql.ast.statement.SQLExprTableSource;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlObjectImpl;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySqlLockTableStatement extends MySqlStatementImpl {
 
@@ -40,7 +40,7 @@ public class MySqlLockTableStatement extends MySqlStatementImpl {
 
         public final String name;
 
-        LockType(String name){
+        LockType(String name) {
             this.name = name;
         }
     }

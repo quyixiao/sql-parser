@@ -15,19 +15,19 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.clause;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CycleClause extends OracleSQLObjectImpl {
 
     private final List<SQLExpr> aliases = new ArrayList<SQLExpr>();
-    private SQLExpr             mark;
-    private SQLExpr             value;
-    private SQLExpr             defaultValue;
+    private SQLExpr mark;
+    private SQLExpr value;
+    private SQLExpr defaultValue;
 
     public SQLExpr getMark() {
         return mark;
@@ -95,7 +95,7 @@ public class CycleClause extends OracleSQLObjectImpl {
         }
 
         if (defaultValue != null) {
-           setDefaultValue(defaultValue.clone());
+            setDefaultValue(defaultValue.clone());
         }
 
         return x;

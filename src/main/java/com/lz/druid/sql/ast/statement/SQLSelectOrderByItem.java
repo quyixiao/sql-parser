@@ -20,26 +20,21 @@ import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.ast.SQLOrderingSpecification;
 import com.lz.druid.sql.ast.SQLReplaceable;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.ast.SQLOrderingSpecification;
-import com.lz.druid.sql.ast.SQLReplaceable;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public final class SQLSelectOrderByItem extends SQLObjectImpl implements SQLReplaceable {
 
     protected SQLExpr expr;
-    protected String                   collate;
+    protected String collate;
     protected SQLOrderingSpecification type;
-    protected NullsOrderType           nullsOrderType;
+    protected NullsOrderType nullsOrderType;
 
-    protected transient SQLSelectItem  resolvedSelectItem;
+    protected transient SQLSelectItem resolvedSelectItem;
 
-    public SQLSelectOrderByItem(){
+    public SQLSelectOrderByItem() {
 
     }
 
-    public SQLSelectOrderByItem(SQLExpr expr){
+    public SQLSelectOrderByItem(SQLExpr expr) {
         this.setExpr(expr);
     }
 
@@ -69,7 +64,7 @@ public final class SQLSelectOrderByItem extends SQLObjectImpl implements SQLRepl
     public void setType(SQLOrderingSpecification type) {
         this.type = type;
     }
-    
+
     public NullsOrderType getNullsOrderType() {
         return this.nullsOrderType;
     }

@@ -23,21 +23,20 @@ import com.lz.druid.sql.ast.statement.SQLSelectQuery;
 import com.lz.druid.sql.dialect.db2.ast.stmt.DB2SelectQueryBlock;
 import com.lz.druid.sql.parser.*;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.parser.*;
 
 public class DB2SelectParser extends SQLSelectParser {
 
-    public DB2SelectParser(SQLExprParser exprParser){
+    public DB2SelectParser(SQLExprParser exprParser) {
         super(exprParser);
         dbType = JdbcConstants.DB2;
     }
 
-    public DB2SelectParser(SQLExprParser exprParser, SQLSelectListCache selectListCache){
+    public DB2SelectParser(SQLExprParser exprParser, SQLSelectListCache selectListCache) {
         super(exprParser, selectListCache);
         dbType = JdbcConstants.DB2;
     }
 
-    public DB2SelectParser(String sql){
+    public DB2SelectParser(String sql) {
         this(new DB2ExprParser(sql));
     }
 
@@ -100,7 +99,7 @@ public class DB2SelectParser extends SQLSelectParser {
         }
 
 
-        for (;;) {
+        for (; ; ) {
             if (lexer.token() == Token.FETCH) {
                 lexer.nextToken();
                 accept(Token.FIRST);

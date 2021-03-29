@@ -16,23 +16,6 @@
 package com.lz.druid.sql.repository;
 
 import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.SQLDataType;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.expr.SQLAggregateExpr;
-import com.lz.druid.sql.ast.expr.SQLAllColumnExpr;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlCreateTableStatement;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitorAdapter;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleCreateTableStatement;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitorAdapter;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.expr.SQLAggregateExpr;
@@ -44,7 +27,6 @@ import com.lz.druid.util.FnvHash;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListMap;
 
 /**
  * Created by wenshao on 21/07/2017.
@@ -54,7 +36,7 @@ public class Schema {
 
     protected final Map<Long, SchemaObject> objects = new ConcurrentHashMap<Long, SchemaObject>();
 
-    protected final Map<Long, SchemaObject> functions  = new ConcurrentHashMap<Long, SchemaObject>();
+    protected final Map<Long, SchemaObject> functions = new ConcurrentHashMap<Long, SchemaObject>();
 
     private SchemaRepository repository;
 
@@ -131,7 +113,7 @@ public class Schema {
                 SQLExprTableSource exprTableSource = (SQLExprTableSource) tableSource;
 
                 SchemaObject tableObject = exprTableSource.getSchemaObject();
-                if (tableObject !=  null) {
+                if (tableObject != null) {
                     return tableObject;
                 }
 

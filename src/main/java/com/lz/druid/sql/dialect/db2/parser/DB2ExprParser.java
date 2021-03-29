@@ -22,8 +22,6 @@ import com.lz.druid.sql.ast.statement.SQLColumnDefinition;
 import com.lz.druid.sql.parser.*;
 import com.lz.druid.util.FnvHash;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.parser.*;
 
 import java.util.Arrays;
 
@@ -33,8 +31,8 @@ public class DB2ExprParser extends SQLExprParser {
     public final static long[] AGGREGATE_FUNCTIONS_CODES;
 
     static {
-        String[] strings = { "AVG", "COUNT", "MAX", "MIN", "STDDEV", "SUM", "ROW_NUMBER",
-                "ROWNUMBER" };
+        String[] strings = {"AVG", "COUNT", "MAX", "MIN", "STDDEV", "SUM", "ROW_NUMBER",
+                "ROWNUMBER"};
         AGGREGATE_FUNCTIONS_CODES = FnvHash.fnv1a_64_lower(strings, true);
         AGGREGATE_FUNCTIONS = new String[AGGREGATE_FUNCTIONS_CODES.length];
         for (String str : strings) {
@@ -44,18 +42,18 @@ public class DB2ExprParser extends SQLExprParser {
         }
     }
 
-    public DB2ExprParser(String sql){
+    public DB2ExprParser(String sql) {
         this(new DB2Lexer(sql));
         this.lexer.nextToken();
         this.dbType = JdbcConstants.DB2;
     }
 
-    public DB2ExprParser(String sql, SQLParserFeature... features){
+    public DB2ExprParser(String sql, SQLParserFeature... features) {
         this(new DB2Lexer(sql, features));
         this.lexer.nextToken();
     }
 
-    public DB2ExprParser(Lexer lexer){
+    public DB2ExprParser(Lexer lexer) {
         super(lexer);
         this.aggregateFunctions = AGGREGATE_FUNCTIONS;
         this.aggregateFunctionHashCodes = AGGREGATE_FUNCTIONS_CODES;

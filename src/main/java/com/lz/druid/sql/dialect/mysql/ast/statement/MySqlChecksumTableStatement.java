@@ -17,7 +17,6 @@ package com.lz.druid.sql.dialect.mysql.ast.statement;
 
 import com.lz.druid.sql.ast.statement.SQLExprTableSource;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
 import java.util.ArrayList;
 import java.util.List;

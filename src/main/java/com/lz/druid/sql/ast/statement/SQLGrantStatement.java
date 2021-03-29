@@ -15,42 +15,42 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLGrantStatement extends SQLStatementImpl {
 
     protected final List<SQLExpr> privileges = new ArrayList<SQLExpr>();
 
     protected SQLObject on;
-    protected SQLExpr             to;
+    protected SQLExpr to;
 
-    public SQLGrantStatement(){
+    public SQLGrantStatement() {
 
     }
 
-    public SQLGrantStatement(String dbType){
+    public SQLGrantStatement(String dbType) {
         super(dbType);
     }
 
     // mysql
     protected SQLObjectType objectType;
-    private SQLExpr         maxQueriesPerHour;
-    private SQLExpr         maxUpdatesPerHour;
-    private SQLExpr         maxConnectionsPerHour;
-    private SQLExpr         maxUserConnections;
+    private SQLExpr maxQueriesPerHour;
+    private SQLExpr maxUpdatesPerHour;
+    private SQLExpr maxConnectionsPerHour;
+    private SQLExpr maxUserConnections;
 
-    private boolean         adminOption;
+    private boolean adminOption;
 
-    private SQLExpr         identifiedBy;
-    private String          identifiedByPassword;
+    private SQLExpr identifiedBy;
+    private String identifiedByPassword;
 
-    private boolean         withGrantOption;
+    private boolean withGrantOption;
 
     @Override
     protected void accept0(SQLASTVisitor visitor) {

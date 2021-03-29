@@ -23,44 +23,38 @@ import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.lz.druid.sql.ast.expr.SQLListExpr;
 import com.lz.druid.sql.ast.expr.SQLLiteralExpr;
 import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlForceIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlIgnoreIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlIndexHintImpl;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlUseIndexHint;
+import com.lz.druid.sql.dialect.mysql.ast.*;
 import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlOutFileExpr;
 import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlSelectQueryBlock;
 import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlUpdateStatement;
 import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlUpdateTableSource;
 import com.lz.druid.sql.parser.*;
 import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.parser.*;
 
 import java.util.List;
 
 public class MySqlSelectParser extends SQLSelectParser {
 
-    protected boolean              returningFlag = false;
+    protected boolean returningFlag = false;
     protected MySqlUpdateStatement updateStmt;
 
-    public MySqlSelectParser(SQLExprParser exprParser){
+    public MySqlSelectParser(SQLExprParser exprParser) {
         super(exprParser);
     }
 
-    public MySqlSelectParser(SQLExprParser exprParser, SQLSelectListCache selectListCache){
+    public MySqlSelectParser(SQLExprParser exprParser, SQLSelectListCache selectListCache) {
         super(exprParser, selectListCache);
     }
 
-    public MySqlSelectParser(String sql){
+    public MySqlSelectParser(String sql) {
         this(new MySqlExprParser(sql));
     }
-    
+
     public void parseFrom(SQLSelectQueryBlock queryBlock) {
         if (lexer.token() != Token.FROM) {
             return;
         }
-        
+
         lexer.nextTokenIdent();
 
         if (lexer.token() == Token.UPDATE) { // taobao returning to urgly syntax
@@ -74,7 +68,7 @@ public class MySqlSelectParser extends SQLSelectParser {
             returningFlag = true;
             return;
         }
-        
+
         queryBlock.setFrom(parseTableSource());
     }
 
@@ -107,7 +101,7 @@ public class MySqlSelectParser extends SQLSelectParser {
         if (lexer.token() == Token.SELECT) {
             lexer.nextTokenValue();
 
-            for(;;) {
+            for (; ; ) {
                 if (lexer.token() == Token.HINT) {
                     this.exprParser.parseHints(queryBlock.getHints());
                 } else {
@@ -226,7 +220,7 @@ public class MySqlSelectParser extends SQLSelectParser {
 
         return queryRest(queryBlock, acceptUnion);
     }
-    
+
     public SQLTableSource parseTableSource() {
         if (lexer.token() == Token.LPAREN) {
             lexer.nextToken();
@@ -253,8 +247,8 @@ public class MySqlSelectParser extends SQLSelectParser {
 
             return parseTableSourceRest(tableSource);
         }
-        
-        if(lexer.token() == Token.UPDATE) {
+
+        if (lexer.token() == Token.UPDATE) {
             SQLTableSource tableSource = new MySqlUpdateTableSource(parseUpdateStatment());
             return parseTableSourceRest(tableSource);
         }
@@ -268,14 +262,14 @@ public class MySqlSelectParser extends SQLSelectParser {
         parseTableSourceQueryTableExpr(tableReference);
 
         SQLTableSource tableSrc = parseTableSourceRest(tableReference);
-        
+
         if (lexer.hasComment() && lexer.isKeepComments()) {
             tableSrc.addAfterComment(lexer.readAndResetComments());
         }
-        
+
         return tableSrc;
     }
-    
+
     protected MySqlUpdateStatement parseUpdateStatment() {
         MySqlUpdateStatement update = new MySqlUpdateStatement();
 
@@ -290,22 +284,22 @@ public class MySqlSelectParser extends SQLSelectParser {
             lexer.nextToken();
             update.setIgnore(true);
         }
-        
+
         if (lexer.identifierEquals(FnvHash.Constants.COMMIT_ON_SUCCESS)) {
             lexer.nextToken();
             update.setCommitOnSuccess(true);
         }
-        
+
         if (lexer.identifierEquals(FnvHash.Constants.ROLLBACK_ON_FAIL)) {
             lexer.nextToken();
             update.setRollBackOnFail(true);
         }
-        
+
         if (lexer.identifierEquals(FnvHash.Constants.QUEUE_ON_PK)) {
             lexer.nextToken();
             update.setQueryOnPk(true);
         }
-        
+
         if (lexer.identifierEquals(FnvHash.Constants.TARGET_AFFECT_ROW)) {
             lexer.nextToken();
             SQLExpr targetAffectRow = this.exprParser.expr();
@@ -319,7 +313,7 @@ public class MySqlSelectParser extends SQLSelectParser {
                 lexer.nextToken();
                 acceptIdentifier("PARTITIONS");
                 update.setForceAllPartitions(true);
-            } else if (lexer.identifierEquals(FnvHash.Constants.PARTITIONS)){
+            } else if (lexer.identifierEquals(FnvHash.Constants.PARTITIONS)) {
                 lexer.nextToken();
                 update.setForceAllPartitions(true);
             } else if (lexer.token() == Token.PARTITION) {
@@ -341,7 +335,7 @@ public class MySqlSelectParser extends SQLSelectParser {
 
         accept(Token.SET);
 
-        for (;;) {
+        for (; ; ) {
             SQLUpdateSetItem item = this.exprParser.parseUpdateSetItem();
             update.addItem(item);
 
@@ -359,10 +353,10 @@ public class MySqlSelectParser extends SQLSelectParser {
 
         update.setOrderBy(this.exprParser.parseOrderBy());
         update.setLimit(this.exprParser.parseLimit());
-        
+
         return update;
     }
-    
+
     protected void parseInto(SQLSelectQueryBlock queryBlock) {
         if (lexer.token() == (Token.INTO)) {
             lexer.nextToken();
@@ -454,7 +448,7 @@ public class MySqlSelectParser extends SQLSelectParser {
         }
 
         parseIndexHintList(tableSource);
-        
+
         if (lexer.token() == Token.PARTITION) {
             lexer.nextToken();
             accept(Token.LPAREN);
@@ -466,12 +460,12 @@ public class MySqlSelectParser extends SQLSelectParser {
     }
 
     private void parseIndexHintList(SQLTableSource tableSource) {
-	if (lexer.token() == Token.USE) {
+        if (lexer.token() == Token.USE) {
             lexer.nextToken();
             MySqlUseIndexHint hint = new MySqlUseIndexHint();
             parseIndexHint(hint);
             tableSource.getHints().add(hint);
-	    parseIndexHintList(tableSource);
+            parseIndexHintList(tableSource);
         }
 
         if (lexer.identifierEquals(FnvHash.Constants.IGNORE)) {
@@ -479,7 +473,7 @@ public class MySqlSelectParser extends SQLSelectParser {
             MySqlIgnoreIndexHint hint = new MySqlIgnoreIndexHint();
             parseIndexHint(hint);
             tableSource.getHints().add(hint);
-	    parseIndexHintList(tableSource);
+            parseIndexHintList(tableSource);
         }
 
         if (lexer.identifierEquals(FnvHash.Constants.FORCE)) {
@@ -487,7 +481,7 @@ public class MySqlSelectParser extends SQLSelectParser {
             MySqlForceIndexHint hint = new MySqlForceIndexHint();
             parseIndexHint(hint);
             tableSource.getHints().add(hint);
-	    parseIndexHintList(tableSource);
+            parseIndexHintList(tableSource);
         }
     }
 

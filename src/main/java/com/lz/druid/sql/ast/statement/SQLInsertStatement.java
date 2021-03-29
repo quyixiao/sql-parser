@@ -15,15 +15,12 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.SQLUtils;
+import com.lz.druid.sql.ast.*;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLInsertStatement extends SQLInsertInto implements SQLStatement {
     protected SQLWithSubqueryClause with;
@@ -36,7 +33,7 @@ public class SQLInsertStatement extends SQLInsertInto implements SQLStatement {
 
     protected List<SQLCommentHint> headHints;
 
-    public SQLInsertStatement(){
+    public SQLInsertStatement() {
 
     }
 
@@ -93,11 +90,11 @@ public class SQLInsertStatement extends SQLInsertInto implements SQLStatement {
 
     public static class ValuesClause extends SQLObjectImpl {
 
-        private final     List<SQLExpr> values;
-        private transient String        originalString;
-        private transient int           replaceCount;
+        private final List<SQLExpr> values;
+        private transient String originalString;
+        private transient int replaceCount;
 
-        public ValuesClause(){
+        public ValuesClause() {
             this(new ArrayList<SQLExpr>());
         }
 
@@ -109,7 +106,7 @@ public class SQLInsertStatement extends SQLInsertInto implements SQLStatement {
             return x;
         }
 
-        public ValuesClause(List<SQLExpr> values){
+        public ValuesClause(List<SQLExpr> values) {
             this.values = values;
             for (int i = 0; i < values.size(); ++i) {
                 values.get(i).setParent(this);
@@ -166,7 +163,7 @@ public class SQLInsertStatement extends SQLInsertInto implements SQLStatement {
     public String getDbType() {
         return dbType;
     }
-    
+
     public void setDbType(String dbType) {
         this.dbType = dbType;
     }

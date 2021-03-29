@@ -15,23 +15,18 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.util.List;
+import com.lz.druid.sql.ast.SQLCommentHint;
+import com.lz.druid.sql.ast.SQLName;
+import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
+import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
+import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
-import com.lz.druid.sql.ast.SQLCommentHint;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.ast.SQLCommentHint;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
+import java.util.List;
 
 public class MySqlShowIndexesStatement extends MySqlStatementImpl implements MySqlShowStatement {
 
     private SQLName table;
-    private SQLName              database;
+    private SQLName database;
     private List<SQLCommentHint> hints;
 
     public SQLName getTable() {

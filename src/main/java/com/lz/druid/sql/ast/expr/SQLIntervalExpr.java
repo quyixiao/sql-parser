@@ -18,9 +18,6 @@ package com.lz.druid.sql.ast.expr;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,12 +25,12 @@ import java.util.List;
 public class SQLIntervalExpr extends SQLExprImpl {
 
     private SQLExpr value;
-    private SQLIntervalUnit   unit;
+    private SQLIntervalUnit unit;
 
-    public SQLIntervalExpr(){
+    public SQLIntervalExpr() {
     }
 
-    public SQLIntervalExpr(SQLExpr value, SQLIntervalUnit unit){
+    public SQLIntervalExpr(SQLExpr value, SQLIntervalUnit unit) {
         setValue(value);
         this.unit = unit;
     }

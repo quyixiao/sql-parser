@@ -22,33 +22,26 @@ import com.lz.druid.sql.ast.expr.SQLBinaryOpExprGroup;
 import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
 import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
-import com.lz.druid.sql.ast.expr.SQLBinaryOpExprGroup;
-import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SQLDeleteStatement extends SQLStatementImpl implements SQLReplaceable {
-    protected SQLWithSubqueryClause  with;
+    protected SQLWithSubqueryClause with;
 
     protected SQLTableSource tableSource;
     protected SQLExpr where;
     protected SQLTableSource from;
     protected SQLTableSource using;
 
-    protected boolean        only      = false;
+    protected boolean only = false;
 
-    public SQLDeleteStatement(){
+    public SQLDeleteStatement() {
 
     }
-    
-    public SQLDeleteStatement(String dbType){
-        super (dbType);
+
+    public SQLDeleteStatement(String dbType) {
+        super(dbType);
     }
 
     protected void cloneTo(SQLDeleteStatement x) {

@@ -50,9 +50,9 @@ public class SQLParserUtils {
     public static SQLStatementParser createSQLStatementParser(String sql, String dbType) {
         SQLParserFeature[] features;
         if (JdbcConstants.ODPS.equals(dbType) || JdbcConstants.MYSQL.equals(dbType)) {
-            features = new SQLParserFeature[] {SQLParserFeature.KeepComments};
+            features = new SQLParserFeature[]{SQLParserFeature.KeepComments};
         } else {
-            features = new SQLParserFeature[] {};
+            features = new SQLParserFeature[]{};
         }
         return createSQLStatementParser(sql, dbType, features);
     }
@@ -60,9 +60,9 @@ public class SQLParserUtils {
     public static SQLStatementParser createSQLStatementParser(String sql, String dbType, boolean keepComments) {
         SQLParserFeature[] features;
         if (keepComments) {
-            features = new SQLParserFeature[] {SQLParserFeature.KeepComments};
+            features = new SQLParserFeature[]{SQLParserFeature.KeepComments};
         } else {
-            features = new SQLParserFeature[] {};
+            features = new SQLParserFeature[]{};
         }
 
         return createSQLStatementParser(sql, dbType, features);
@@ -93,11 +93,11 @@ public class SQLParserUtils {
         if (JdbcUtils.H2.equals(dbType)) {
             return new H2StatementParser(sql);
         }
-        
+
         if (JdbcUtils.DB2.equals(dbType)) {
             return new DB2StatementParser(sql);
         }
-        
+
         if (JdbcUtils.ODPS.equals(dbType)) {
             return new OdpsStatementParser(sql);
         }
@@ -123,8 +123,8 @@ public class SQLParserUtils {
         }
 
         if (JdbcUtils.MYSQL.equals(dbType) || //
-            JdbcUtils.MARIADB.equals(dbType) || //
-            JdbcUtils.H2.equals(dbType)) {
+                JdbcUtils.MARIADB.equals(dbType) || //
+                JdbcUtils.H2.equals(dbType)) {
             return new MySqlExprParser(sql);
         }
 
@@ -136,11 +136,11 @@ public class SQLParserUtils {
         if (JdbcUtils.SQL_SERVER.equals(dbType) || JdbcUtils.JTDS.equals(dbType)) {
             return new SQLServerExprParser(sql);
         }
-        
+
         if (JdbcUtils.DB2.equals(dbType)) {
             return new DB2ExprParser(sql);
         }
-        
+
         if (JdbcUtils.ODPS.equals(dbType)) {
             return new OdpsExprParser(sql);
         }
@@ -213,5 +213,5 @@ public class SQLParserUtils {
         }
 
         return new SQLSelectQueryBlock();
-     }
+    }
 }

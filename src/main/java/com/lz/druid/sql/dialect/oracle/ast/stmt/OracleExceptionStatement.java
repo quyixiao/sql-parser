@@ -15,13 +15,13 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLStatement;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OracleExceptionStatement extends OracleStatementImpl implements OracleStatement {
 
@@ -35,13 +35,13 @@ public class OracleExceptionStatement extends OracleStatementImpl implements Ora
         if (item != null) {
             item.setParent(this);
         }
-        
+
         this.items.add(item);
     }
 
     public static class Item extends OracleSQLObjectImpl {
 
-        private SQLExpr            when;
+        private SQLExpr when;
         private List<SQLStatement> statements = new ArrayList<SQLStatement>();
 
         public SQLExpr getWhen() {

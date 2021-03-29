@@ -26,10 +26,10 @@ import java.util.List;
 
 public class OracleAnalyticWindowing extends SQLObjectImpl implements OracleExpr {
 
-    private Type    type;
+    private Type type;
     private SQLExpr expr;
 
-    public OracleAnalyticWindowing(){
+    public OracleAnalyticWindowing() {
 
     }
 

@@ -15,13 +15,13 @@
  */
 package com.lz.druid.sql.dialect.odps.ast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.statement.SQLAssignItem;
 import com.lz.druid.sql.ast.statement.SQLExprTableSource;
 import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OdpsAnalyzeTableStatement extends OdpsStatementImpl {
 
@@ -47,7 +47,7 @@ public class OdpsAnalyzeTableStatement extends OdpsStatementImpl {
         }
         this.table = table;
     }
-    
+
     public void setTable(SQLName table) {
         this.setTable(new SQLExprTableSource(table));
     }

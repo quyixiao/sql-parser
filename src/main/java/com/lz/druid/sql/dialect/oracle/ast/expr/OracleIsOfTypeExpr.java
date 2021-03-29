@@ -17,11 +17,9 @@ package com.lz.druid.sql.dialect.oracle.ast.expr;
 
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 import java.util.ArrayList;
 import java.util.List;

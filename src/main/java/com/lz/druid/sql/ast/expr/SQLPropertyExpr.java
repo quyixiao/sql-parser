@@ -18,11 +18,6 @@ package com.lz.druid.sql.ast.expr;
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.FnvHash;
 
@@ -31,30 +26,30 @@ import java.util.List;
 
 public final class SQLPropertyExpr extends SQLExprImpl implements SQLName {
     private SQLExpr owner;
-    private   String              name;
+    private String name;
 
-    protected long                nameHashCod64;
-    protected long                hashCode64;
+    protected long nameHashCod64;
+    protected long hashCode64;
 
     protected SQLColumnDefinition resolvedColumn;
     protected SQLObject resolvedOwnerObject;
 
-    public SQLPropertyExpr(String owner, String name){
+    public SQLPropertyExpr(String owner, String name) {
         this(new SQLIdentifierExpr(owner), name);
     }
 
-    public SQLPropertyExpr(SQLExpr owner, String name){
+    public SQLPropertyExpr(SQLExpr owner, String name) {
         setOwner(owner);
         this.name = name;
     }
 
-    public SQLPropertyExpr(SQLExpr owner, String name, long nameHashCod64){
+    public SQLPropertyExpr(SQLExpr owner, String name, long nameHashCod64) {
         setOwner(owner);
         this.name = name;
         this.nameHashCod64 = nameHashCod64;
     }
 
-    public SQLPropertyExpr(){
+    public SQLPropertyExpr() {
 
     }
 
@@ -95,7 +90,7 @@ public final class SQLPropertyExpr extends SQLExprImpl implements SQLName {
 
             hash ^= '.';
             hash *= FnvHash.PRIME;
-        } else if (owner == null){
+        } else if (owner == null) {
             hash = FnvHash.BASIC;
         } else {
             hash = FnvHash.fnv1a_64_lower(owner.toString());
@@ -148,7 +143,7 @@ public final class SQLPropertyExpr extends SQLExprImpl implements SQLName {
     @Override
     public int hashCode() {
         long hash = hashCode64();
-        return (int)(hash ^ (hash >>> 32));
+        return (int) (hash ^ (hash >>> 32));
     }
 
     public long hashCode64() {

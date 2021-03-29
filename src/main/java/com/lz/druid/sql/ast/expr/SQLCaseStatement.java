@@ -17,19 +17,17 @@ package com.lz.druid.sql.ast.expr;
 
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SQLCaseStatement extends SQLStatementImpl implements Serializable {
-    private final List<Item>    items            = new ArrayList<Item>();
+    private final List<Item> items = new ArrayList<Item>();
     private SQLExpr valueExpr;
-    private List<SQLStatement>  elseStatements = new ArrayList<SQLStatement>();
+    private List<SQLStatement> elseStatements = new ArrayList<SQLStatement>();
 
-    public SQLCaseStatement(){
+    public SQLCaseStatement() {
 
     }
 
@@ -82,14 +80,14 @@ public class SQLCaseStatement extends SQLStatementImpl implements Serializable {
     public static class Item extends SQLObjectImpl implements Serializable {
 
         private static final long serialVersionUID = 1L;
-        private SQLExpr           conditionExpr;
-        private SQLStatement      statement;
+        private SQLExpr conditionExpr;
+        private SQLStatement statement;
 
-        public Item(){
+        public Item() {
 
         }
 
-        public Item(SQLExpr conditionExpr, SQLStatement statement){
+        public Item(SQLExpr conditionExpr, SQLStatement statement) {
 
             setConditionExpr(conditionExpr);
             setStatement(statement);

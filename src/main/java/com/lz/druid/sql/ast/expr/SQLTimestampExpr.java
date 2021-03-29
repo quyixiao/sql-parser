@@ -27,15 +27,15 @@ import java.util.List;
 public class SQLTimestampExpr extends SQLExprImpl implements SQLValuableExpr {
     public static final SQLDataType DEFAULT_DATA_TYPE = new SQLCharacterDataType("datetime");
 
-    protected String  literal;
-    protected String  timeZone;
+    protected String literal;
+    protected String timeZone;
     protected boolean withTimeZone = false;
 
-    public SQLTimestampExpr(){
-        
+    public SQLTimestampExpr() {
+
     }
 
-    public SQLTimestampExpr(String literal){
+    public SQLTimestampExpr(String literal) {
         this.literal = literal;
     }
 

@@ -15,12 +15,10 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.util.List;
+import com.lz.druid.sql.ast.SQLCommentHint;
+import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
-import com.lz.druid.sql.ast.SQLCommentHint;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.ast.SQLCommentHint;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
+import java.util.List;
 
 public class MySqlHintStatement extends MySqlStatementImpl {
 

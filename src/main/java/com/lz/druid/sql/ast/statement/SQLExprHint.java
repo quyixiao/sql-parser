@@ -19,20 +19,16 @@ import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLHint;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLHint;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLExprHint extends SQLObjectImpl implements SQLHint {
 
     private SQLExpr expr;
 
-    public SQLExprHint(){
+    public SQLExprHint() {
 
     }
 
-    public SQLExprHint(SQLExpr expr){
+    public SQLExprHint(SQLExpr expr) {
         this.setExpr(expr);
     }
 

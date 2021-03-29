@@ -15,17 +15,11 @@
  */
 package com.lz.druid.sql.dialect.mysql.parser;
 
-import static com.lz.druid.sql.parser.CharTypes.isFirstIdentifierChar;
-import static com.lz.druid.sql.parser.LayoutCharacters.EOI;
+import com.lz.druid.sql.parser.*;
+import com.lz.druid.util.JdbcConstants;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.lz.druid.sql.parser.*;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.parser.*;
-import com.lz.druid.util.JdbcConstants;
 
 public class MySqlLexer extends Lexer {
     public static SymbolTable quoteTable = new SymbolTable(8192);
@@ -55,10 +49,10 @@ public class MySqlLexer extends Lexer {
         map.put("END", Token.END);
         map.put("DIV", Token.DIV);
         map.put("MERGE", Token.MERGE);
-        
+
         // for oceanbase & mysql 5.7
         map.put("PARTITION", Token.PARTITION);
-        
+
         map.put("CONTINUE", Token.CONTINUE);
         map.put("UNDO", Token.UNDO);
         map.put("SQLSTATE", Token.SQLSTATE);
@@ -75,16 +69,16 @@ public class MySqlLexer extends Lexer {
         dbType = JdbcConstants.MYSQL;
     }
 
-    public MySqlLexer(char[] input, int inputLength, boolean skipComment){
+    public MySqlLexer(char[] input, int inputLength, boolean skipComment) {
         super(input, inputLength, skipComment);
         super.keywods = DEFAULT_MYSQL_KEYWORDS;
     }
 
-    public MySqlLexer(String input){
+    public MySqlLexer(String input) {
         this(input, true, true);
     }
 
-    public MySqlLexer(String input, SQLParserFeature... features){
+    public MySqlLexer(String input, SQLParserFeature... features) {
         super(input, true);
         this.keepComments = true;
         super.keywods = DEFAULT_MYSQL_KEYWORDS;
@@ -94,7 +88,7 @@ public class MySqlLexer extends Lexer {
         }
     }
 
-    public MySqlLexer(String input, boolean skipComment, boolean keepComments){
+    public MySqlLexer(String input, boolean skipComment, boolean keepComments) {
         super(input, skipComment);
         this.skipComment = skipComment;
         this.keepComments = keepComments;
@@ -116,7 +110,7 @@ public class MySqlLexer extends Lexer {
         scanChar();
         mark = pos;
         bufPos = 0;
-        for (;;) {
+        for (; ; ) {
             if (ch == '\r') {
                 if (charAt(pos + 1) == '\n') {
                     bufPos += 2;
@@ -149,7 +143,7 @@ public class MySqlLexer extends Lexer {
         if (commentHandler != null && commentHandler.handle(lastToken, stringVal)) {
             return;
         }
-        
+
         endOfComment = isEOF();
 
         if (!isAllowComment() && (isEOF() || !isSafeComment(stringVal))) {
@@ -169,7 +163,7 @@ public class MySqlLexer extends Lexer {
             ++pos;
             ++bufPos;
             char ch;
-            for (;;) {
+            for (; ; ) {
                 ch = charAt(++pos);
 
                 if (ch == '`') {
@@ -192,7 +186,7 @@ public class MySqlLexer extends Lexer {
             ++pos;
             ++bufPos;
             char ch;
-            for (;;) {
+            for (; ; ) {
                 ch = charAt(++pos);
 
                 if (ch == '}') {
@@ -212,7 +206,7 @@ public class MySqlLexer extends Lexer {
             stringVal = subString(mark, bufPos);
             token = Token.VARIANT;
         } else {
-            for (;;) {
+            for (; ; ) {
                 ch = charAt(++pos);
 
                 if (!isIdentifierChar(ch)) {
@@ -247,7 +241,7 @@ public class MySqlLexer extends Lexer {
             ++pos;
             ++bufPos;
             char ch;
-            for (;;) {
+            for (; ; ) {
                 ch = charAt(++pos);
 
                 if (ch == '`') {
@@ -291,11 +285,11 @@ public class MySqlLexer extends Lexer {
 
         final char first = ch;
 
-        if ((ch == 'b' || ch == 'B' )
+        if ((ch == 'b' || ch == 'B')
                 && charAt(pos + 1) == '\'') {
             int i = 2;
             int mark = pos + 2;
-            for (;;++i) {
+            for (; ; ++i) {
                 char ch = charAt(pos + i);
                 if (ch == '0' || ch == '1') {
                     continue;
@@ -361,7 +355,7 @@ public class MySqlLexer extends Lexer {
             mark = pos;
             bufPos = 1;
             char ch = '\0';
-            for (;;) {
+            for (; ; ) {
                 ch = charAt(++pos);
 
                 if (!isIdentifierChar(ch)) {
@@ -407,7 +401,6 @@ public class MySqlLexer extends Lexer {
     }
 
 
-
     protected final void scanString() {
         scanString2();
     }
@@ -415,7 +408,7 @@ public class MySqlLexer extends Lexer {
     public void skipFirstHintsOrMultiCommentAndNextToken() {
         int starIndex = pos + 2;
 
-        for (;;) {
+        for (; ; ) {
             starIndex = text.indexOf('*', starIndex);
             if (starIndex == -1 || starIndex == text.length() - 1) {
                 this.token = Token.ERROR;
@@ -497,7 +490,7 @@ public class MySqlLexer extends Lexer {
 
     public void scanComment() {
         Token lastToken = this.token;
-        
+
         if (ch == '-') {
             char next_2 = charAt(pos + 2);
             if (isDigit(next_2)) {
@@ -527,7 +520,7 @@ public class MySqlLexer extends Lexer {
             int startHintSp = bufPos + 1;
             if (ch == '!' //
                     || ch == '+' // oceanbase hints
-                    ) {
+            ) {
                 isHint = true;
                 scanChar();
                 bufPos++;
@@ -535,7 +528,7 @@ public class MySqlLexer extends Lexer {
 
             int starIndex = pos;
 
-            for (;;) {
+            for (; ; ) {
                 starIndex = text.indexOf('*', starIndex);
                 if (starIndex == -1 || starIndex == text.length() - 1) {
                     this.token = Token.ERROR;
@@ -564,7 +557,7 @@ public class MySqlLexer extends Lexer {
             }
 
             endOfComment = isEOF();
-            
+
             if (commentHandler != null
                     && commentHandler.handle(lastToken, stringVal)) {
                 return;
@@ -581,7 +574,7 @@ public class MySqlLexer extends Lexer {
             scanChar();
             bufPos++;
 
-            for (;;) {
+            for (; ; ) {
                 if (ch == '\r') {
                     if (charAt(pos + 1) == '\n') {
                         bufPos += 2;
@@ -616,7 +609,7 @@ public class MySqlLexer extends Lexer {
             }
 
             endOfComment = isEOF();
-            
+
             if (!isAllowComment() && (isEOF() || !isSafeComment(stringVal))) {
                 throw new NotAllowCommentException();
             }
@@ -624,8 +617,9 @@ public class MySqlLexer extends Lexer {
             return;
         }
     }
-    
+
     private final static boolean[] identifierFlags = new boolean[256];
+
     static {
         for (char c = 0; c < identifierFlags.length; ++c) {
             if (c >= 'A' && c <= 'Z') {
@@ -654,7 +648,7 @@ public class MySqlLexer extends Lexer {
         if (ch == '0' && charAt(pos + 1) == 'b') {
             int i = 2;
             int mark = pos + 2;
-            for (;;++i) {
+            for (; ; ++i) {
                 char ch = charAt(pos + i);
                 if (ch == '0' || ch == '1') {
                     continue;
@@ -676,7 +670,7 @@ public class MySqlLexer extends Lexer {
             ch = charAt(++pos);
         }
 
-        for (;;) {
+        for (; ; ) {
             if (ch >= '0' && ch <= '9') {
                 bufPos++;
             } else {
@@ -696,7 +690,7 @@ public class MySqlLexer extends Lexer {
             ch = charAt(++pos);
             isDouble = true;
 
-            for (;;) {
+            for (; ; ) {
                 if (ch >= '0' && ch <= '9') {
                     bufPos++;
                 } else {
@@ -715,7 +709,7 @@ public class MySqlLexer extends Lexer {
                 ch = charAt(++pos);
             }
 
-            for (;;) {
+            for (; ; ) {
                 if (ch >= '0' && ch <= '9') {
                     bufPos++;
                 } else {
@@ -732,7 +726,7 @@ public class MySqlLexer extends Lexer {
         } else {
             if (CharTypes.isFirstIdentifierChar(ch) && !(ch == 'b' && bufPos == 1 && charAt(pos - 1) == '0')) {
                 bufPos++;
-                for (;;) {
+                for (; ; ) {
                     ch = charAt(++pos);
 
                     if (!isIdentifierChar(ch)) {

@@ -22,7 +22,6 @@ import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,13 +29,13 @@ import java.util.List;
 public class OracleDbLinkExpr extends SQLExprImpl implements SQLName, OracleExpr {
 
     private SQLExpr expr;
-    private String  dbLink;
+    private String dbLink;
 
-    private long    dbLinkHashCode64;
-    private long    hashCode64;
+    private long dbLinkHashCode64;
+    private long hashCode64;
 
 
-    public OracleDbLinkExpr(){
+    public OracleDbLinkExpr() {
 
     }
 
@@ -87,7 +86,7 @@ public class OracleDbLinkExpr extends SQLExprImpl implements SQLName, OracleExpr
     @Override
     public int hashCode() {
         long value = hashCode64();
-        return (int)(value ^ (value >>> 32));
+        return (int) (value ^ (value >>> 32));
     }
 
     @Override
@@ -131,7 +130,7 @@ public class OracleDbLinkExpr extends SQLExprImpl implements SQLName, OracleExpr
 
                 hash ^= '@';
                 hash *= FnvHash.PRIME;
-            } else if (expr == null){
+            } else if (expr == null) {
                 hash = FnvHash.BASIC;
             } else {
                 hash = FnvHash.fnv1a_64_lower(expr.toString());

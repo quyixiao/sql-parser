@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.statement.SQLInsertStatement;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
@@ -25,13 +22,16 @@ import com.lz.druid.sql.dialect.mysql.visitor.MySqlOutputVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MySqlInsertStatement extends SQLInsertStatement {
 
-    private boolean             lowPriority        = false;
-    private boolean             delayed            = false;
-    private boolean             highPriority       = false;
-    private boolean             ignore             = false;
-    private boolean             rollbackOnFail     = false;
+    private boolean lowPriority = false;
+    private boolean delayed = false;
+    private boolean highPriority = false;
+    private boolean ignore = false;
+    private boolean rollbackOnFail = false;
 
     private final List<SQLExpr> duplicateKeyUpdate = new ArrayList<SQLExpr>();
 

@@ -15,20 +15,18 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.ast.SQLObjectImpl;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLAlterTableRenamePartition extends SQLObjectImpl implements SQLAlterTableItem {
 
     private boolean ifNotExists = false;
 
     private final List<SQLAssignItem> partition = new ArrayList<SQLAssignItem>(4);
-    private final List<SQLAssignItem> to        = new ArrayList<SQLAssignItem>(4);
+    private final List<SQLAssignItem> to = new ArrayList<SQLAssignItem>(4);
 
     public List<SQLAssignItem> getPartition() {
         return partition;

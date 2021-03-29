@@ -15,15 +15,8 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlKey;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlObjectImpl;
@@ -33,23 +26,27 @@ import com.lz.druid.sql.dialect.mysql.visitor.MySqlOutputVisitor;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlShowColumnOutpuVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MySqlCreateTableStatement extends SQLCreateTableStatement implements MySqlStatement {
 
     private Map<String, SQLObject> tableOptions = new LinkedHashMap<String, SQLObject>();
-    private List<SQLCommentHint>   hints        = new ArrayList<SQLCommentHint>();
-    private List<SQLCommentHint>   optionHints  = new ArrayList<SQLCommentHint>();
+    private List<SQLCommentHint> hints = new ArrayList<SQLCommentHint>();
+    private List<SQLCommentHint> optionHints = new ArrayList<SQLCommentHint>();
     private SQLName tableGroup;
 
     protected SQLPartitionBy dbPartitionBy;
     protected SQLPartitionBy tablePartitionBy;
     protected SQLExpr tbpartitions;
 
-    public MySqlCreateTableStatement(){
-        super (JdbcConstants.MYSQL);
+    public MySqlCreateTableStatement() {
+        super(JdbcConstants.MYSQL);
     }
-
 
 
     public List<SQLCommentHint> getHints() {
@@ -154,7 +151,7 @@ public class MySqlCreateTableStatement extends SQLCreateTableStatement implement
         this.optionHints = optionHints;
     }
 
-    
+
     public SQLName getTableGroup() {
         return tableGroup;
     }
@@ -306,7 +303,7 @@ public class MySqlCreateTableStatement extends SQLCreateTableStatement implement
 
         for (int i = 0; i < tableElementList.size(); i++) {
             SQLTableElement e = tableElementList.get(i);
-            if(e instanceof MySqlTableIndex) {
+            if (e instanceof MySqlTableIndex) {
                 ((MySqlTableIndex) e).applyColumnRename(columnName, column.getName());
             } else if (e instanceof SQLUnique) {
                 SQLUnique unique = (SQLUnique) e;

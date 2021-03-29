@@ -25,7 +25,6 @@ import com.lz.druid.sql.ast.statement.SQLSelectQueryBlock;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectQueryBlock;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitorAdapter;
 import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitorAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +81,6 @@ public class OrderByResolve extends OracleASTVisitorAdapter {
                 x.setQuery(queryBlock1);
             }
         }
-
 
 
         return super.visit(x);

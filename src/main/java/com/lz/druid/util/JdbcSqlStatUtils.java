@@ -17,9 +17,7 @@ package com.lz.druid.util;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicLong;
@@ -27,7 +25,6 @@ import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 
 @Slf4j
 public class JdbcSqlStatUtils {
-
 
 
     public static long[] rtrim(long[] array) {
@@ -60,7 +57,7 @@ public class JdbcSqlStatUtils {
             return updater.get(stat);
         }
     }
-    
+
     public static long get(AtomicLong counter, boolean reset) {
         if (reset) {
             return counter.getAndSet(0);
@@ -68,7 +65,7 @@ public class JdbcSqlStatUtils {
             return counter.get();
         }
     }
-    
+
     public static int get(AtomicInteger counter, boolean reset) {
         if (reset) {
             return counter.getAndSet(0);

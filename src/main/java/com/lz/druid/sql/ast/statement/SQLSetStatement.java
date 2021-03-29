@@ -15,39 +15,38 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
-import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
-import com.lz.druid.sql.ast.expr.SQLIntegerExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.sql.ast.SQLCommentHint;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLStatementImpl;
+import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
+import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
+import com.lz.druid.sql.ast.expr.SQLIntegerExpr;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLSetStatement extends SQLStatementImpl {
     private Option option;
 
     private List<SQLAssignItem> items = new ArrayList<SQLAssignItem>();
-    
+
     private List<SQLCommentHint> hints;
 
-    public SQLSetStatement(){
+    public SQLSetStatement() {
     }
-    
-    public SQLSetStatement(String dbType){
-        super (dbType);
+
+    public SQLSetStatement(String dbType) {
+        super(dbType);
     }
-    
-    public SQLSetStatement(SQLExpr target, SQLExpr value){
+
+    public SQLSetStatement(SQLExpr target, SQLExpr value) {
         this(target, value, null);
     }
 
-    public SQLSetStatement(SQLExpr target, SQLExpr value, String dbType){
-        super (dbType);
+    public SQLSetStatement(SQLExpr target, SQLExpr value, String dbType) {
+        super(dbType);
         SQLAssignItem item = new SQLAssignItem(target, value);
         item.setParent(this);
         this.items.add(item);

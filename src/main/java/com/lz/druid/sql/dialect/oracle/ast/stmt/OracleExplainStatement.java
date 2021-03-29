@@ -26,10 +26,10 @@ import com.lz.druid.util.JdbcConstants;
 public class OracleExplainStatement extends SQLExplainStatement implements OracleStatement {
 
     private SQLCharExpr statementId;
-    private SQLExpr     into;
-    
+    private SQLExpr into;
+
     public OracleExplainStatement() {
-        super (JdbcConstants.ORACLE);
+        super(JdbcConstants.ORACLE);
     }
 
     @Override

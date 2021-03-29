@@ -15,8 +15,6 @@
  */
 package com.lz.druid.sql.dialect.odps.ast;
 
-import java.util.ArrayList;
-
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLLimit;
@@ -28,11 +26,13 @@ import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
 
+import java.util.ArrayList;
+
 public class OdpsSelectQueryBlock extends SQLSelectQueryBlock {
 
     private SQLOrderBy orderBy;
 
-    public OdpsSelectQueryBlock(){
+    public OdpsSelectQueryBlock() {
         dbType = JdbcConstants.ODPS;
 
         distributeBy = new ArrayList<SQLExpr>();

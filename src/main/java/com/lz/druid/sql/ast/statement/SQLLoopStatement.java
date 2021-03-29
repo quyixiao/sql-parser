@@ -15,20 +15,16 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.ast.SQLStatement;
+import com.lz.druid.sql.ast.SQLStatementImpl;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-
 public class SQLLoopStatement extends SQLStatementImpl {
 
-    private String             labelName;
+    private String labelName;
 
     private final List<SQLStatement> statements = new ArrayList<SQLStatement>();
 

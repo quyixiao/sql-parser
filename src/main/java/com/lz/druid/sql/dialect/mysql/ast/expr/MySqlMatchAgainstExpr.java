@@ -15,20 +15,20 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.expr;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MySqlMatchAgainstExpr extends SQLExprImpl implements MySqlExpr {
 
-    private List<SQLExpr>  columns = new ArrayList<SQLExpr>();
+    private List<SQLExpr> columns = new ArrayList<SQLExpr>();
 
-    private SQLExpr        against;
+    private SQLExpr against;
 
     private SearchModifier searchModifier;
 
@@ -82,11 +82,11 @@ public class MySqlMatchAgainstExpr extends SQLExprImpl implements MySqlExpr {
         public final String name;
         public final String name_lcase;
 
-        SearchModifier(){
+        SearchModifier() {
             this(null);
         }
 
-        SearchModifier(String name){
+        SearchModifier(String name) {
             this.name = name;
             this.name_lcase = name.toLowerCase();
         }

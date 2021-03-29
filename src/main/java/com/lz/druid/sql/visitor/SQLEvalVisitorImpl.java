@@ -15,43 +15,29 @@
  */
 package com.lz.druid.sql.visitor;
 
+import com.lz.druid.sql.ast.expr.*;
+import com.lz.druid.sql.visitor.functions.Function;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lz.druid.sql.ast.expr.SQLBinaryExpr;
-import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
-import com.lz.druid.sql.ast.expr.SQLBooleanExpr;
-import com.lz.druid.sql.ast.expr.SQLCaseExpr;
-import com.lz.druid.sql.ast.expr.SQLCharExpr;
-import com.lz.druid.sql.ast.expr.SQLHexExpr;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLInListExpr;
-import com.lz.druid.sql.ast.expr.SQLIntegerExpr;
-import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
-import com.lz.druid.sql.ast.expr.SQLNullExpr;
-import com.lz.druid.sql.ast.expr.SQLNumberExpr;
-import com.lz.druid.sql.ast.expr.SQLQueryExpr;
-import com.lz.druid.sql.ast.expr.SQLVariantRefExpr;
-import com.lz.druid.sql.visitor.functions.Function;
-import com.lz.druid.sql.visitor.functions.Function;
-
 public class SQLEvalVisitorImpl extends SQLASTVisitorAdapter implements SQLEvalVisitor {
 
-    private List<Object>        parameters       = new ArrayList<Object>();
+    private List<Object> parameters = new ArrayList<Object>();
 
-    private Map<String, Function> functions        = new HashMap<String, Function>();
+    private Map<String, Function> functions = new HashMap<String, Function>();
 
-    private int                 variantIndex     = -1;
+    private int variantIndex = -1;
 
-    private boolean             markVariantIndex = true;
+    private boolean markVariantIndex = true;
 
-    public SQLEvalVisitorImpl(){
+    public SQLEvalVisitorImpl() {
         this(new ArrayList<Object>(1));
     }
 
-    public SQLEvalVisitorImpl(List<Object> parameters){
+    public SQLEvalVisitorImpl(List<Object> parameters) {
         this.parameters = parameters;
     }
 
@@ -90,7 +76,7 @@ public class SQLEvalVisitorImpl extends SQLASTVisitorAdapter implements SQLEvalV
     public boolean visit(SQLNumberExpr x) {
         return SQLEvalVisitorUtils.visit(this, x);
     }
-    
+
     public boolean visit(SQLHexExpr x) {
         return SQLEvalVisitorUtils.visit(this, x);
     }
@@ -137,7 +123,7 @@ public class SQLEvalVisitorImpl extends SQLASTVisitorAdapter implements SQLEvalV
     public void registerFunction(String funcName, Function function) {
         functions.put(funcName, function);
     }
-    
+
     public boolean visit(SQLIdentifierExpr x) {
         return SQLEvalVisitorUtils.visit(this, x);
     }
@@ -146,7 +132,7 @@ public class SQLEvalVisitorImpl extends SQLASTVisitorAdapter implements SQLEvalV
     public void unregisterFunction(String funcName) {
         functions.remove(funcName);
     }
-    
+
     @Override
     public boolean visit(SQLBooleanExpr x) {
         x.getAttributes().put(EVAL_VALUE, x.getBooleanValue());

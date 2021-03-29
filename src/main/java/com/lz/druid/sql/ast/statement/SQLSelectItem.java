@@ -16,7 +16,10 @@
 package com.lz.druid.sql.ast.statement;
 
 import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
+import com.lz.druid.sql.ast.SQLDataType;
+import com.lz.druid.sql.ast.SQLExpr;
+import com.lz.druid.sql.ast.SQLObjectImpl;
+import com.lz.druid.sql.ast.SQLReplaceable;
 import com.lz.druid.sql.ast.expr.SQLAllColumnExpr;
 import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
@@ -24,29 +27,25 @@ import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObject;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.FnvHash;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.SQLDataType;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.ast.SQLReplaceable;
 
 public class SQLSelectItem extends SQLObjectImpl implements SQLReplaceable {
 
     protected SQLExpr expr;
-    protected String  alias;
+    protected String alias;
 
     protected boolean connectByRoot = false;
 
     protected transient long aliasHashCode64;
 
-    public SQLSelectItem(){
+    public SQLSelectItem() {
 
     }
 
-    public SQLSelectItem(SQLExpr expr){
+    public SQLSelectItem(SQLExpr expr) {
         this(expr, null);
     }
 
-    public SQLSelectItem(SQLExpr expr, String alias){
+    public SQLSelectItem(SQLExpr expr, String alias) {
         this.expr = expr;
         this.alias = alias;
 
@@ -54,12 +53,12 @@ public class SQLSelectItem extends SQLObjectImpl implements SQLReplaceable {
             expr.setParent(this);
         }
     }
-    
-    public SQLSelectItem(SQLExpr expr, String alias, boolean connectByRoot){
+
+    public SQLSelectItem(SQLExpr expr, String alias, boolean connectByRoot) {
         this.connectByRoot = connectByRoot;
         this.expr = expr;
         this.alias = alias;
-        
+
         if (expr != null) {
             expr.setParent(this);
         }
@@ -106,7 +105,7 @@ public class SQLSelectItem extends SQLObjectImpl implements SQLReplaceable {
     }
 
     public void output(StringBuffer buf) {
-        if(this.connectByRoot) {
+        if (this.connectByRoot) {
             buf.append(" CONNECT_BY_ROOT ");
         }
         this.expr.output(buf);

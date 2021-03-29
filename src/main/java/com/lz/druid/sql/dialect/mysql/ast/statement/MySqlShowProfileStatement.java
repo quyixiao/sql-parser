@@ -15,12 +15,12 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLLimit;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySqlShowProfileStatement extends MySqlStatementImpl implements MySqlShowStatement {
 
@@ -61,7 +61,7 @@ public class MySqlShowProfileStatement extends MySqlStatementImpl implements MyS
 
         public final String name;
 
-        Type(String name){
+        Type(String name) {
             this.name = name;
         }
     }

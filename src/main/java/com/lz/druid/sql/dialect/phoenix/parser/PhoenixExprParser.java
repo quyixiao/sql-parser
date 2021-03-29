@@ -22,12 +22,12 @@ import com.lz.druid.sql.parser.SQLExprParser;
  * Created by wenshao on 16/9/13.
  */
 public class PhoenixExprParser extends SQLExprParser {
-    public PhoenixExprParser(String sql){
+    public PhoenixExprParser(String sql) {
         this(new PhoenixLexer(sql));
         this.lexer.nextToken();
     }
 
-    public PhoenixExprParser(Lexer lexer){
+    public PhoenixExprParser(Lexer lexer) {
         super(lexer);
     }
 }

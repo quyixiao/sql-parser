@@ -15,12 +15,12 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlObjectImpl;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySqlRenameTableStatement extends MySqlStatementImpl {
 

@@ -31,8 +31,8 @@ public class HiveExprParser extends SQLExprParser {
     private final static long[] AGGREGATE_FUNCTIONS_CODES;
 
     static {
-        String[] strings = { "AVG", "COUNT", "MAX", "MIN", "STDDEV", "SUM", "ROW_NUMBER",
-                "ROWNUMBER" };
+        String[] strings = {"AVG", "COUNT", "MAX", "MIN", "STDDEV", "SUM", "ROW_NUMBER",
+                "ROWNUMBER"};
 
         AGGREGATE_FUNCTIONS_CODES = FnvHash.fnv1a_64_lower(strings, true);
         AGGREGATE_FUNCTIONS = new String[AGGREGATE_FUNCTIONS_CODES.length];
@@ -43,17 +43,17 @@ public class HiveExprParser extends SQLExprParser {
         }
     }
 
-    public HiveExprParser(String sql){
+    public HiveExprParser(String sql) {
         this(new HiveLexer(sql));
         this.lexer.nextToken();
     }
 
-    public HiveExprParser(String sql, SQLParserFeature... features){
+    public HiveExprParser(String sql, SQLParserFeature... features) {
         this(new HiveLexer(sql, features));
         this.lexer.nextToken();
     }
 
-    public HiveExprParser(Lexer lexer){
+    public HiveExprParser(Lexer lexer) {
         super(lexer);
         this.aggregateFunctions = AGGREGATE_FUNCTIONS;
         this.aggregateFunctionHashCodes = AGGREGATE_FUNCTIONS_CODES;

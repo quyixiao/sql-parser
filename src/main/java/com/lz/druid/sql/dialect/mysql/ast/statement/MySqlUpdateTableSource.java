@@ -18,15 +18,13 @@ package com.lz.druid.sql.dialect.mysql.ast.statement;
 import com.lz.druid.sql.ast.statement.SQLTableSourceImpl;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 // just for alibaba mysql
 public class MySqlUpdateTableSource extends SQLTableSourceImpl {
 
     private MySqlUpdateStatement update;
 
-    public MySqlUpdateTableSource(MySqlUpdateStatement update){
+    public MySqlUpdateTableSource(MySqlUpdateStatement update) {
         this.update = update;
     }
 

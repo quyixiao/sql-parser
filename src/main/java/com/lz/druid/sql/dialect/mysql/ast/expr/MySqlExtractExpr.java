@@ -20,10 +20,6 @@ import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.ast.expr.SQLIntervalUnit;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
@@ -33,7 +29,7 @@ public class MySqlExtractExpr extends SQLExprImpl implements MySqlExpr {
     private SQLExpr value;
     private SQLIntervalUnit unit;
 
-    public MySqlExtractExpr(){
+    public MySqlExtractExpr() {
     }
 
     public MySqlExtractExpr clone() {
@@ -71,6 +67,7 @@ public class MySqlExtractExpr extends SQLExprImpl implements MySqlExpr {
         }
         mysqlVisitor.endVisit(this);
     }
+
     @Override
     public List getChildren() {
         return Collections.singletonList(value);

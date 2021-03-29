@@ -15,17 +15,17 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.ast.SQLStatement;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLWithSubqueryClause extends SQLObjectImpl {
 
-    private Boolean           recursive;
+    private Boolean recursive;
     private final List<Entry> entries = new ArrayList<Entry>();
 
     public SQLWithSubqueryClause clone() {
@@ -44,7 +44,7 @@ public class SQLWithSubqueryClause extends SQLObjectImpl {
     public List<Entry> getEntries() {
         return entries;
     }
-    
+
     public void addEntry(Entry entrie) {
         if (entrie != null) {
             entrie.setParent(this);
@@ -71,7 +71,7 @@ public class SQLWithSubqueryClause extends SQLObjectImpl {
     public static class Entry extends SQLTableSourceImpl {
 
         protected final List<SQLName> columns = new ArrayList<SQLName>();
-        protected SQLSelect           subQuery;
+        protected SQLSelect subQuery;
         protected SQLStatement returningStatement;
 
         public void cloneTo(Entry x) {

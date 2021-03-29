@@ -15,9 +15,7 @@
  */
 package com.lz.druid.sql.dialect.mysql.visitor;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.lz.druid.sql.ast.SQLLimit;
 import com.lz.druid.sql.ast.SQLOrderBy;
 import com.lz.druid.sql.ast.expr.SQLBetweenExpr;
 import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
@@ -25,10 +23,12 @@ import com.lz.druid.sql.ast.expr.SQLInListExpr;
 import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
 import com.lz.druid.sql.ast.statement.SQLSelectGroupByClause;
 import com.lz.druid.sql.ast.statement.SQLSelectItem;
-import com.lz.druid.sql.ast.SQLLimit;
 import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlFlushStatement;
 import com.lz.druid.sql.visitor.ExportParameterVisitor;
 import com.lz.druid.sql.visitor.ExportParameterVisitorUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySqlExportParameterVisitor extends MySqlOutputVisitor implements ExportParameterVisitor {
 
@@ -38,7 +38,7 @@ public class MySqlExportParameterVisitor extends MySqlOutputVisitor implements E
     private boolean requireParameterizedOutput;
 
 
-    public MySqlExportParameterVisitor(List<Object> parameters, Appendable appender, boolean wantParameterizedOutput){
+    public MySqlExportParameterVisitor(List<Object> parameters, Appendable appender, boolean wantParameterizedOutput) {
         super(appender, true);
         this.parameters = parameters;
         this.requireParameterizedOutput = wantParameterizedOutput;
@@ -53,7 +53,7 @@ public class MySqlExportParameterVisitor extends MySqlOutputVisitor implements E
     }
 
     public MySqlExportParameterVisitor(final Appendable appender) {
-        this(new ArrayList<Object>(),appender, true);
+        this(new ArrayList<Object>(), appender, true);
     }
 
     public List<Object> getParameters() {
@@ -62,7 +62,7 @@ public class MySqlExportParameterVisitor extends MySqlOutputVisitor implements E
 
     @Override
     public boolean visit(final SQLSelectItem x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         return true;
@@ -70,7 +70,7 @@ public class MySqlExportParameterVisitor extends MySqlOutputVisitor implements E
 
     @Override
     public boolean visit(SQLLimit x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
 
@@ -79,7 +79,7 @@ public class MySqlExportParameterVisitor extends MySqlOutputVisitor implements E
 
     @Override
     public boolean visit(SQLOrderBy x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         return false;
@@ -87,7 +87,7 @@ public class MySqlExportParameterVisitor extends MySqlOutputVisitor implements E
 
     @Override
     public boolean visit(SQLSelectGroupByClause x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         return false;
@@ -95,19 +95,19 @@ public class MySqlExportParameterVisitor extends MySqlOutputVisitor implements E
 
     @Override
     public boolean visit(SQLMethodInvokeExpr x) {
-        if(requireParameterizedOutput){
-           return super.visit(x);
+        if (requireParameterizedOutput) {
+            return super.visit(x);
         }
-        
+
         ExportParameterVisitorUtils.exportParamterAndAccept(this.parameters, x.getParameters());
         return true;
     }
 
     @Override
     public boolean visit(SQLInListExpr x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
-         }
+        }
         ExportParameterVisitorUtils.exportParamterAndAccept(this.parameters, x.getTargetList());
 
         return true;
@@ -115,17 +115,17 @@ public class MySqlExportParameterVisitor extends MySqlOutputVisitor implements E
 
     @Override
     public boolean visit(SQLBetweenExpr x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
-         }
+        }
         ExportParameterVisitorUtils.exportParameter(this.parameters, x);
         return true;
     }
 
     public boolean visit(SQLBinaryOpExpr x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
-         }
+        }
         ExportParameterVisitorUtils.exportParameter(this.parameters, x);
         return true;
     }

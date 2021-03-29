@@ -15,9 +15,9 @@
  */
 package com.lz.druid.sql.dialect.mysql.executor;
 
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLStatement;
+
+import java.util.List;
 
 /**
  * @author zz [455910092@qq.com]

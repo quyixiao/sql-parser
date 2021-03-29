@@ -15,31 +15,31 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLCommentHint;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLCreateDatabaseStatement extends SQLStatementImpl implements SQLCreateStatement {
 
     private SQLName name;
 
-    private String               characterSet;
-    private String               collate;
+    private String characterSet;
+    private String collate;
 
     private List<SQLCommentHint> hints;
-    
-    protected boolean            ifNotExists = false;
 
-    public SQLCreateDatabaseStatement(){
+    protected boolean ifNotExists = false;
+
+    public SQLCreateDatabaseStatement() {
     }
-    
-    public SQLCreateDatabaseStatement(String dbType){
-        super (dbType);
+
+    public SQLCreateDatabaseStatement(String dbType) {
+        super(dbType);
     }
 
     @Override
@@ -90,11 +90,11 @@ public class SQLCreateDatabaseStatement extends SQLStatementImpl implements SQLC
     public void setHints(List<SQLCommentHint> hints) {
         this.hints = hints;
     }
-    
+
     public boolean isIfNotExists() {
         return ifNotExists;
     }
-    
+
     public void setIfNotExists(boolean ifNotExists) {
         this.ifNotExists = ifNotExists;
     }

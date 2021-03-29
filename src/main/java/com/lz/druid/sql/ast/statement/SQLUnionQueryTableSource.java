@@ -16,26 +16,25 @@
 package com.lz.druid.sql.ast.statement;
 
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLUnionQueryTableSource extends SQLTableSourceImpl {
 
     private SQLUnionQuery union;
 
-    public SQLUnionQueryTableSource(){
+    public SQLUnionQueryTableSource() {
 
     }
 
-    public SQLUnionQueryTableSource(String alias){
+    public SQLUnionQueryTableSource(String alias) {
         super(alias);
     }
 
-    public SQLUnionQueryTableSource(SQLUnionQuery union, String alias){
+    public SQLUnionQueryTableSource(SQLUnionQuery union, String alias) {
         super(alias);
         this.setUnion(union);
     }
 
-    public SQLUnionQueryTableSource(SQLUnionQuery union){
+    public SQLUnionQueryTableSource(SQLUnionQuery union) {
         this.setUnion(union);
     }
 

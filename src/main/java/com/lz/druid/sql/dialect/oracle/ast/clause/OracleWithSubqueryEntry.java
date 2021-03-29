@@ -23,7 +23,7 @@ import com.lz.druid.sql.visitor.SQLASTVisitor;
 public class OracleWithSubqueryEntry extends Entry implements OracleSQLObject {
 
     private SearchClause searchClause;
-    private CycleClause  cycleClause;
+    private CycleClause cycleClause;
 
     public CycleClause getCycleClause() {
         return cycleClause;

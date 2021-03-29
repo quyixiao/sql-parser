@@ -15,49 +15,42 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.ast.SQLExpr;
+import com.lz.druid.sql.ast.SQLName;
+import com.lz.druid.sql.ast.SQLObject;
+import com.lz.druid.sql.ast.SQLStatementImpl;
+import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
+import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-
 public class SQLAlterTableStatement extends SQLStatementImpl implements SQLDDLStatement, SQLAlterStatement {
 
-    private SQLExprTableSource      tableSource;
-    private List<SQLAlterTableItem> items                   = new ArrayList<SQLAlterTableItem>();
+    private SQLExprTableSource tableSource;
+    private List<SQLAlterTableItem> items = new ArrayList<SQLAlterTableItem>();
 
     // for mysql
-    private boolean                 ignore                  = false;
+    private boolean ignore = false;
 
-    private boolean                 updateGlobalIndexes     = false;
-    private boolean                 invalidateGlobalIndexes = false;
+    private boolean updateGlobalIndexes = false;
+    private boolean invalidateGlobalIndexes = false;
 
-    private boolean                 removePatiting          = false;
-    private boolean                 upgradePatiting         = false;
-    private Map<String, SQLObject>  tableOptions            = new LinkedHashMap<String, SQLObject>();
+    private boolean removePatiting = false;
+    private boolean upgradePatiting = false;
+    private Map<String, SQLObject> tableOptions = new LinkedHashMap<String, SQLObject>();
 
     // odps
-    private boolean                 mergeSmallFiles         = false;
+    private boolean mergeSmallFiles = false;
 
-    public SQLAlterTableStatement(){
+    public SQLAlterTableStatement() {
 
     }
 
-    public SQLAlterTableStatement(String dbType){
+    public SQLAlterTableStatement(String dbType) {
         super(dbType);
     }
 

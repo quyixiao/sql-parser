@@ -15,16 +15,16 @@
  */
 package com.lz.druid.sql.visitor.functions;
 
-import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
 import com.lz.druid.sql.visitor.SQLEvalVisitor;
 
+import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
+
 
 public class Lcase implements Function {
     public final static Lcase instance = new Lcase();
-    
+
     public Object eval(SQLEvalVisitor visitor, SQLMethodInvokeExpr x) {
         if (x.getParameters().size() != 1) {
             return SQLEvalVisitor.EVAL_ERROR;

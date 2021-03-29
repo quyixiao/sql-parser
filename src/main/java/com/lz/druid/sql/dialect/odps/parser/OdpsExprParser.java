@@ -16,17 +16,6 @@
 package com.lz.druid.sql.dialect.odps.parser;
 
 import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLArrayExpr;
-import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
-import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
-import com.lz.druid.sql.ast.expr.SQLCharExpr;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.statement.SQLSelectItem;
-import com.lz.druid.sql.dialect.odps.ast.OdpsUDTFSQLSelectItem;
-import com.lz.druid.sql.parser.*;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.SQLSelectItem;
 import com.lz.druid.sql.dialect.odps.ast.OdpsUDTFSQLSelectItem;
@@ -44,7 +33,7 @@ public class OdpsExprParser extends SQLExprParser {
     public final static long[] AGGREGATE_FUNCTIONS_CODES;
 
     static {
-        String[] strings = { "AVG", //
+        String[] strings = {"AVG", //
                 "COUNT", //
                 "LAG",
                 "LEAD",
@@ -64,28 +53,28 @@ public class OdpsExprParser extends SQLExprParser {
         }
     }
 
-    public OdpsExprParser(Lexer lexer){
+    public OdpsExprParser(Lexer lexer) {
         super(lexer, JdbcConstants.ODPS);
 
         this.aggregateFunctions = AGGREGATE_FUNCTIONS;
         this.aggregateFunctionHashCodes = AGGREGATE_FUNCTIONS_CODES;
     }
 
-    public OdpsExprParser(String sql){
+    public OdpsExprParser(String sql) {
         this(new OdpsLexer(sql));
         this.lexer.nextToken();
     }
-    
-    public OdpsExprParser(String sql, boolean skipComments, boolean keepComments){
+
+    public OdpsExprParser(String sql, boolean skipComments, boolean keepComments) {
         this(new OdpsLexer(sql, skipComments, keepComments));
         this.lexer.nextToken();
     }
-    
+
     protected SQLExpr parseAliasExpr(String alias) {
         String chars = alias.substring(1, alias.length() - 1);
         return new SQLCharExpr(chars);
     }
-    
+
     @Override
     public SQLSelectItem parseSelectItem() {
         SQLExpr expr;
@@ -112,7 +101,7 @@ public class OdpsExprParser extends SQLExprParser {
 
                 selectItem.setExpr(expr);
 
-                for (;;) {
+                for (; ; ) {
                     alias = lexer.stringVal();
                     lexer.nextToken();
 
@@ -134,23 +123,23 @@ public class OdpsExprParser extends SQLExprParser {
         } else {
             alias = as();
         }
-        
+
         SQLSelectItem item = new SQLSelectItem(expr, alias);
-        
+
         if (lexer.hasComment() && lexer.isKeepComments()) {
             item.addAfterComment(lexer.readAndResetComments());
         }
 
         return item;
     }
-    
+
     public SQLExpr primaryRest(SQLExpr expr) {
-        if(lexer.token() == Token.COLON) {
+        if (lexer.token() == Token.COLON) {
             lexer.nextToken();
             expr = dotRest(expr);
             return expr;
         }
-        
+
         if (lexer.token() == Token.LBRACKET) {
             SQLArrayExpr array = new SQLArrayExpr();
             array.setExpr(expr);
@@ -159,7 +148,7 @@ public class OdpsExprParser extends SQLExprParser {
             accept(Token.RBRACKET);
             return primaryRest(array);
         }
-        
+
         return super.primaryRest(expr);
     }
 
@@ -204,7 +193,7 @@ public class OdpsExprParser extends SQLExprParser {
 
             SQLStructDataType struct = new SQLStructDataType(dbType);
             accept(Token.LT);
-            for (;;) {
+            for (; ; ) {
                 SQLName name = this.name();
                 accept(Token.COLON);
                 SQLDataType dataType = this.parseDataType();

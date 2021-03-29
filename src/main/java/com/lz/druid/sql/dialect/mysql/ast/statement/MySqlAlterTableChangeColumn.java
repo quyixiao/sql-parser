@@ -15,13 +15,9 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.statement.SQLAlterTableItem;
 import com.lz.druid.sql.ast.statement.SQLColumnDefinition;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlObjectImpl;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlObjectImpl;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
@@ -31,10 +27,10 @@ public class MySqlAlterTableChangeColumn extends MySqlObjectImpl implements SQLA
 
     private SQLColumnDefinition newColumnDefinition;
 
-    private boolean             first;
+    private boolean first;
 
-    private SQLName             firstColumn;
-    private SQLName             afterColumn;
+    private SQLName firstColumn;
+    private SQLName afterColumn;
 
     @Override
     public void accept0(MySqlASTVisitor visitor) {

@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.expr.SQLAllColumnExpr;
@@ -25,26 +22,28 @@ import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObject;
 import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLSelect extends SQLObjectImpl {
 
     protected SQLWithSubqueryClause withSubQuery;
-    protected SQLSelectQuery        query;
+    protected SQLSelectQuery query;
     protected SQLOrderBy orderBy;
 
-    protected List<SQLHint>         hints;
+    protected List<SQLHint> hints;
 
     protected SQLObject restriction;
 
-    protected boolean               forBrowse;
-    protected List<String>          forXmlOptions = null;
+    protected boolean forBrowse;
+    protected List<String> forXmlOptions = null;
     protected SQLExpr xmlPath;
 
-    protected SQLExpr                rowCount;
-    protected SQLExpr                offset;
+    protected SQLExpr rowCount;
+    protected SQLExpr offset;
 
-    public SQLSelect(){
+    public SQLSelect() {
 
     }
 
@@ -54,7 +53,7 @@ public class SQLSelect extends SQLObjectImpl {
         }
         return hints;
     }
-    
+
     public int getHintsSize() {
         if (hints == null) {
             return 0;
@@ -62,7 +61,7 @@ public class SQLSelect extends SQLObjectImpl {
         return hints.size();
     }
 
-    public SQLSelect(SQLSelectQuery query){
+    public SQLSelect(SQLSelectQuery query) {
         this.setQuery(query);
     }
 
@@ -170,7 +169,7 @@ public class SQLSelect extends SQLObjectImpl {
         SQLObject parent = this.getParent();
         if (parent instanceof SQLStatement) {
             String dbType = ((SQLStatement) parent).getDbType();
-            
+
             if (dbType != null) {
                 return SQLUtils.toSQLString(this, dbType);
             }
@@ -187,7 +186,7 @@ public class SQLSelect extends SQLObjectImpl {
                 return SQLUtils.toSQLString(this, dbType);
             }
         }
-        
+
         return super.toString();
     }
 

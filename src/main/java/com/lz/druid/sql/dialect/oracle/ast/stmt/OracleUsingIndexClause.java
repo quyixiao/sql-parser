@@ -15,34 +15,28 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
-import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLPartition;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObject;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSegmentAttributesImpl;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleStorageClause;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObject;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSegmentAttributesImpl;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OracleUsingIndexClause extends OracleSegmentAttributesImpl implements OracleSQLObject {
 
-    private SQLName             index;
+    private SQLName index;
 
-    private Boolean             enable            = null;
+    private Boolean enable = null;
 
-    private boolean             computeStatistics = false;
-    private boolean             reverse;
+    private boolean computeStatistics = false;
+    private boolean reverse;
 
     private List<SQLPartition> localPartitionIndex = new ArrayList<SQLPartition>();
 
-    public OracleUsingIndexClause(){
+    public OracleUsingIndexClause() {
 
     }
 

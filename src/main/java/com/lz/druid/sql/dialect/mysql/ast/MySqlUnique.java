@@ -19,7 +19,7 @@ import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
 public class MySqlUnique extends MySqlKey {
 
-    public MySqlUnique(){
+    public MySqlUnique() {
 
     }
 

@@ -15,16 +15,16 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.List;
+import com.lz.druid.sql.ast.SQLName;
 
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLName;
+import java.util.List;
 
 public interface SQLForeignKeyConstraint extends SQLConstraint, SQLTableElement, SQLTableConstraint {
 
     List<SQLName> getReferencingColumns();
 
     SQLExprTableSource getReferencedTable();
+
     SQLName getReferencedTableName();
 
     void setReferencedTableName(SQLName value);

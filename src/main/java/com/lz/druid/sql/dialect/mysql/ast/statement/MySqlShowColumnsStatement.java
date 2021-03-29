@@ -21,12 +21,6 @@ import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
 import java.util.ArrayList;
 import java.util.List;

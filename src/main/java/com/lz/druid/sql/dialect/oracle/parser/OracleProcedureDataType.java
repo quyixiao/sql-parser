@@ -15,7 +15,6 @@
  */
 package com.lz.druid.sql.dialect.oracle.parser;
 
-import com.lz.druid.sql.ast.SQLDataType;
 import com.lz.druid.sql.ast.SQLDataTypeImpl;
 import com.lz.druid.sql.ast.SQLParameter;
 import com.lz.druid.sql.ast.SQLStatement;

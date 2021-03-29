@@ -15,30 +15,10 @@
  */
 package com.lz.druid.sql.dialect.mysql.visitor;
 
-import com.lz.druid.sql.dialect.mysql.ast.MySqlForceIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlIgnoreIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlKey;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlPrimaryKey;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlUnique;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlUseIndexHint;
-import com.lz.druid.sql.dialect.mysql.ast.MysqlForeignKey;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlCaseStatement;
+import com.lz.druid.sql.dialect.mysql.ast.*;
+import com.lz.druid.sql.dialect.mysql.ast.clause.*;
 import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlCaseStatement.MySqlWhenStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlCursorDeclareStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlDeclareConditionStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlDeclareHandlerStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlDeclareStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlIterateStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlLeaveStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlRepeatStatement;
-import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlSelectIntoStatement;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlCharExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlExtractExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlMatchAgainstExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlOrderingExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlOutFileExpr;
-import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlUserName;
-import com.lz.druid.sql.dialect.mysql.ast.statement.*;
+import com.lz.druid.sql.dialect.mysql.ast.expr.*;
 import com.lz.druid.sql.dialect.mysql.ast.statement.*;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
@@ -468,36 +448,47 @@ public interface MySqlASTVisitor extends SQLASTVisitor {
     void endVisit(MySqlFlushStatement x);
 
     boolean visit(MySqlEventSchedule x);
+
     void endVisit(MySqlEventSchedule x);
 
     boolean visit(MySqlCreateEventStatement x);
+
     void endVisit(MySqlCreateEventStatement x);
 
     boolean visit(MySqlCreateAddLogFileGroupStatement x);
+
     void endVisit(MySqlCreateAddLogFileGroupStatement x);
 
     boolean visit(MySqlCreateServerStatement x);
+
     void endVisit(MySqlCreateServerStatement x);
 
     boolean visit(MySqlCreateTableSpaceStatement x);
+
     void endVisit(MySqlCreateTableSpaceStatement x);
 
     boolean visit(MySqlAlterEventStatement x);
+
     void endVisit(MySqlAlterEventStatement x);
 
     boolean visit(MySqlAlterLogFileGroupStatement x);
+
     void endVisit(MySqlAlterLogFileGroupStatement x);
 
     boolean visit(MySqlAlterServerStatement x);
+
     void endVisit(MySqlAlterServerStatement x);
 
     boolean visit(MySqlAlterTablespaceStatement x);
+
     void endVisit(MySqlAlterTablespaceStatement x);
 
     boolean visit(MySqlShowDatabasePartitionStatusStatement x);
+
     void endVisit(MySqlShowDatabasePartitionStatusStatement x);
 
     boolean visit(MySqlChecksumTableStatement x);
+
     void endVisit(MySqlChecksumTableStatement x);
 
 } //

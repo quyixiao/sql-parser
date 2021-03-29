@@ -15,57 +15,51 @@
  */
 package com.lz.druid.sql.ast.expr;
 
+import com.lz.druid.sql.SQLUtils;
+import com.lz.druid.sql.ast.*;
+import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+import com.lz.druid.util.FnvHash;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.FnvHash;
 
 public class SQLMethodInvokeExpr extends SQLExprImpl implements SQLReplaceable, Serializable {
 
-    private static final long   serialVersionUID = 1L;
-    private String              name;
+    private static final long serialVersionUID = 1L;
+    private String name;
     private SQLExpr owner;
-    private final List<SQLExpr> parameters       = new ArrayList<SQLExpr>();
+    private final List<SQLExpr> parameters = new ArrayList<SQLExpr>();
 
-    private SQLExpr             from;
-    private SQLExpr             using;
-    private SQLExpr             _for;
+    private SQLExpr from;
+    private SQLExpr using;
+    private SQLExpr _for;
 
-    private String              trimOption;
+    private String trimOption;
 
-    private long                nameHashCode64;
+    private long nameHashCode64;
 
-    public SQLMethodInvokeExpr(){
+    public SQLMethodInvokeExpr() {
 
     }
 
-    public SQLMethodInvokeExpr(String methodName){
+    public SQLMethodInvokeExpr(String methodName) {
         this.name = methodName;
     }
 
-    public SQLMethodInvokeExpr(String methodName, long nameHashCode64){
+    public SQLMethodInvokeExpr(String methodName, long nameHashCode64) {
         this.name = methodName;
         this.nameHashCode64 = nameHashCode64;
     }
 
-    public SQLMethodInvokeExpr(String methodName, SQLExpr owner){
+    public SQLMethodInvokeExpr(String methodName, SQLExpr owner) {
 
         this.name = methodName;
         setOwner(owner);
     }
 
-    public SQLMethodInvokeExpr(String methodName, SQLExpr owner, SQLExpr... params){
+    public SQLMethodInvokeExpr(String methodName, SQLExpr owner, SQLExpr... params) {
         this.name = methodName;
         setOwner(owner);
         for (SQLExpr param : params) {
@@ -115,7 +109,7 @@ public class SQLMethodInvokeExpr extends SQLExprImpl implements SQLReplaceable, 
     public List<SQLExpr> getParameters() {
         return this.parameters;
     }
-    
+
     public void addParameter(SQLExpr param) {
         if (param != null) {
             param.setParent(this);

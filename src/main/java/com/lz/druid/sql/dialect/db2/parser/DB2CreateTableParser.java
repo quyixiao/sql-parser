@@ -16,19 +16,9 @@
 package com.lz.druid.sql.dialect.db2.parser;
 
 import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLPartitionBy;
 import com.lz.druid.sql.ast.SQLPartitionByHash;
 import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.dialect.db2.ast.stmt.DB2CreateTableStatement;
-import com.lz.druid.sql.parser.ParserException;
-import com.lz.druid.sql.parser.SQLCreateTableParser;
-import com.lz.druid.sql.parser.SQLExprParser;
-import com.lz.druid.sql.parser.Token;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLPartitionByHash;
-import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.parser.ParserException;
 import com.lz.druid.sql.parser.SQLCreateTableParser;
 import com.lz.druid.sql.parser.SQLExprParser;
@@ -96,7 +86,7 @@ public class DB2CreateTableParser extends SQLCreateTableParser {
                     constraint.setParent(createTable);
                     createTable.getTableElementList().add((SQLTableElement) constraint);
                 } else if (token == Token.TABLESPACE) {
-                    throw new ParserException("TODO "  + lexer.info());
+                    throw new ParserException("TODO " + lexer.info());
                 } else {
                     SQLColumnDefinition column = this.exprParser.parseColumn();
                     createTable.getTableElementList().add(column);
@@ -131,7 +121,7 @@ public class DB2CreateTableParser extends SQLCreateTableParser {
             createTable.setSelect(select);
         }
 
-        for (;;) {
+        for (; ; ) {
             if (lexer.identifierEquals(FnvHash.Constants.DATA)) {
                 lexer.nextToken();
                 acceptIdentifier("CAPTURE");
@@ -142,7 +132,7 @@ public class DB2CreateTableParser extends SQLCreateTableParser {
                     continue;
                 }
 
-                throw new ParserException("TODO "  + lexer.info());
+                throw new ParserException("TODO " + lexer.info());
             } else if (lexer.token() == Token.IN) {
                 lexer.nextToken();
 
@@ -151,7 +141,7 @@ public class DB2CreateTableParser extends SQLCreateTableParser {
                     SQLName database = this.exprParser.name();
                     createTable.setDatabase(database);
                 } else if (lexer.identifierEquals("tablespace")) {
-                    throw new ParserException("TODO "  + lexer.info());
+                    throw new ParserException("TODO " + lexer.info());
                 } else {
                     SQLName tablespace = this.exprParser.name();
                     createTable.setTablespace(tablespace);

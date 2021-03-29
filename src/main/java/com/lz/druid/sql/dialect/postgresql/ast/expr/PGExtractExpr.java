@@ -18,7 +18,6 @@ package com.lz.druid.sql.dialect.postgresql.ast.expr;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitor;
-import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +25,7 @@ import java.util.List;
 public class PGExtractExpr extends PGExprImpl {
 
     private PGDateField field;
-    private SQLExpr     source;
+    private SQLExpr source;
 
     public PGExtractExpr clone() {
         PGExtractExpr x = new PGExtractExpr();

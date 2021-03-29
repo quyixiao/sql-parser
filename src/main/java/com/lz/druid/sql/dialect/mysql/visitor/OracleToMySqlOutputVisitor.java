@@ -21,12 +21,6 @@ import com.lz.druid.sql.dialect.oracle.ast.clause.*;
 import com.lz.druid.sql.dialect.oracle.ast.expr.*;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalDay;
-import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalYear;
-import com.lz.druid.sql.dialect.oracle.ast.clause.*;
-import com.lz.druid.sql.dialect.oracle.ast.expr.*;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 /**
  * Created by wenshao on 16/07/2017.

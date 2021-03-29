@@ -15,17 +15,17 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.clause;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PartitionExtensionClause extends OracleSQLObjectImpl {
 
-    private boolean             subPartition;
-    private SQLName             partition;
+    private boolean subPartition;
+    private SQLName partition;
     private final List<SQLName> target = new ArrayList<SQLName>();
 
     public boolean isSubPartition() {

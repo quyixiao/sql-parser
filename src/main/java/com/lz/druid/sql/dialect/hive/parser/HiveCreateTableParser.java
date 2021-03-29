@@ -19,12 +19,6 @@ import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.dialect.hive.stmt.HiveCreateTableStatement;
-import com.lz.druid.sql.parser.*;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.parser.ParserException;
 import com.lz.druid.sql.parser.SQLCreateTableParser;
 import com.lz.druid.sql.parser.SQLExprParser;
@@ -101,7 +95,7 @@ public class HiveCreateTableParser extends SQLCreateTableParser {
                     constraint.setParent(stmt);
                     stmt.getTableElementList().add((SQLTableElement) constraint);
                 } else if (token == Token.TABLESPACE) {
-                    throw new ParserException("TODO "  + lexer.info());
+                    throw new ParserException("TODO " + lexer.info());
                 } else {
                     SQLColumnDefinition column = this.exprParser.parseColumn();
                     stmt.getTableElementList().add(column);
@@ -141,7 +135,7 @@ public class HiveCreateTableParser extends SQLCreateTableParser {
             accept(Token.BY);
             accept(Token.LPAREN);
 
-            for (;;) {
+            for (; ; ) {
                 if (lexer.token() != Token.IDENTIFIER) {
                     throw new ParserException("expect identifier. " + lexer.info());
                 }
@@ -229,7 +223,7 @@ public class HiveCreateTableParser extends SQLCreateTableParser {
             lexer.nextToken();
             accept(Token.LPAREN);
 
-            for (;;) {
+            for (; ; ) {
                 String name = lexer.stringVal();
                 lexer.nextToken();
                 accept(Token.EQ);

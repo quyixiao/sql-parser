@@ -19,10 +19,6 @@ import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.statement.SQLAlterStatement;
 import com.lz.druid.sql.ast.statement.SQLExprTableSource;
 import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.statement.SQLAlterStatement;
-import com.lz.druid.sql.ast.statement.SQLExprTableSource;
-import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
 
 public class OdpsAddStatisticStatement extends OdpsStatementImpl implements SQLAlterStatement {
 

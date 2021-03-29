@@ -15,17 +15,7 @@
  */
 package com.lz.druid.sql.dialect.postgresql.visitor;
 
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGBoxExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGCidrExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGCircleExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGExtractExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGInetExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGLineSegmentsExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGMacAddrExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGPointExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGPolygonExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGTypeCastExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.stmt.*;
+import com.lz.druid.sql.dialect.postgresql.ast.expr.*;
 import com.lz.druid.sql.dialect.postgresql.ast.stmt.*;
 import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGSelectQueryBlock.FetchClause;
 import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGSelectQueryBlock.ForClause;
@@ -127,112 +117,112 @@ public class PGASTVisitorAdapter extends SQLASTVisitorAdapter implements PGASTVi
     public boolean visit(PGFunctionTableSource x) {
         return true;
     }
-	
-	@Override
-	public boolean visit(PGTypeCastExpr x) {
-	    return true;
-	}
-	
-	@Override
-	public void endVisit(PGTypeCastExpr x) {
-	    
-	}
+
+    @Override
+    public boolean visit(PGTypeCastExpr x) {
+        return true;
+    }
+
+    @Override
+    public void endVisit(PGTypeCastExpr x) {
+
+    }
 
     @Override
     public void endVisit(PGValuesQuery x) {
-        
+
     }
 
     @Override
     public boolean visit(PGValuesQuery x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(PGExtractExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGExtractExpr x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(PGBoxExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGBoxExpr x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(PGPointExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGPointExpr x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(PGMacAddrExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGMacAddrExpr x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(PGInetExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGInetExpr x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(PGCidrExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGCidrExpr x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(PGPolygonExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGPolygonExpr x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(PGCircleExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGCircleExpr x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(PGLineSegmentsExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGLineSegmentsExpr x) {
         return true;
@@ -240,9 +230,9 @@ public class PGASTVisitorAdapter extends SQLASTVisitorAdapter implements PGASTVi
 
     @Override
     public void endVisit(PGShowStatement x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGShowStatement x) {
         return true;
@@ -250,7 +240,7 @@ public class PGASTVisitorAdapter extends SQLASTVisitorAdapter implements PGASTVi
 
     @Override
     public void endVisit(PGStartTransactionStatement x) {
-        
+
     }
 
     @Override

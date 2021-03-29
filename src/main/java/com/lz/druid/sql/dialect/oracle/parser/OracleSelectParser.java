@@ -15,55 +15,30 @@
  */
 package com.lz.druid.sql.dialect.oracle.parser;
 
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLOrderBy;
 import com.lz.druid.sql.ast.SQLSetQuantifier;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.dialect.oracle.ast.clause.CycleClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.CellAssignment;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.CellAssignmentItem;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.CellReferenceOption;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.MainModelClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelColumn;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelColumnClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelRuleOption;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelRulesClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.QueryPartitionClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ReferenceModelClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ReturnRowsClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleWithSubqueryEntry;
-import com.lz.druid.sql.dialect.oracle.ast.clause.PartitionExtensionClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.SampleClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.SearchClause;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectJoin;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectPivot;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectQueryBlock;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectRestriction;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectSubqueryTableSource;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectTableReference;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectTableSource;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectUnPivot;
-import com.lz.druid.sql.parser.*;
+import com.lz.druid.sql.dialect.oracle.ast.clause.*;
+import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.*;
+import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
 import com.lz.druid.sql.parser.*;
 import com.lz.druid.util.FnvHash;
 
+import java.util.List;
+
 public class OracleSelectParser extends SQLSelectParser {
 
-    public OracleSelectParser(String sql){
+    public OracleSelectParser(String sql) {
         super(new OracleExprParser(sql));
     }
 
-    public OracleSelectParser(SQLExprParser exprParser){
+    public OracleSelectParser(SQLExprParser exprParser) {
         super(exprParser);
     }
 
-    public OracleSelectParser(SQLExprParser exprParser, SQLSelectListCache selectListCache){
+    public OracleSelectParser(SQLExprParser exprParser, SQLSelectListCache selectListCache) {
         super(exprParser, selectListCache);
     }
 
@@ -134,7 +109,7 @@ public class OracleSelectParser extends SQLSelectParser {
             orderBy = this.exprParser.parseOrderBy();
             if (queryBlock != null && queryBlock.getOrderBy() == null) {
                 queryBlock.setOrderBy(orderBy);
-            } else if (select.getOrderBy() == null){
+            } else if (select.getOrderBy() == null) {
                 select.setOrderBy(orderBy);
             } else {
                 throw new ParserException("illegal state.");
@@ -182,7 +157,7 @@ public class OracleSelectParser extends SQLSelectParser {
     public SQLWithSubqueryClause parseWith() {
         accept(Token.WITH);
         SQLWithSubqueryClause subqueryFactoringClause = new SQLWithSubqueryClause();
-        for (;;) {
+        for (; ; ) {
             OracleWithSubqueryEntry entry = new OracleWithSubqueryEntry();
 
             String alias = lexer.stringVal();
@@ -436,7 +411,7 @@ public class OracleSelectParser extends SQLSelectParser {
         acceptIdentifier("DIMENSION");
         accept(Token.BY);
         accept(Token.LPAREN);
-        for (;;) {
+        for (; ; ) {
             if (lexer.token() == Token.RPAREN) {
                 lexer.nextToken();
                 break;
@@ -455,7 +430,7 @@ public class OracleSelectParser extends SQLSelectParser {
 
         acceptIdentifier("MEASURES");
         accept(Token.LPAREN);
-        for (;;) {
+        for (; ; ) {
             if (lexer.token() == Token.RPAREN) {
                 lexer.nextToken();
                 break;
@@ -518,7 +493,7 @@ public class OracleSelectParser extends SQLSelectParser {
         }
 
         accept(Token.LPAREN);
-        for (;;) {
+        for (; ; ) {
             if (lexer.token() == Token.RPAREN) {
                 lexer.nextToken();
                 break;
@@ -793,7 +768,7 @@ public class OracleSelectParser extends SQLSelectParser {
                 lexer.nextToken();
 
                 if (lexer.token() == Token.OF) {
-                    ((OracleSelectTableSource)tableSource).setFlashback(flashback());
+                    ((OracleSelectTableSource) tableSource).setFlashback(flashback());
                 }
 
                 tableSource.setAlias(tableAlias());
@@ -1039,7 +1014,7 @@ public class OracleSelectParser extends SQLSelectParser {
                 throw new ParserException("TODO. " + lexer.info());
             }
 
-            for (;;) {
+            for (; ; ) {
                 item = new OracleSelectPivot.Item();
                 item.setExpr(this.exprParser.expr());
                 item.setAlias(as());

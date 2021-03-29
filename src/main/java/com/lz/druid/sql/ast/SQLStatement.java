@@ -18,13 +18,19 @@ package com.lz.druid.sql.ast;
 import java.util.List;
 
 public interface SQLStatement extends SQLObject {
-    String          getDbType();
-    boolean         isAfterSemi();
-    void            setAfterSemi(boolean afterSemi);
-    SQLStatement    clone();
+    String getDbType();
+
+    boolean isAfterSemi();
+
+    void setAfterSemi(boolean afterSemi);
+
+    SQLStatement clone();
+
     List<SQLObject> getChildren();
-    String          toLowerCaseString();
+
+    String toLowerCaseString();
 
     List<SQLCommentHint> getHeadHintsDirect();
+
     void setHeadHints(List<SQLCommentHint> headHints);
 }

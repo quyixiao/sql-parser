@@ -19,8 +19,6 @@ import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.dialect.mysql.ast.expr.MySqlExpr;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitorAdapter;
 import com.lz.druid.sql.dialect.odps.ast.OdpsValuesTableSource;
@@ -36,7 +34,6 @@ import com.lz.druid.stat.TableStat.Mode;
 import com.lz.druid.stat.TableStat.Relationship;
 import com.lz.druid.util.FnvHash;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.*;
 
 import java.util.*;
 
@@ -498,7 +495,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
 
         for (SQLSelectOrderByItem orderByItem : x.getItems()) {
             // todo quyixiao
-            if (notIdentifierExpr(orderByItem.getExpr() )) {
+            if (notIdentifierExpr(orderByItem.getExpr())) {
                 statExpr(orderByItem.getExpr());
             }
 
@@ -1121,7 +1118,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
         if (groupBy != null) {
             for (SQLExpr expr : groupBy.getItems()) {
                 // todo quyixiao
-                if(notIdentifierExpr(expr)){
+                if (notIdentifierExpr(expr)) {
                     statExpr(expr);
                 }
             }
@@ -1138,7 +1135,6 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
         if (first != null) {
             statExpr(first);
         }*/
-
 
 
         List<SQLExpr> distributeBy = x.getDistributeBy();

@@ -16,11 +16,6 @@
 package com.lz.druid.sql.dialect.odps.ast;
 
 import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
@@ -30,7 +25,7 @@ public class OdpsShowGrantsStmt extends SQLStatementImpl {
     private SQLExpr user;
 
     private SQLExpr objectType;
-    
+
     @Override
     protected void accept0(SQLASTVisitor visitor) {
         accept0((OdpsASTVisitor) visitor);

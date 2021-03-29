@@ -16,7 +16,6 @@
 package com.lz.druid.sql.dialect.h2.visitor;
 
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public interface H2ASTVisitor extends SQLASTVisitor {
 }

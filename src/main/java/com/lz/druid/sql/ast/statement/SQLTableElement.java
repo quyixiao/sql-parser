@@ -16,7 +16,6 @@
 package com.lz.druid.sql.ast.statement;
 
 import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLObject;
 
 public interface SQLTableElement extends SQLObject {
     SQLTableElement clone();

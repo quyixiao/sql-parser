@@ -20,8 +20,6 @@ import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public class OracleAlterIndexStatement extends OracleStatementImpl implements OracleAlterStatement {
 

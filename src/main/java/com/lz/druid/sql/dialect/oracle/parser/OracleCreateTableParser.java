@@ -15,15 +15,11 @@
  */
 package com.lz.druid.sql.dialect.oracle.parser;
 
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLPartition;
-import com.lz.druid.sql.ast.SQLPartitionByHash;
-import com.lz.druid.sql.ast.SQLPartitionByList;
-import com.lz.druid.sql.ast.SQLPartitionByRange;
+import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.lz.druid.sql.ast.expr.SQLNumericLiteralExpr;
-import com.lz.druid.sql.ast.statement.SQLExternalRecordFormat;
 import com.lz.druid.sql.ast.statement.SQLCreateTableStatement;
+import com.lz.druid.sql.ast.statement.SQLExternalRecordFormat;
 import com.lz.druid.sql.ast.statement.SQLSelect;
 import com.lz.druid.sql.dialect.oracle.ast.clause.OracleLobStorageClause;
 import com.lz.druid.sql.dialect.oracle.ast.clause.OracleStorageClause;
@@ -31,7 +27,6 @@ import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleCreateTableStatement;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleCreateTableStatement.DeferredSegmentCreation;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSupplementalIdKey;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSupplementalLogGrp;
-import com.lz.druid.sql.parser.*;
 import com.lz.druid.sql.parser.Lexer;
 import com.lz.druid.sql.parser.ParserException;
 import com.lz.druid.sql.parser.SQLCreateTableParser;
@@ -39,11 +34,11 @@ import com.lz.druid.sql.parser.Token;
 
 public class OracleCreateTableParser extends SQLCreateTableParser {
 
-    public OracleCreateTableParser(Lexer lexer){
+    public OracleCreateTableParser(Lexer lexer) {
         super(new OracleExprParser(lexer));
     }
 
-    public OracleCreateTableParser(String sql){
+    public OracleCreateTableParser(String sql) {
         super(new OracleExprParser(sql));
     }
 
@@ -74,7 +69,7 @@ public class OracleCreateTableParser extends SQLCreateTableParser {
             }
         }
 
-        for (;;) {
+        for (; ; ) {
             this.getExprParser().parseSegmentAttributes(stmt);
 
             if (lexer.identifierEquals("IN_MEMORY_METADATA")) {
@@ -191,7 +186,7 @@ public class OracleCreateTableParser extends SQLCreateTableParser {
 
                     if (lexer.token() == Token.LPAREN) {
                         lexer.nextToken();
-                        for (;;) {
+                        for (; ; ) {
                             SQLPartition partition = this.getExprParser().parsePartition();
                             partitionByHash.addPartition(partition);
                             if (lexer.token() == Token.COMMA) {
@@ -344,7 +339,7 @@ public class OracleCreateTableParser extends SQLCreateTableParser {
             logGrp.setGroup(this.exprParser.name());
 
             accept(Token.LPAREN);
-            for (;;) {
+            for (; ; ) {
                 SQLName column = this.exprParser.name();
 
                 if (lexer.identifierEquals("NO")) {
@@ -380,7 +375,7 @@ public class OracleCreateTableParser extends SQLCreateTableParser {
 
             OracleSupplementalIdKey idKey = new OracleSupplementalIdKey();
             accept(Token.LPAREN);
-            for (;;) {
+            for (; ; ) {
                 if (lexer.token() == Token.ALL) {
                     lexer.nextToken();
                     idKey.setAll(true);

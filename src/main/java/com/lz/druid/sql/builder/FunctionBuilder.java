@@ -18,9 +18,6 @@ package com.lz.druid.sql.builder;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
-import com.lz.druid.util.JdbcConstants;
 
 /**
  * Created by wenshao on 09/07/2017.

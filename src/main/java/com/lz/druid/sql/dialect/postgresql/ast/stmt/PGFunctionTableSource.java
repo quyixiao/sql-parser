@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.postgresql.ast.stmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLParameter;
 import com.lz.druid.sql.ast.statement.SQLExprTableSource;
@@ -25,15 +22,18 @@ import com.lz.druid.sql.dialect.postgresql.ast.PGSQLObject;
 import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PGFunctionTableSource extends SQLExprTableSource implements PGSQLObject {
 
     private final List<SQLParameter> parameters = new ArrayList<SQLParameter>();
 
-    public PGFunctionTableSource(){
+    public PGFunctionTableSource() {
 
     }
 
-    public PGFunctionTableSource(SQLExpr expr){
+    public PGFunctionTableSource(SQLExpr expr) {
         this.expr = expr;
     }
 

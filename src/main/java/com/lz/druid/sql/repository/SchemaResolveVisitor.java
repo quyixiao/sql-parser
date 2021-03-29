@@ -19,10 +19,6 @@ import com.lz.druid.sql.ast.SQLDeclareItem;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.statement.SQLTableSource;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLDeclareItem;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.statement.SQLTableSource;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,8 +32,8 @@ public interface SchemaResolveVisitor extends SQLASTVisitor {
 
     public static enum Option {
         ResolveAllColumn,
-        ResolveIdentifierAlias
-        ;
+        ResolveIdentifierAlias;
+
         private Option() {
             mask = (1 << ordinal());
         }
@@ -62,7 +58,9 @@ public interface SchemaResolveVisitor extends SQLASTVisitor {
     SchemaRepository getRepository();
 
     Context getContext();
+
     Context createContext(SQLObject object);
+
     void popContext();
 
     static class Context {

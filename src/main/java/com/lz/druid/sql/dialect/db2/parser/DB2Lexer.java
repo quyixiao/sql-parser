@@ -15,17 +15,13 @@
  */
 package com.lz.druid.sql.dialect.db2.parser;
 
+import com.lz.druid.sql.parser.Keywords;
+import com.lz.druid.sql.parser.Lexer;
+import com.lz.druid.sql.parser.SQLParserFeature;
+import com.lz.druid.sql.parser.Token;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import com.lz.druid.sql.parser.Keywords;
-import com.lz.druid.sql.parser.Lexer;
-import com.lz.druid.sql.parser.SQLParserFeature;
-import com.lz.druid.sql.parser.Token;
-import com.lz.druid.sql.parser.Keywords;
-import com.lz.druid.sql.parser.Lexer;
-import com.lz.druid.sql.parser.SQLParserFeature;
-import com.lz.druid.sql.parser.Token;
 
 
 public class DB2Lexer extends Lexer {
@@ -36,7 +32,7 @@ public class DB2Lexer extends Lexer {
         Map<String, Token> map = new HashMap<String, Token>();
 
         map.putAll(Keywords.DEFAULT_KEYWORDS.getKeywords());
-        
+
         map.put("FETCH", Token.FETCH);
         map.put("FIRST", Token.FIRST);
         map.put("ONLY", Token.ONLY);
@@ -48,16 +44,16 @@ public class DB2Lexer extends Lexer {
         map.put("MERGE", Token.MERGE);
         map.put("USING", Token.USING);
         map.put("MATCHED", Token.MATCHED);
-        
+
         DEFAULT_DB2_KEYWORDS = new Keywords(map);
     }
 
-    public DB2Lexer(String input){
+    public DB2Lexer(String input) {
         super(input);
         super.keywods = DEFAULT_DB2_KEYWORDS;
     }
 
-    public DB2Lexer(String input, SQLParserFeature... features){
+    public DB2Lexer(String input, SQLParserFeature... features) {
         super(input);
         super.keywods = DEFAULT_DB2_KEYWORDS;
         for (SQLParserFeature feature : features) {

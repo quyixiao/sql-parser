@@ -15,30 +15,18 @@
  */
 package com.lz.druid.sql.dialect.oracle.visitor;
 
+import com.lz.druid.sql.ast.expr.SQLDateExpr;
 import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalDay;
 import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalYear;
-import com.lz.druid.sql.dialect.oracle.ast.clause.CycleClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleLobStorageClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleReturningClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleStorageClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleWithSubqueryEntry;
-import com.lz.druid.sql.dialect.oracle.ast.clause.PartitionExtensionClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.SampleClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.SearchClause;
-import com.lz.druid.sql.dialect.oracle.ast.expr.*;
-import com.lz.druid.sql.ast.expr.SQLDateExpr;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
+import com.lz.druid.sql.dialect.oracle.ast.clause.*;
 import com.lz.druid.sql.dialect.oracle.ast.expr.*;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleMultiInsertStatement.ConditionalInsertClause;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleMultiInsertStatement.ConditionalInsertClauseItem;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleMultiInsertStatement.InsertIntoClause;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalYear;
 
 public interface OracleASTVisitor extends SQLASTVisitor {
-
 
 
     void endVisit(OracleAnalytic x);

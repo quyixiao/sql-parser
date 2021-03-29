@@ -17,8 +17,6 @@ package com.lz.druid.sql.dialect.odps.ast;
 
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
 
 public interface OdpsObject extends SQLObject {
     void accept0(OdpsASTVisitor visitor);

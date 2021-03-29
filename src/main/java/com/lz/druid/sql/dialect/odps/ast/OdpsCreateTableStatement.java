@@ -30,7 +30,7 @@ public class OdpsCreateTableStatement extends SQLCreateTableStatement {
     protected SQLExpr storedBy;
     protected SQLExpr lifecycle;
 
-    public OdpsCreateTableStatement(){
+    public OdpsCreateTableStatement() {
         super(JdbcConstants.ODPS);
     }
 

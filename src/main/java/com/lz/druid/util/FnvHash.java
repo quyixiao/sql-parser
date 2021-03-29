@@ -90,6 +90,7 @@ public final class FnvHash {
 
     /**
      * lower and normalized and fnv_1a_64
+     *
      * @param name
      * @return
      */
@@ -255,6 +256,7 @@ public final class FnvHash {
 
     /**
      * normalized and lower and fnv1a_64_hash
+     *
      * @param owner
      * @param name
      * @return
@@ -280,7 +282,7 @@ public final class FnvHash {
             }
 
             int start = quote ? 1 : 0;
-            int end   = quote ? len - 1 : len;
+            int end = quote ? len - 1 : len;
             for (int j = start; j < end; ++j) {
                 char ch = item.charAt(j);
 
@@ -315,7 +317,7 @@ public final class FnvHash {
             }
 
             int start = quote ? 1 : 0;
-            int end   = quote ? len - 1 : len;
+            int end = quote ? len - 1 : len;
             for (int j = start; j < end; ++j) {
                 char ch = item.charAt(j);
 

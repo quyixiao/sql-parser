@@ -15,12 +15,12 @@
  */
 package com.lz.druid.stat;
 
+import com.alibaba.fastjson.JSON;
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
 import com.lz.druid.util.FnvHash;
 import com.lz.druid.util.JdbcConstants;
-import com.alibaba.fastjson.JSON;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,17 +29,17 @@ import java.util.Map;
 
 public class TableStat {
 
-    int selectCount      = 0;
-    int updateCount      = 0;
-    int deleteCount      = 0;
-    int insertCount      = 0;
-    int dropCount        = 0;
-    int mergeCount       = 0;
-    int createCount      = 0;
-    int alterCount       = 0;
+    int selectCount = 0;
+    int updateCount = 0;
+    int deleteCount = 0;
+    int insertCount = 0;
+    int dropCount = 0;
+    int mergeCount = 0;
+    int createCount = 0;
+    int alterCount = 0;
     int createIndexCount = 0;
-    int dropIndexCount   = 0;
-    int referencedCount  = 0;
+    int dropIndexCount = 0;
+    int referencedCount = 0;
 
     public int getReferencedCount() {
         return referencedCount;
@@ -187,14 +187,14 @@ public class TableStat {
 
     public static class Name {
         private final String name;
-        private final long   hashCode64;
+        private final long hashCode64;
 
-        public Name(String name){
+        public Name(String name) {
             this(name, FnvHash.hashCode64(name));
         }
 
-        public Name(String name, long hashCode64){
-            this.name  = name;
+        public Name(String name, long hashCode64) {
+            this.name = name;
             this.hashCode64 = hashCode64;
         }
 
@@ -204,7 +204,7 @@ public class TableStat {
 
         public int hashCode() {
             long value = hashCode64();
-            return (int)(value ^ (value >>> 32));
+            return (int) (value ^ (value >>> 32));
         }
 
         public long hashCode64() {
@@ -303,8 +303,8 @@ public class TableStat {
 
     public static class Condition {
 
-        private final Column       column;
-        private final String       operator;
+        private final Column column;
+        private final String operator;
         private final List<Object> values = new ArrayList<Object>();
 
         public Condition(Column column, String operator) {
@@ -398,29 +398,29 @@ public class TableStat {
 
     public static class Column {
 
-        private final String              table;
-        private final String              name;
-        protected final long              hashCode64;
+        private final String table;
+        private final String name;
+        protected final long hashCode64;
 
-        private boolean             where;
-        private boolean             select;
-        private boolean             groupBy;
-        private boolean             having;
-        private boolean             join;
+        private boolean where;
+        private boolean select;
+        private boolean groupBy;
+        private boolean having;
+        private boolean join;
 
-        private boolean             primaryKey; // for ddl
-        private boolean             unique; //
+        private boolean primaryKey; // for ddl
+        private boolean unique; //
 
         private Map<String, Object> attributes = new HashMap<String, Object>();
 
-        private transient String    fullName;
+        private transient String fullName;
 
         /**
          * @since 1.0.20
          */
-        private String              dataType;
+        private String dataType;
 
-        public Column(String table, String name){
+        public Column(String table, String name) {
             this.table = table;
             this.name = name;
 
@@ -441,7 +441,7 @@ public class TableStat {
             }
         }
 
-        public static long getHashCode64(String table,String name){
+        public static long getHashCode64(String table, String name) {
             long hashCode64 = 0;
             int p = table.indexOf('.');
             if (p != -1) {
@@ -461,7 +461,7 @@ public class TableStat {
             return hashCode64;
         }
 
-        public Column(String table, String name, long hashCode64){
+        public Column(String table, String name, long hashCode64) {
             this.table = table;
             this.name = name;
             this.hashCode64 = hashCode64;
@@ -546,7 +546,7 @@ public class TableStat {
         public String getName() {
             return name;
         }
-        
+
         /**
          * @since 1.0.20
          */
@@ -571,7 +571,7 @@ public class TableStat {
 
         public int hashCode() {
             long hash = hashCode64();
-            return (int)(hash ^ (hash >>> 32));
+            return (int) (hash ^ (hash >>> 32));
         }
 
         public String toString() {
@@ -593,22 +593,22 @@ public class TableStat {
     }
 
     public static enum Mode {
-                             Insert(1), //
-                             Update(2), //
-                             Delete(4), //
-                             Select(8), //
-                             Merge(16), //
-                             Truncate(32), //
-                             Alter(64), //
-                             Drop(128), //
-                             DropIndex(256), //
-                             CreateIndex(512), //
-                             Replace(1024),
+        Insert(1), //
+        Update(2), //
+        Delete(4), //
+        Select(8), //
+        Merge(16), //
+        Truncate(32), //
+        Alter(64), //
+        Drop(128), //
+        DropIndex(256), //
+        CreateIndex(512), //
+        Replace(1024),
         ; //
 
         public final int mark;
 
-        private Mode(int mark){
+        private Mode(int mark) {
             this.mark = mark;
         }
     }

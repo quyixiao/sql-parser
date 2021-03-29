@@ -15,25 +15,25 @@
  */
 package com.lz.druid.sql.ast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.statement.SQLTableElement;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLDeclareItem extends SQLObjectImpl implements SQLObjectWithDataType {
 
-    protected Type                  type;
+    protected Type type;
 
-    protected SQLName               name;
+    protected SQLName name;
 
-    protected SQLDataType           dataType;
+    protected SQLDataType dataType;
 
-    protected SQLExpr               value;
+    protected SQLExpr value;
 
     protected List<SQLTableElement> tableElementList = new ArrayList<SQLTableElement>();
 
-    protected transient SQLObject             resolvedObject;
+    protected transient SQLObject resolvedObject;
 
     public SQLDeclareItem() {
 

@@ -17,5 +17,6 @@ package com.lz.druid.sql.transform;
 
 public interface SQLTranform {
     String getSourceDbType();
+
     String getTargetDbType();
 }

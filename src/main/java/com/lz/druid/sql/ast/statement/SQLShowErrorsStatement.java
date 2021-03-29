@@ -17,8 +17,6 @@ package com.lz.druid.sql.ast.statement;
 
 import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLShowErrorsStatement extends SQLStatementImpl {
     @Override

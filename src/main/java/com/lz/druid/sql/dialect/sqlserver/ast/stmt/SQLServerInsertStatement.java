@@ -25,7 +25,7 @@ import com.lz.druid.util.JdbcConstants;
 
 public class SQLServerInsertStatement extends SQLInsertStatement implements SQLServerObject {
 
-    private boolean            defaultValues;
+    private boolean defaultValues;
 
     private SQLServerTop top;
 

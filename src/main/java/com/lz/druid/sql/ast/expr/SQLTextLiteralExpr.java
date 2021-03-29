@@ -16,7 +16,6 @@
 package com.lz.druid.sql.ast.expr;
 
 import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLExprImpl;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,11 +24,11 @@ public abstract class SQLTextLiteralExpr extends SQLExprImpl implements SQLLiter
 
     protected String text;
 
-    public SQLTextLiteralExpr(){
+    public SQLTextLiteralExpr() {
 
     }
 
-    public SQLTextLiteralExpr(String text){
+    public SQLTextLiteralExpr(String text) {
 
         this.text = text;
     }

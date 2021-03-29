@@ -26,7 +26,7 @@ import com.lz.druid.util.JdbcConstants;
 
 public class DB2SchemaStatVisitor extends SchemaStatVisitor implements DB2ASTVisitor {
     public DB2SchemaStatVisitor() {
-        super (JdbcConstants.DB2);
+        super(JdbcConstants.DB2);
     }
 
     @Override
@@ -43,10 +43,10 @@ public class DB2SchemaStatVisitor extends SchemaStatVisitor implements DB2ASTVis
     public boolean visit(DB2ValuesStatement x) {
         return false;
     }
-    
+
     @Override
     public void endVisit(DB2ValuesStatement x) {
-        
+
     }
 
     @Override

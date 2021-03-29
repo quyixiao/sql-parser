@@ -15,11 +15,8 @@
  */
 package com.lz.druid.sql.visitor;
 
-import java.util.List;
-
 import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.statement.*;
+import com.lz.druid.sql.ast.SQLStatement;
 import com.lz.druid.sql.ast.statement.SQLSelectQueryBlock;
 import com.lz.druid.sql.ast.statement.SQLSelectStatement;
 import com.lz.druid.sql.dialect.db2.visitor.DB2OutputVisitor;
@@ -30,14 +27,14 @@ import com.lz.druid.sql.dialect.oracle.visitor.OracleParameterizedOutputVisitor;
 import com.lz.druid.sql.dialect.phoenix.visitor.PhoenixOutputVisitor;
 import com.lz.druid.sql.dialect.postgresql.visitor.PGOutputVisitor;
 import com.lz.druid.sql.dialect.sqlserver.visitor.SQLServerOutputVisitor;
-import com.lz.druid.sql.parser.*;
 import com.lz.druid.sql.parser.SQLParserFeature;
 import com.lz.druid.sql.parser.SQLParserUtils;
 import com.lz.druid.sql.parser.SQLSelectListCache;
 import com.lz.druid.sql.parser.SQLStatementParser;
 import com.lz.druid.util.FnvHash;
 import com.lz.druid.util.JdbcUtils;
-import com.lz.druid.sql.ast.SQLStatement;
+
+import java.util.List;
 
 public class ParameterizedOutputVisitorUtils {
     private final static SQLParserFeature[] defaultFeatures = {
@@ -70,8 +67,8 @@ public class ParameterizedOutputVisitorUtils {
     }
 
 
-    private static void configVisitorFeatures(ParameterizedVisitor visitor, VisitorFeature ...features) {
-        if(features != null) {
+    private static void configVisitorFeatures(ParameterizedVisitor visitor, VisitorFeature... features) {
+        if (features != null) {
             for (int i = 0; i < features.length; i++) {
                 visitor.config(features[i], true);
             }
@@ -80,13 +77,13 @@ public class ParameterizedOutputVisitorUtils {
 
     public static String parameterize(String sql
             , String dbType
-            , List<Object> outParameters, VisitorFeature ...features) {
+            , List<Object> outParameters, VisitorFeature... features) {
         return parameterize(sql, dbType, null, outParameters, features);
     }
 
     public static String parameterize(String sql
             , String dbType
-            , SQLSelectListCache selectListCache, List<Object> outParameters, VisitorFeature ...visitorFeatures) {
+            , SQLSelectListCache selectListCache, List<Object> outParameters, VisitorFeature... visitorFeatures) {
 
         final SQLParserFeature[] features = outParameters == null
                 ? defaultFeatures2
@@ -163,7 +160,7 @@ public class ParameterizedOutputVisitorUtils {
     public static long parameterizeHash(String sql
             , String dbType
             , SQLSelectListCache selectListCache
-            , List<Object> outParameters, VisitorFeature ...visitorFeatures) {
+            , List<Object> outParameters, VisitorFeature... visitorFeatures) {
 
         final SQLParserFeature[] features = outParameters == null
                 ? defaultFeatures2
@@ -273,8 +270,8 @@ public class ParameterizedOutputVisitorUtils {
         }
 
         if (JdbcUtils.MYSQL.equals(dbType)
-            || JdbcUtils.MARIADB.equals(dbType)
-            || JdbcUtils.H2.equals(dbType)) {
+                || JdbcUtils.MARIADB.equals(dbType)
+                || JdbcUtils.H2.equals(dbType)) {
             return new MySqlOutputVisitor(out, true);
         }
 

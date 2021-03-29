@@ -18,9 +18,6 @@ package com.lz.druid.sql.dialect.postgresql.visitor;
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalDay;
 import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalYear;
 import com.lz.druid.sql.dialect.oracle.ast.clause.*;
@@ -29,17 +26,7 @@ import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
 import com.lz.druid.sql.dialect.oracle.parser.OracleFunctionDataType;
 import com.lz.druid.sql.dialect.oracle.parser.OracleProcedureDataType;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGBoxExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGCidrExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGCircleExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGExtractExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGInetExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGLineSegmentsExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGMacAddrExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGPointExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGPolygonExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGTypeCastExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.stmt.*;
+import com.lz.druid.sql.dialect.postgresql.ast.expr.*;
 import com.lz.druid.sql.dialect.postgresql.ast.stmt.*;
 import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGSelectQueryBlock.FetchClause;
 import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGSelectQueryBlock.ForClause;
@@ -47,14 +34,6 @@ import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGSelectQueryBlock.WindowCla
 import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
 import com.lz.druid.util.FnvHash;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalDay;
-import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalYear;
-import com.lz.druid.sql.dialect.oracle.ast.clause.*;
-import com.lz.druid.sql.dialect.oracle.ast.expr.*;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
-import com.lz.druid.sql.dialect.oracle.parser.OracleFunctionDataType;
-import com.lz.druid.sql.dialect.oracle.parser.OracleProcedureDataType;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -62,12 +41,12 @@ import java.util.Set;
 
 public class PGOutputVisitor extends SQLASTOutputVisitor implements PGASTVisitor, OracleASTVisitor {
 
-    public PGOutputVisitor(Appendable appender){
+    public PGOutputVisitor(Appendable appender) {
         super(appender);
         this.dbType = JdbcConstants.POSTGRESQL;
     }
 
-    public PGOutputVisitor(Appendable appender, boolean parameterized){
+    public PGOutputVisitor(Appendable appender, boolean parameterized) {
         super(appender, parameterized);
         this.dbType = JdbcConstants.POSTGRESQL;
     }
@@ -235,7 +214,7 @@ public class PGOutputVisitor extends SQLASTOutputVisitor implements PGASTVisitor
             if (x.getCascade().booleanValue()) {
                 print0(ucase ? " CASCADE" : " cascade");
             } else {
-                print0(ucase ? " RESTRICT"  : " restrict");
+                print0(ucase ? " RESTRICT" : " restrict");
             }
         }
         return false;
@@ -460,7 +439,7 @@ public class PGOutputVisitor extends SQLASTOutputVisitor implements PGASTVisitor
 
     @Override
     public void endVisit(PGTypeCastExpr x) {
-        
+
     }
 
     @Override
@@ -497,7 +476,7 @@ public class PGOutputVisitor extends SQLASTOutputVisitor implements PGASTVisitor
 
     @Override
     public void endVisit(PGValuesQuery x) {
-        
+
     }
 
     @Override
@@ -507,12 +486,12 @@ public class PGOutputVisitor extends SQLASTOutputVisitor implements PGASTVisitor
         print(')');
         return false;
     }
-    
+
     @Override
     public void endVisit(PGExtractExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGExtractExpr x) {
         print0(ucase ? "EXTRACT (" : "extract (");
@@ -522,7 +501,7 @@ public class PGOutputVisitor extends SQLASTOutputVisitor implements PGASTVisitor
         print(')');
         return false;
     }
-    
+
     @Override
     public boolean visit(PGBoxExpr x) {
         print0(ucase ? "BOX " : "box ");
@@ -532,81 +511,81 @@ public class PGOutputVisitor extends SQLASTOutputVisitor implements PGASTVisitor
 
     @Override
     public void endVisit(PGBoxExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGPointExpr x) {
         print0(ucase ? "POINT " : "point ");
         x.getValue().accept(this);
         return false;
     }
-    
+
     @Override
     public void endVisit(PGPointExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGMacAddrExpr x) {
         print0("macaddr ");
         x.getValue().accept(this);
         return false;
     }
-    
+
     @Override
     public void endVisit(PGMacAddrExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGInetExpr x) {
         print0("inet ");
         x.getValue().accept(this);
         return false;
     }
-    
+
     @Override
     public void endVisit(PGInetExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGCidrExpr x) {
         print0("cidr ");
         x.getValue().accept(this);
         return false;
     }
-    
+
     @Override
     public void endVisit(PGCidrExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGPolygonExpr x) {
         print0("polygon ");
         x.getValue().accept(this);
         return false;
     }
-    
+
     @Override
     public void endVisit(PGPolygonExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGCircleExpr x) {
         print0("circle ");
         x.getValue().accept(this);
         return false;
     }
-    
+
     @Override
     public void endVisit(PGCircleExpr x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGLineSegmentsExpr x) {
         print0("lseg ");
@@ -616,7 +595,7 @@ public class PGOutputVisitor extends SQLASTOutputVisitor implements PGASTVisitor
 
     @Override
     public void endVisit(PGLineSegmentsExpr x) {
-        
+
     }
 
     @Override
@@ -627,12 +606,12 @@ public class PGOutputVisitor extends SQLASTOutputVisitor implements PGASTVisitor
 
         return false;
     }
-    
+
     @Override
     public void endVisit(PGShowStatement x) {
-        
+
     }
-    
+
     @Override
     public boolean visit(PGShowStatement x) {
         print0(ucase ? "SHOW " : "show ");
@@ -654,7 +633,7 @@ public class PGOutputVisitor extends SQLASTOutputVisitor implements PGASTVisitor
 
     @Override
     public void endVisit(PGStartTransactionStatement x) {
-        
+
     }
 
     @Override
@@ -791,7 +770,10 @@ public class PGOutputVisitor extends SQLASTOutputVisitor implements PGASTVisitor
     }
     /** **************************************************************************/
     // for oracle to postsql
-    /** **************************************************************************/
+
+    /**
+     *
+     **************************************************************************/
 
     public boolean visit(OracleSysdateExpr x) {
         print0(ucase ? "CURRENT_TIMESTAMP" : "CURRENT_TIMESTAMP");
@@ -2112,7 +2094,7 @@ public class PGOutputVisitor extends SQLASTOutputVisitor implements PGASTVisitor
                             && ((OracleFunctionDataType) dataType).getBlock() != null) {
                         // skip
                         println();
-                    } else  if (dataType instanceof OracleProcedureDataType
+                    } else if (dataType instanceof OracleProcedureDataType
                             && ((OracleProcedureDataType) dataType).getBlock() != null) {
                         // skip
                         println();

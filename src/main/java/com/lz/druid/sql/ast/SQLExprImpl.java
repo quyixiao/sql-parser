@@ -15,14 +15,13 @@
  */
 package com.lz.druid.sql.ast;
 
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 
 import java.util.Collections;
 import java.util.List;
 
 public abstract class SQLExprImpl extends SQLObjectImpl implements SQLExpr {
 
-    public SQLExprImpl(){
+    public SQLExprImpl() {
 
     }
 

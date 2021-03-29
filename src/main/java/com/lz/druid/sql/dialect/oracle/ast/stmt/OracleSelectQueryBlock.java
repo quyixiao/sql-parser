@@ -32,7 +32,7 @@ import com.lz.druid.util.JdbcConstants;
 public class OracleSelectQueryBlock extends SQLSelectQueryBlock implements OracleSQLObject {
 
     private ModelClause modelClause;
-    private boolean                    skipLocked  = false;
+    private boolean skipLocked = false;
 
     public OracleSelectQueryBlock clone() {
         OracleSelectQueryBlock x = new OracleSelectQueryBlock();
@@ -64,7 +64,7 @@ public class OracleSelectQueryBlock extends SQLSelectQueryBlock implements Oracl
         return x;
     }
 
-    public OracleSelectQueryBlock(){
+    public OracleSelectQueryBlock() {
         dbType = JdbcConstants.ORACLE;
     }
 
@@ -112,7 +112,7 @@ public class OracleSelectQueryBlock extends SQLSelectQueryBlock implements Oracl
         }
         visitor.endVisit(this);
     }
-    
+
     public String toString() {
         return SQLUtils.toOracleString(this);
     }

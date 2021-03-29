@@ -18,9 +18,6 @@ package com.lz.druid.sql.ast.statement;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLAlterViewRenameStatement extends SQLStatementImpl implements SQLAlterStatement {
 

@@ -29,8 +29,8 @@ public class MySqlUserName extends MySqlExprImpl implements SQLName, Cloneable {
     private String host;
     private String identifiedBy;
 
-    private long   userNameHashCod64;
-    private long   hashCode64;
+    private long userNameHashCod64;
+    private long hashCode64;
 
     public String getUserName() {
         return userName;
@@ -79,8 +79,8 @@ public class MySqlUserName extends MySqlExprImpl implements SQLName, Cloneable {
     public MySqlUserName clone() {
         MySqlUserName x = new MySqlUserName();
 
-        x.userName     = userName;
-        x.host         = host;
+        x.userName = userName;
+        x.host = host;
         x.identifiedBy = identifiedBy;
 
         return x;

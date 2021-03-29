@@ -16,7 +16,6 @@
 package com.lz.druid.sql.dialect.mysql.ast;
 
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
 public class MySqlForceIndexHint extends MySqlIndexHintImpl {
 

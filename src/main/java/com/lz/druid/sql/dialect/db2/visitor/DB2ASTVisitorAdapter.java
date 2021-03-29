@@ -31,15 +31,15 @@ public class DB2ASTVisitorAdapter extends SQLASTVisitorAdapter implements DB2AST
     public void endVisit(DB2SelectQueryBlock x) {
 
     }
-    
+
     @Override
     public boolean visit(DB2ValuesStatement x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(DB2ValuesStatement x) {
-        
+
     }
 
     @Override

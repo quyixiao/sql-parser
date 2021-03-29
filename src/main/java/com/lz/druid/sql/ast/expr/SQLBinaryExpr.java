@@ -19,10 +19,6 @@ import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.Utils;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.Utils;
 
 import java.math.BigInteger;
 import java.util.Collections;
@@ -34,11 +30,11 @@ public class SQLBinaryExpr extends SQLExprImpl implements SQLLiteralExpr, SQLVal
 
     private transient Number val;
 
-    public SQLBinaryExpr(){
+    public SQLBinaryExpr() {
 
     }
 
-    public SQLBinaryExpr(String value){
+    public SQLBinaryExpr(String value) {
         super();
         this.text = value;
     }

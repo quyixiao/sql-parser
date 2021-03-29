@@ -15,48 +15,34 @@
  */
 package com.lz.druid.sql.builder.impl;
 
+import com.lz.druid.sql.SQLUtils;
+import com.lz.druid.sql.ast.SQLExpr;
+import com.lz.druid.sql.ast.SQLStatement;
+import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
+import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
+import com.lz.druid.sql.ast.statement.SQLExprTableSource;
+import com.lz.druid.sql.ast.statement.SQLUpdateSetItem;
+import com.lz.druid.sql.ast.statement.SQLUpdateStatement;
+import com.lz.druid.sql.builder.SQLUpdateBuilder;
+import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlUpdateStatement;
+import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleUpdateStatement;
+import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGUpdateStatement;
+import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerUpdateStatement;
+import com.lz.druid.util.JdbcConstants;
+
 import java.util.List;
 import java.util.Map;
-
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.statement.SQLExprTableSource;
-import com.lz.druid.sql.ast.statement.SQLUpdateSetItem;
-import com.lz.druid.sql.ast.statement.SQLUpdateStatement;
-import com.lz.druid.sql.builder.SQLUpdateBuilder;
-import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlUpdateStatement;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleUpdateStatement;
-import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGUpdateStatement;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerUpdateStatement;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.statement.SQLExprTableSource;
-import com.lz.druid.sql.ast.statement.SQLUpdateSetItem;
-import com.lz.druid.sql.ast.statement.SQLUpdateStatement;
-import com.lz.druid.sql.builder.SQLUpdateBuilder;
-import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlUpdateStatement;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleUpdateStatement;
-import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGUpdateStatement;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerUpdateStatement;
-import com.lz.druid.util.JdbcConstants;
 
 public class SQLUpdateBuilderImpl extends SQLBuilderImpl implements SQLUpdateBuilder {
 
     private SQLUpdateStatement stmt;
-    private String             dbType;
+    private String dbType;
 
-    public SQLUpdateBuilderImpl(String dbType){
+    public SQLUpdateBuilderImpl(String dbType) {
         this.dbType = dbType;
     }
-    
-    public SQLUpdateBuilderImpl(String sql, String dbType){
+
+    public SQLUpdateBuilderImpl(String sql, String dbType) {
         List<SQLStatement> stmtList = SQLUtils.parseStatements(sql, dbType);
 
         if (stmtList.size() == 0) {
@@ -72,7 +58,7 @@ public class SQLUpdateBuilderImpl extends SQLBuilderImpl implements SQLUpdateBui
         this.dbType = dbType;
     }
 
-    public SQLUpdateBuilderImpl(SQLUpdateStatement stmt, String dbType){
+    public SQLUpdateBuilderImpl(SQLUpdateStatement stmt, String dbType) {
         this.stmt = stmt;
         this.dbType = dbType;
     }
@@ -138,29 +124,29 @@ public class SQLUpdateBuilderImpl extends SQLBuilderImpl implements SQLUpdateBui
             SQLUpdateSetItem updateSetItem = SQLUtils.toUpdateSetItem(item, dbType);
             update.addItem(updateSetItem);
         }
-        
+
         return this;
     }
-    
+
     public SQLUpdateBuilderImpl setValue(Map<String, Object> values) {
         for (Map.Entry<String, Object> entry : values.entrySet()) {
             setValue(entry.getKey(), entry.getValue());
         }
-        
+
         return this;
     }
-    
+
     public SQLUpdateBuilderImpl setValue(String column, Object value) {
         SQLUpdateStatement update = getSQLUpdateStatement();
-        
+
         SQLExpr columnExpr = SQLUtils.toSQLExpr(column, dbType);
         SQLExpr valueExpr = toSQLExpr(value, dbType);
-        
+
         SQLUpdateSetItem item = new SQLUpdateSetItem();
         item.setColumn(columnExpr);
         item.setValue(valueExpr);
         update.addItem(item);
-        
+
         return this;
     }
 
@@ -175,22 +161,22 @@ public class SQLUpdateBuilderImpl extends SQLBuilderImpl implements SQLUpdateBui
         if (JdbcConstants.MYSQL.equals(dbType)) {
             return new MySqlUpdateStatement();
         }
-        
+
         if (JdbcConstants.ORACLE.equals(dbType)) {
             return new OracleUpdateStatement();
         }
-        
+
         if (JdbcConstants.POSTGRESQL.equals(dbType)) {
             return new PGUpdateStatement();
         }
-        
+
         if (JdbcConstants.SQL_SERVER.equals(dbType)) {
             return new SQLServerUpdateStatement();
         }
-        
+
         return new SQLUpdateStatement();
     }
-    
+
     public String toString() {
         return SQLUtils.toSQLString(stmt, dbType);
     }

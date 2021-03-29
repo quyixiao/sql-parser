@@ -19,7 +19,7 @@ import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public final class SQLKeep extends SQLObjectImpl {
 
-    protected DenseRank  denseRank;
+    protected DenseRank denseRank;
 
     protected SQLOrderBy orderBy;
 
@@ -64,7 +64,7 @@ public final class SQLKeep extends SQLObjectImpl {
     }
 
     public static enum DenseRank {
-                                  FIRST, //
-                                  LAST
+        FIRST, //
+        LAST
     }
 }

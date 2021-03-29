@@ -17,7 +17,6 @@ package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public class OracleRaiseStatement extends OracleStatementImpl {
 

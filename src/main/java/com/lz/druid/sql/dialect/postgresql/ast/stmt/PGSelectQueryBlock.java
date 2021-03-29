@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.postgresql.ast.stmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLOrderBy;
 import com.lz.druid.sql.ast.statement.SQLSelectQueryBlock;
@@ -27,15 +24,18 @@ import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PGSelectQueryBlock extends SQLSelectQueryBlock implements PGSQLObject {
 
     private List<SQLExpr> distinctOn = new ArrayList<SQLExpr>(2);
-    private WindowClause  window;
+    private WindowClause window;
 
-    private SQLOrderBy    orderBy;
-    private FetchClause   fetch;
-    private ForClause     forClause;
-    private IntoOption    intoOption;
+    private SQLOrderBy orderBy;
+    private FetchClause fetch;
+    private ForClause forClause;
+    private IntoOption intoOption;
 
     public static enum IntoOption {
         TEMPORARY, TEMP, UNLOGGED
@@ -122,7 +122,7 @@ public class PGSelectQueryBlock extends SQLSelectQueryBlock implements PGSQLObje
 
     public static class WindowClause extends PGSQLObjectImpl {
 
-        private SQLExpr       name;
+        private SQLExpr name;
         private List<SQLExpr> definition = new ArrayList<SQLExpr>(2);
 
         public SQLExpr getName() {
@@ -157,7 +157,7 @@ public class PGSelectQueryBlock extends SQLSelectQueryBlock implements PGSQLObje
             FIRST, NEXT
         }
 
-        private Option  option;
+        private Option option;
         private SQLExpr count;
 
         public Option getOption() {
@@ -193,8 +193,8 @@ public class PGSelectQueryBlock extends SQLSelectQueryBlock implements PGSQLObje
         }
 
         private List<SQLExpr> of = new ArrayList<SQLExpr>(2);
-        private boolean       noWait;
-        private Option        option;
+        private boolean noWait;
+        private Option option;
 
         public Option getOption() {
             return option;
@@ -228,7 +228,6 @@ public class PGSelectQueryBlock extends SQLSelectQueryBlock implements PGSQLObje
             visitor.endVisit(this);
         }
     }
-
 
 
 }

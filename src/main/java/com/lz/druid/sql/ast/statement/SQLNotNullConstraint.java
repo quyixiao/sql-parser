@@ -19,7 +19,7 @@ import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLNotNullConstraint extends SQLConstraintImpl implements SQLColumnConstraint {
 
-    public SQLNotNullConstraint(){
+    public SQLNotNullConstraint() {
 
     }
 

@@ -20,16 +20,13 @@ import com.lz.druid.sql.ast.SQLDataTypeImpl;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.dialect.oracle.ast.clause.OracleWithSubqueryEntry;
 import com.lz.druid.sql.dialect.oracle.ast.expr.OracleSysdateExpr;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
-import com.lz.druid.util.FnvHash;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectJoin;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectQueryBlock;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectSubqueryTableSource;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleSelectTableReference;
+import com.lz.druid.util.FnvHash;
 
 import java.util.List;
 
@@ -135,7 +132,7 @@ public class SQLTransformUtils {
 
         } else if (nameHash == FnvHash.Constants.FLOAT
                 || nameHash == FnvHash.Constants.BINARY_FLOAT) {
-                dataType = new SQLDataTypeImpl("float");
+            dataType = new SQLDataTypeImpl("float");
 
         } else if (nameHash == FnvHash.Constants.REAL
                 || nameHash == FnvHash.Constants.BINARY_DOUBLE
@@ -370,7 +367,7 @@ public class SQLTransformUtils {
                 || dataTypeName.equals("long")
                 || dataTypeName.equals("long raw")
                 || dataTypeName.equals("raw")
-                ) {
+        ) {
             dataType = new SQLCharacterDataType("varchar");
         } else if (dataTypeName.equals("number")
                 || dataTypeName.equals("decimal")
@@ -658,7 +655,7 @@ public class SQLTransformUtils {
                 SQLExpr param0 = parameters.get(0);
                 if (param0 instanceof OracleSysdateExpr
                         || (param0 instanceof SQLIdentifierExpr
-                            && ((SQLIdentifierExpr) param0).nameHashCode64() == FnvHash.Constants.CURRENT_TIMESTAMP)) {
+                        && ((SQLIdentifierExpr) param0).nameHashCode64() == FnvHash.Constants.CURRENT_TIMESTAMP)) {
                     SQLMethodInvokeExpr current_timestamp = new SQLMethodInvokeExpr("CURRENT_TIMESTAMP");
                     current_timestamp.addParameter(new SQLIntegerExpr(0));
 

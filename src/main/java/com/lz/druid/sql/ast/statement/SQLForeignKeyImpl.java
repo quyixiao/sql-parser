@@ -15,20 +15,20 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLForeignKeyImpl extends SQLConstraintImpl implements SQLForeignKeyConstraint {
     private SQLExprTableSource referencedTable;
-    private List<SQLName>      referencingColumns = new ArrayList<SQLName>();
-    private List<SQLName>      referencedColumns  = new ArrayList<SQLName>();
-    private boolean            onDeleteCascade    = false;
-    private boolean            onDeleteSetNull    = false;
+    private List<SQLName> referencingColumns = new ArrayList<SQLName>();
+    private List<SQLName> referencedColumns = new ArrayList<SQLName>();
+    private boolean onDeleteCascade = false;
+    private boolean onDeleteSetNull = false;
 
-    public SQLForeignKeyImpl(){
+    public SQLForeignKeyImpl() {
 
     }
 
@@ -95,7 +95,7 @@ public class SQLForeignKeyImpl extends SQLConstraintImpl implements SQLForeignKe
             acceptChild(visitor, this.getReferencingColumns());
             acceptChild(visitor, this.getReferencedColumns());
         }
-        visitor.endVisit(this);        
+        visitor.endVisit(this);
     }
 
     public void cloneTo(SQLForeignKeyImpl x) {
@@ -130,7 +130,7 @@ public class SQLForeignKeyImpl extends SQLConstraintImpl implements SQLForeignKe
         public final String name;
         public final String name_lcase;
 
-        Match(String name){
+        Match(String name) {
             this.name = name;
             this.name_lcase = name.toLowerCase();
         }
@@ -143,7 +143,7 @@ public class SQLForeignKeyImpl extends SQLConstraintImpl implements SQLForeignKe
         public final String name;
         public final String name_lcase;
 
-        On(String name){
+        On(String name) {
             this.name = name;
             this.name_lcase = name.toLowerCase();
         }
@@ -156,7 +156,7 @@ public class SQLForeignKeyImpl extends SQLConstraintImpl implements SQLForeignKe
         public final String name;
         public final String name_lcase;
 
-        Option(String name){
+        Option(String name) {
             this.name = name;
             this.name_lcase = name.toLowerCase();
         }

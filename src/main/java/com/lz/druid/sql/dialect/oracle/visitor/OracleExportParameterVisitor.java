@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.oracle.visitor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLOrderBy;
 import com.lz.druid.sql.ast.expr.SQLBetweenExpr;
 import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
@@ -28,6 +25,9 @@ import com.lz.druid.sql.ast.statement.SQLSelectItem;
 import com.lz.druid.sql.visitor.ExportParameterVisitor;
 import com.lz.druid.sql.visitor.ExportParameterVisitorUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OracleExportParameterVisitor extends OracleParameterizedOutputVisitor implements ExportParameterVisitor {
 
     /**
@@ -35,8 +35,8 @@ public class OracleExportParameterVisitor extends OracleParameterizedOutputVisit
      */
     private final boolean requireParameterizedOutput;
 
-    public OracleExportParameterVisitor(List<Object> parameters,Appendable appender,final boolean wantParameterizedOutput){
-        super(appender,false);
+    public OracleExportParameterVisitor(List<Object> parameters, Appendable appender, final boolean wantParameterizedOutput) {
+        super(appender, false);
         this.parameters = parameters;
         this.requireParameterizedOutput = wantParameterizedOutput;
     }
@@ -45,12 +45,12 @@ public class OracleExportParameterVisitor extends OracleParameterizedOutputVisit
         this(new ArrayList<Object>());
     }
 
-    public OracleExportParameterVisitor(List<Object> parameters){
-        this(parameters,new StringBuilder(),false);
+    public OracleExportParameterVisitor(List<Object> parameters) {
+        this(parameters, new StringBuilder(), false);
     }
 
     public OracleExportParameterVisitor(final Appendable appender) {
-        this(new ArrayList<Object>(),appender,true);
+        this(new ArrayList<Object>(), appender, true);
     }
 
     public List<Object> getParameters() {
@@ -59,7 +59,7 @@ public class OracleExportParameterVisitor extends OracleParameterizedOutputVisit
 
     @Override
     public boolean visit(SQLSelectItem x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         return false;
@@ -67,7 +67,7 @@ public class OracleExportParameterVisitor extends OracleParameterizedOutputVisit
 
     @Override
     public boolean visit(SQLOrderBy x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         return false;
@@ -75,7 +75,7 @@ public class OracleExportParameterVisitor extends OracleParameterizedOutputVisit
 
     @Override
     public boolean visit(SQLSelectGroupByClause x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         return false;
@@ -83,17 +83,17 @@ public class OracleExportParameterVisitor extends OracleParameterizedOutputVisit
 
     @Override
     public boolean visit(SQLMethodInvokeExpr x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
-        
+
         ExportParameterVisitorUtils.exportParamterAndAccept(this.parameters, x.getParameters());
         return true;
     }
 
     @Override
     public boolean visit(SQLInListExpr x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         ExportParameterVisitorUtils.exportParamterAndAccept(this.parameters, x.getTargetList());
@@ -102,7 +102,7 @@ public class OracleExportParameterVisitor extends OracleParameterizedOutputVisit
 
     @Override
     public boolean visit(SQLBetweenExpr x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         ExportParameterVisitorUtils.exportParameter(this.parameters, x);
@@ -110,7 +110,7 @@ public class OracleExportParameterVisitor extends OracleParameterizedOutputVisit
     }
 
     public boolean visit(SQLBinaryOpExpr x) {
-        if(requireParameterizedOutput){
+        if (requireParameterizedOutput) {
             return super.visit(x);
         }
         ExportParameterVisitorUtils.exportParameter(this.parameters, x);

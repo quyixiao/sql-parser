@@ -23,7 +23,7 @@ import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public abstract class OracleSQLObjectImpl extends SQLObjectImpl implements OracleSQLObject {
 
-    public OracleSQLObjectImpl(){
+    public OracleSQLObjectImpl() {
 
     }
 

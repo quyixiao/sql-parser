@@ -25,13 +25,13 @@ import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class OracleSelectTableReference extends SQLExprTableSource implements OracleSelectTableSource {
 
-    private boolean                    only = false;
-    protected OracleSelectPivotBase    pivot;
+    private boolean only = false;
+    protected OracleSelectPivotBase pivot;
 
     protected PartitionExtensionClause partition;
     protected SampleClause sampleClause;
 
-    public OracleSelectTableReference(){
+    public OracleSelectTableReference() {
 
     }
 
@@ -131,7 +131,7 @@ public class OracleSelectTableReference extends SQLExprTableSource implements Or
         return result;
     }
 
-    public String toString () {
+    public String toString() {
         return SQLUtils.toOracleString(this);
     }
 

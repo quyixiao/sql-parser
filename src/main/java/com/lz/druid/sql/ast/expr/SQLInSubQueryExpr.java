@@ -15,10 +15,6 @@
  */
 package com.lz.druid.sql.ast.expr;
 
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
-
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLDataType;
 import com.lz.druid.sql.ast.SQLExpr;
@@ -28,15 +24,19 @@ import com.lz.druid.sql.ast.statement.SQLSelect;
 import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
+
 public class SQLInSubQueryExpr extends SQLExprImpl implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private boolean           not              = false;
+    private boolean not = false;
     private SQLExpr expr;
 
-    public SQLSelect          subQuery;
+    public SQLSelect subQuery;
 
-    public SQLInSubQueryExpr(){
+    public SQLInSubQueryExpr() {
 
     }
 
@@ -71,7 +71,7 @@ public class SQLInSubQueryExpr extends SQLExprImpl implements Serializable {
         this.expr = expr;
     }
 
-    public SQLInSubQueryExpr(SQLSelect select){
+    public SQLInSubQueryExpr(SQLSelect select) {
 
         this.subQuery = select;
     }
@@ -95,10 +95,10 @@ public class SQLInSubQueryExpr extends SQLExprImpl implements Serializable {
     @Override
     protected void accept0(SQLASTVisitor visitor) {
         if (visitor.visit(this)) {
-            if(this.subQuery instanceof SQLSelect){
+            if (this.subQuery instanceof SQLSelect) {
 
-            }else{
-                acceptChild(visitor,this.expr);
+            } else {
+                acceptChild(visitor, this.expr);
             }
             acceptChild(visitor, this.subQuery);
         }

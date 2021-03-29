@@ -15,13 +15,11 @@
  */
 package com.lz.druid.sql.dialect.sqlserver.ast;
 
-import com.lz.druid.sql.ast.SQLLimit;
 import com.lz.druid.sql.ast.expr.SQLIntegerExpr;
 import com.lz.druid.sql.ast.statement.SQLSelectQueryBlock;
 import com.lz.druid.sql.dialect.sqlserver.visitor.SQLServerASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.dialect.sqlserver.visitor.SQLServerASTVisitor;
 
 public class SQLServerSelectQueryBlock extends SQLSelectQueryBlock {
 

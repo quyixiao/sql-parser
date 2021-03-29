@@ -19,32 +19,29 @@ import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.SQLLiteralExpr;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlObjectImpl;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.dialect.mysql.ast.MySqlObjectImpl;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
 
 public class MySqlOutFileExpr extends MySqlObjectImpl implements SQLExpr {
 
-    private SQLExpr        file;
-    private String         charset;
+    private SQLExpr file;
+    private String charset;
 
-    private SQLExpr        columnsTerminatedBy;
-    private boolean        columnsEnclosedOptionally = false;
+    private SQLExpr columnsTerminatedBy;
+    private boolean columnsEnclosedOptionally = false;
     private SQLLiteralExpr columnsEnclosedBy;
     private SQLLiteralExpr columnsEscaped;
 
     private SQLLiteralExpr linesStartingBy;
     private SQLLiteralExpr linesTerminatedBy;
 
-    private SQLExpr        ignoreLinesNumber;
+    private SQLExpr ignoreLinesNumber;
 
-    public MySqlOutFileExpr(){
+    public MySqlOutFileExpr() {
     }
 
-    public MySqlOutFileExpr(SQLExpr file){
+    public MySqlOutFileExpr(SQLExpr file) {
         this.file = file;
     }
 

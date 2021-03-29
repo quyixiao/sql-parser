@@ -20,7 +20,6 @@ import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,10 +28,10 @@ public class OracleIsSetExpr extends SQLExprImpl implements OracleExpr {
 
     private SQLExpr nestedTable;
 
-    public OracleIsSetExpr(){
+    public OracleIsSetExpr() {
     }
 
-    public OracleIsSetExpr(SQLExpr nestedTable){
+    public OracleIsSetExpr(SQLExpr nestedTable) {
         this.nestedTable = nestedTable;
     }
 

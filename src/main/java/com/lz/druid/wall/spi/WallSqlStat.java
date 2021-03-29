@@ -15,48 +15,48 @@
  */
 package com.lz.druid.wall.spi;
 
-import static com.lz.druid.util.JdbcSqlStatUtils.get;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 
+import static com.lz.druid.util.JdbcSqlStatUtils.get;
+
 public class WallSqlStat {
 
-    private volatile long                            executeCount;
-    private volatile long                            executeErrorCount;
-    private volatile long                            fetchRowCount;
-    private volatile long                            updateCount;
+    private volatile long executeCount;
+    private volatile long executeErrorCount;
+    private volatile long fetchRowCount;
+    private volatile long updateCount;
 
-    final static AtomicLongFieldUpdater<WallSqlStat> executeCountUpdater      = AtomicLongFieldUpdater.newUpdater(WallSqlStat.class,
-                                                                                                                  "executeCount");
+    final static AtomicLongFieldUpdater<WallSqlStat> executeCountUpdater = AtomicLongFieldUpdater.newUpdater(WallSqlStat.class,
+            "executeCount");
     final static AtomicLongFieldUpdater<WallSqlStat> executeErrorCountUpdater = AtomicLongFieldUpdater.newUpdater(WallSqlStat.class,
-                                                                                                                  "executeErrorCount");
+            "executeErrorCount");
 
-    final static AtomicLongFieldUpdater<WallSqlStat> fetchRowCountUpdater     = AtomicLongFieldUpdater.newUpdater(WallSqlStat.class,
-                                                                                                                  "fetchRowCount");
-    final static AtomicLongFieldUpdater<WallSqlStat> updateCountUpdater       = AtomicLongFieldUpdater.newUpdater(WallSqlStat.class,
-                                                                                                                  "updateCount");
-    private final Map<String, WallSqlTableStat>      tableStats;
+    final static AtomicLongFieldUpdater<WallSqlStat> fetchRowCountUpdater = AtomicLongFieldUpdater.newUpdater(WallSqlStat.class,
+            "fetchRowCount");
+    final static AtomicLongFieldUpdater<WallSqlStat> updateCountUpdater = AtomicLongFieldUpdater.newUpdater(WallSqlStat.class,
+            "updateCount");
+    private final Map<String, WallSqlTableStat> tableStats;
 
-    private final List<Violation>                    violations;
+    private final List<Violation> violations;
 
-    private final Map<String, WallSqlFunctionStat>   functionStats;
+    private final Map<String, WallSqlFunctionStat> functionStats;
 
-    private final boolean                            syntaxError;
+    private final boolean syntaxError;
 
-    private String                                   sample;
+    private String sample;
 
-    private long                                     sqlHash;
+    private long sqlHash;
 
     public WallSqlStat(Map<String, WallSqlTableStat> tableStats, Map<String, WallSqlFunctionStat> functionStats,
-                       boolean syntaxError){
-        this(tableStats, functionStats, Collections.<Violation> emptyList(), syntaxError);
+                       boolean syntaxError) {
+        this(tableStats, functionStats, Collections.<Violation>emptyList(), syntaxError);
     }
 
     public WallSqlStat(Map<String, WallSqlTableStat> tableStats, Map<String, WallSqlFunctionStat> functionStats,
-                       List<Violation> violations, boolean syntaxError){
+                       List<Violation> violations, boolean syntaxError) {
         this.violations = violations;
         this.tableStats = tableStats;
         this.functionStats = functionStats;

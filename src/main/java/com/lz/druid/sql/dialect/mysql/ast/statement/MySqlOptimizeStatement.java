@@ -15,18 +15,18 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.statement.SQLExprTableSource;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MySqlOptimizeStatement extends MySqlStatementImpl {
 
-    private boolean                          noWriteToBinlog = false;
-    private boolean                          local           = false;
+    private boolean noWriteToBinlog = false;
+    private boolean local = false;
 
-    protected final List<SQLExprTableSource> tableSources    = new ArrayList<SQLExprTableSource>();
+    protected final List<SQLExprTableSource> tableSources = new ArrayList<SQLExprTableSource>();
 
     public void accept0(MySqlASTVisitor visitor) {
         if (visitor.visit(this)) {

@@ -15,32 +15,32 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLCommentHint;
+import com.lz.druid.sql.ast.SQLLimit;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLOrderBy;
 import com.lz.druid.sql.ast.statement.SQLDeleteStatement;
-import com.lz.druid.sql.ast.SQLLimit;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlOutputVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MySqlDeleteStatement extends SQLDeleteStatement {
 
-    private boolean              lowPriority        = false;
-    private boolean              quick              = false;
-    private boolean              ignore             = false;
+    private boolean lowPriority = false;
+    private boolean quick = false;
+    private boolean ignore = false;
     private SQLOrderBy orderBy;
     private SQLLimit limit;
     private List<SQLCommentHint> hints;
     // for petadata
-    private boolean              forceAllPartitions = false;
+    private boolean forceAllPartitions = false;
     private SQLName forcePartition;
 
-    public MySqlDeleteStatement(){
+    public MySqlDeleteStatement() {
         super(JdbcConstants.MYSQL);
     }
 
@@ -71,12 +71,12 @@ public class MySqlDeleteStatement extends SQLDeleteStatement {
         }
         return hints;
     }
-    
+
     public int getHintsSize() {
         if (hints == null) {
             return 0;
         }
-        
+
         return hints.size();
     }
 

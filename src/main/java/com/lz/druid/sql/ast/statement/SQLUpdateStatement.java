@@ -15,45 +15,38 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.SQLUtils;
+import com.lz.druid.sql.ast.*;
+import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
+import com.lz.druid.sql.ast.expr.SQLBinaryOpExprGroup;
+import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
+import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
-import com.lz.druid.sql.ast.expr.SQLBinaryOpExprGroup;
-import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
-import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
-import com.lz.druid.sql.ast.expr.SQLBinaryOpExprGroup;
-import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
-import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLUpdateStatement extends SQLStatementImpl implements SQLReplaceable {
     protected SQLWithSubqueryClause with; // for pg
 
     protected final List<SQLUpdateSetItem> items = new ArrayList<SQLUpdateSetItem>();
     protected SQLExpr where;
-    protected SQLTableSource               from;
+    protected SQLTableSource from;
 
-    protected SQLTableSource               tableSource;
-    protected List<SQLExpr>                returning;
+    protected SQLTableSource tableSource;
+    protected List<SQLExpr> returning;
 
-    protected List<SQLHint>                hints;
+    protected List<SQLHint> hints;
 
     // for mysql
     protected SQLOrderBy orderBy;
 
-    public SQLUpdateStatement(){
+    public SQLUpdateStatement() {
 
     }
 
-    public SQLUpdateStatement(String dbType){
-        super (dbType);
+    public SQLUpdateStatement(String dbType) {
+        super(dbType);
     }
 
     public SQLTableSource getTableSource() {

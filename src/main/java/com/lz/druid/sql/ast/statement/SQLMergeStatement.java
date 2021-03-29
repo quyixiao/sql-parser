@@ -15,28 +15,22 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLHint;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLMergeStatement extends SQLStatementImpl {
 
-    private final List<SQLHint>      hints = new ArrayList<SQLHint>();
+    private final List<SQLHint> hints = new ArrayList<SQLHint>();
 
-    private SQLTableSource           into;
-    private String                   alias;
-    private SQLTableSource           using;
+    private SQLTableSource into;
+    private String alias;
+    private SQLTableSource using;
     private SQLExpr on;
-    private MergeUpdateClause        updateClause;
-    private MergeInsertClause        insertClause;
+    private MergeUpdateClause updateClause;
+    private MergeInsertClause insertClause;
     private SQLErrorLoggingClause errorLoggingClause;
 
     public void accept0(SQLASTVisitor visitor) {
@@ -58,7 +52,7 @@ public class SQLMergeStatement extends SQLStatementImpl {
     public SQLTableSource getInto() {
         return into;
     }
-    
+
     public void setInto(SQLName into) {
         this.setInto(new SQLExprTableSource(into));
     }
@@ -117,8 +111,8 @@ public class SQLMergeStatement extends SQLStatementImpl {
     public static class MergeUpdateClause extends SQLObjectImpl {
 
         private List<SQLUpdateSetItem> items = new ArrayList<SQLUpdateSetItem>();
-        private SQLExpr                where;
-        private SQLExpr                deleteWhere;
+        private SQLExpr where;
+        private SQLExpr deleteWhere;
 
         public List<SQLUpdateSetItem> getItems() {
             return items;
@@ -162,8 +156,8 @@ public class SQLMergeStatement extends SQLStatementImpl {
     public static class MergeInsertClause extends SQLObjectImpl {
 
         private List<SQLExpr> columns = new ArrayList<SQLExpr>();
-        private List<SQLExpr> values  = new ArrayList<SQLExpr>();
-        private SQLExpr       where;
+        private List<SQLExpr> values = new ArrayList<SQLExpr>();
+        private SQLExpr where;
 
         @Override
         public void accept0(SQLASTVisitor visitor) {

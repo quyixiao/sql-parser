@@ -19,13 +19,8 @@ import com.lz.druid.sql.dialect.sqlserver.ast.SQLServerOutput;
 import com.lz.druid.sql.dialect.sqlserver.ast.SQLServerSelectQueryBlock;
 import com.lz.druid.sql.dialect.sqlserver.ast.SQLServerTop;
 import com.lz.druid.sql.dialect.sqlserver.ast.expr.SQLServerObjectReferenceExpr;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerExecStatement;
+import com.lz.druid.sql.dialect.sqlserver.ast.stmt.*;
 import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerExecStatement.SQLServerParameter;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerInsertStatement;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerRollbackStatement;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerSetTransactionIsolationLevelStatement;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerUpdateStatement;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerWaitForStatement;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public interface SQLServerASTVisitor extends SQLASTVisitor {
@@ -37,23 +32,23 @@ public interface SQLServerASTVisitor extends SQLASTVisitor {
     boolean visit(SQLServerTop x);
 
     void endVisit(SQLServerTop x);
-    
+
     boolean visit(SQLServerObjectReferenceExpr x);
-    
+
     void endVisit(SQLServerObjectReferenceExpr x);
-    
+
     boolean visit(SQLServerInsertStatement x);
-    
+
     void endVisit(SQLServerInsertStatement x);
 
     boolean visit(SQLServerUpdateStatement x);
-    
+
     void endVisit(SQLServerUpdateStatement x);
-    
+
     boolean visit(SQLServerExecStatement x);
-    
+
     void endVisit(SQLServerExecStatement x);
-    
+
     boolean visit(SQLServerSetTransactionIsolationLevelStatement x);
 
     void endVisit(SQLServerSetTransactionIsolationLevelStatement x);
@@ -65,11 +60,11 @@ public interface SQLServerASTVisitor extends SQLASTVisitor {
     boolean visit(SQLServerRollbackStatement x);
 
     void endVisit(SQLServerRollbackStatement x);
-    
+
     boolean visit(SQLServerWaitForStatement x);
 
     void endVisit(SQLServerWaitForStatement x);
-    
+
     boolean visit(SQLServerParameter x);
 
     void endVisit(SQLServerParameter x);

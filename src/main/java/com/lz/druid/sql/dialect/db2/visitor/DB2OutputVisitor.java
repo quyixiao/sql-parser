@@ -22,31 +22,20 @@ import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
 import com.lz.druid.sql.ast.expr.SQLIntervalExpr;
 import com.lz.druid.sql.ast.expr.SQLIntervalUnit;
 import com.lz.druid.sql.ast.statement.SQLColumnDefinition;
-import com.lz.druid.sql.ast.statement.SQLCreateTableStatement;
 import com.lz.druid.sql.ast.statement.SQLSelectQueryBlock;
 import com.lz.druid.sql.dialect.db2.ast.stmt.DB2CreateTableStatement;
 import com.lz.druid.sql.dialect.db2.ast.stmt.DB2SelectQueryBlock;
 import com.lz.druid.sql.dialect.db2.ast.stmt.DB2ValuesStatement;
 import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLPartitionBy;
-import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
-import com.lz.druid.sql.ast.expr.SQLIntervalExpr;
-import com.lz.druid.sql.ast.expr.SQLIntervalUnit;
-import com.lz.druid.sql.ast.statement.SQLColumnDefinition;
-import com.lz.druid.sql.ast.statement.SQLSelectQueryBlock;
-import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
-import com.lz.druid.util.JdbcConstants;
 
 public class DB2OutputVisitor extends SQLASTOutputVisitor implements DB2ASTVisitor {
 
-    public DB2OutputVisitor(Appendable appender){
+    public DB2OutputVisitor(Appendable appender) {
         super(appender, JdbcConstants.DB2);
     }
 
-    public DB2OutputVisitor(Appendable appender, boolean parameterized){
+    public DB2OutputVisitor(Appendable appender, boolean parameterized) {
         super(appender, parameterized);
         this.dbType = JdbcConstants.DB2;
     }

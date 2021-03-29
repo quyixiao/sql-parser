@@ -15,12 +15,12 @@
  */
 package com.lz.druid.sql.ast.expr;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLGroupingSetExpr extends SQLExprImpl {
 
@@ -39,7 +39,7 @@ public class SQLGroupingSetExpr extends SQLExprImpl {
     public List<SQLExpr> getParameters() {
         return parameters;
     }
-    
+
     public void addParameter(SQLExpr parameter) {
         if (parameter != null) {
             parameter.setParent(this);

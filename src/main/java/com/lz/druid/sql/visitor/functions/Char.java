@@ -15,13 +15,13 @@
  */
 package com.lz.druid.sql.visitor.functions;
 
-import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
-
-import java.math.BigDecimal;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
 import com.lz.druid.sql.visitor.SQLEvalVisitor;
+
+import java.math.BigDecimal;
+
+import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
 
 public class Char implements Function {
 

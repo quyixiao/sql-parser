@@ -15,23 +15,21 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OracleSelectPivot extends OracleSelectPivotBase {
 
-    private boolean             xml;
-    private final List<Item>    items    = new ArrayList<Item>();
+    private boolean xml;
+    private final List<Item> items = new ArrayList<Item>();
     private final List<SQLExpr> pivotFor = new ArrayList<SQLExpr>();
-    private final List<Item>    pivotIn  = new ArrayList<Item>();
+    private final List<Item> pivotIn = new ArrayList<Item>();
 
-    public OracleSelectPivot(){
+    public OracleSelectPivot() {
 
     }
 
@@ -60,7 +58,7 @@ public class OracleSelectPivot extends OracleSelectPivotBase {
     public List<Item> getItems() {
         return this.items;
     }
-    
+
     public void addItem(Item item) {
         if (item != null) {
             item.setParent(this);
@@ -74,10 +72,10 @@ public class OracleSelectPivot extends OracleSelectPivotBase {
 
     public static class Item extends OracleSQLObjectImpl {
 
-        private String  alias;
+        private String alias;
         private SQLExpr expr;
 
-        public Item(){
+        public Item() {
 
         }
 

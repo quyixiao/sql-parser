@@ -16,30 +16,28 @@
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
 import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.statement.SQLSelect;
 import com.lz.druid.sql.ast.statement.SQLSubqueryTableSource;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public class OracleSelectSubqueryTableSource extends SQLSubqueryTableSource implements OracleSelectTableSource {
 
     protected OracleSelectPivotBase pivot;
 
 
-    public OracleSelectSubqueryTableSource(){
+    public OracleSelectSubqueryTableSource() {
     }
 
-    public OracleSelectSubqueryTableSource(String alias){
+    public OracleSelectSubqueryTableSource(String alias) {
         super(alias);
     }
 
-    public OracleSelectSubqueryTableSource(SQLSelect select, String alias){
+    public OracleSelectSubqueryTableSource(SQLSelect select, String alias) {
         super(select, alias);
     }
 
-    public OracleSelectSubqueryTableSource(SQLSelect select){
+    public OracleSelectSubqueryTableSource(SQLSelect select) {
         super(select);
     }
 
@@ -66,7 +64,7 @@ public class OracleSelectSubqueryTableSource extends SQLSubqueryTableSource impl
         visitor.endVisit(this);
     }
 
-    public String toString () {
+    public String toString() {
         return SQLUtils.toOracleString(this);
     }
 

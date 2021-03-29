@@ -15,19 +15,17 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast;
 
+import com.lz.druid.sql.ast.SQLName;
+import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
 public abstract class MySqlIndexHintImpl extends MySqlObjectImpl implements MySqlIndexHint {
 
     private MySqlIndexHint.Option option;
 
-    private List<SQLName>         indexList = new ArrayList<SQLName>();
+    private List<SQLName> indexList = new ArrayList<SQLName>();
 
     @Override
     public abstract void accept0(MySqlASTVisitor visitor);

@@ -25,35 +25,35 @@ import java.util.Map;
 @MTable(name = "druid_wall_sql")
 public class WallSqlStatValue {
 
-    private String  sql;
+    private String sql;
 
     @MField(groupBy = true, aggregate = AggregateType.None, hashFor = "sql", hashForType = "sql")
-    private long    sqlHash;
+    private long sqlHash;
 
-    private String  sqlSample;
+    private String sqlSample;
 
     @MField(groupBy = true, aggregate = AggregateType.None, hashFor = "sqlSample", hashForType = "sqlSample")
-    private long    sqlSampleHash;
+    private long sqlSampleHash;
 
     @MField(aggregate = AggregateType.Sum)
-    private long    executeCount;
+    private long executeCount;
 
     @MField(aggregate = AggregateType.Sum)
-    private long    executeErrorCount;
+    private long executeErrorCount;
 
     @MField(aggregate = AggregateType.Sum)
-    private long    fetchRowCount;
+    private long fetchRowCount;
 
     @MField(aggregate = AggregateType.Sum)
-    private long    updateCount;
+    private long updateCount;
 
     @MField(aggregate = AggregateType.Last)
     private boolean syntaxError;
 
     @MField(aggregate = AggregateType.Last)
-    private String  violationMessage;
+    private String violationMessage;
 
-    public WallSqlStatValue(){
+    public WallSqlStatValue() {
 
     }
 
@@ -136,7 +136,7 @@ public class WallSqlStatValue {
             sqlStatMap.put("sample", sqlSample);
         }
         sqlStatMap.put("executeCount", getExecuteCount());
-        
+
         if (executeErrorCount > 0) {
             sqlStatMap.put("executeErrorCount", executeErrorCount);
         }

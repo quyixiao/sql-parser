@@ -15,12 +15,12 @@
  */
 package com.lz.druid.sql.visitor.functions;
 
-import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
-import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE_NULL;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
 import com.lz.druid.sql.visitor.SQLEvalVisitor;
+
+import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
+import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE_NULL;
 
 public class Ascii implements Function {
 
@@ -32,12 +32,12 @@ public class Ascii implements Function {
         }
         SQLExpr param = x.getParameters().get(0);
         param.accept(visitor);
-        
+
         Object paramValue = param.getAttributes().get(EVAL_VALUE);
         if (paramValue == null) {
             return SQLEvalVisitor.EVAL_ERROR;
         }
-        
+
         if (paramValue == EVAL_VALUE_NULL) {
             return EVAL_VALUE_NULL;
         }

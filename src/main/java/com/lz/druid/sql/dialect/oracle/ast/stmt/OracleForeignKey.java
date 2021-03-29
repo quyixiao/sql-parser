@@ -24,9 +24,9 @@ import com.lz.druid.sql.visitor.SQLASTVisitor;
 public class OracleForeignKey extends SQLForeignKeyImpl implements OracleConstraint, OracleSQLObject {
 
     private OracleUsingIndexClause using;
-    private SQLName                exceptionsInto;
-    private Initially              initially;
-    private Boolean                deferrable;
+    private SQLName exceptionsInto;
+    private Initially initially;
+    private Boolean deferrable;
 
     @Override
     protected void accept0(SQLASTVisitor visitor) {

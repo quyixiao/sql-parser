@@ -15,17 +15,12 @@
  */
 package com.lz.druid.sql.ast.expr;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.lz.druid.sql.ast.SQLExpr;
+import com.lz.druid.sql.ast.SQLExprImpl;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
 
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLListExpr extends SQLExprImpl {
 
@@ -34,7 +29,7 @@ public class SQLListExpr extends SQLExprImpl {
     public List<SQLExpr> getItems() {
         return items;
     }
-    
+
     public void addItem(SQLExpr item) {
         if (item != null) {
             item.setParent(this);

@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLReplaceable;
@@ -27,26 +24,29 @@ import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.FnvHash;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLJoinTableSource extends SQLTableSourceImpl implements SQLReplaceable {
 
-    protected SQLTableSource      left;
-    protected JoinType            joinType;
-    protected SQLTableSource      right;
+    protected SQLTableSource left;
+    protected JoinType joinType;
+    protected SQLTableSource right;
     protected SQLExpr condition;
     protected final List<SQLExpr> using = new ArrayList<SQLExpr>();
 
 
-    protected boolean             natural = false;
+    protected boolean natural = false;
 
-    public SQLJoinTableSource(String alias){
+    public SQLJoinTableSource(String alias) {
         super(alias);
     }
 
-    public SQLJoinTableSource(){
+    public SQLJoinTableSource() {
 
     }
 
-    public SQLJoinTableSource(SQLTableSource left, JoinType joinType, SQLTableSource right, SQLExpr condition){
+    public SQLJoinTableSource(SQLTableSource left, JoinType joinType, SQLTableSource right, SQLExpr condition) {
         this.setLeft(left);
         this.setJoinType(joinType);
         this.setRight(right);
@@ -221,7 +221,7 @@ public class SQLJoinTableSource extends SQLTableSourceImpl implements SQLReplace
         public final String name;
         public final String name_lcase;
 
-        JoinType(String name){
+        JoinType(String name) {
             this.name = name;
             this.name_lcase = name.toLowerCase();
         }
@@ -245,7 +245,7 @@ public class SQLJoinTableSource extends SQLTableSourceImpl implements SQLReplace
             x.setRight(right.clone());
         }
 
-        if(condition != null){
+        if (condition != null) {
             x.setCondition(condition);
         }
 

@@ -22,10 +22,10 @@ import com.lz.druid.util.JdbcConstants;
 
 public class PGDeleteStatement extends SQLDeleteStatement implements PGSQLStatement {
 
-    private boolean       returning;
+    private boolean returning;
 
     public PGDeleteStatement() {
-        super (JdbcConstants.POSTGRESQL);
+        super(JdbcConstants.POSTGRESQL);
     }
 
     public boolean isReturning() {

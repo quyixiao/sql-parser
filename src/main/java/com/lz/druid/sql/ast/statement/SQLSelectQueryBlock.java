@@ -15,54 +15,52 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLSelectQueryBlock extends SQLObjectImpl implements SQLSelectQuery, SQLReplaceable {
-    private boolean                      bracket         = false;
-    protected int                        distionOption;
-    protected final List<SQLSelectItem>  selectList      = new ArrayList<SQLSelectItem>();
+    private boolean bracket = false;
+    protected int distionOption;
+    protected final List<SQLSelectItem> selectList = new ArrayList<SQLSelectItem>();
 
-    protected SQLTableSource             from;
-    protected SQLExprTableSource         into;
+    protected SQLTableSource from;
+    protected SQLExprTableSource into;
     protected SQLExpr where;
 
     // for oracle & oceanbase
-    protected SQLExpr                    startWith;
-    protected SQLExpr                    connectBy;
-    protected boolean                    prior           = false;
-    protected boolean                    noCycle         = false;
+    protected SQLExpr startWith;
+    protected SQLExpr connectBy;
+    protected boolean prior = false;
+    protected boolean noCycle = false;
     protected SQLOrderBy orderBySiblings;
 
-    protected SQLSelectGroupByClause     groupBy;
-    protected List<SQLWindow>            windows;
-    protected SQLOrderBy                 orderBy;
-    protected boolean                    parenthesized   = false;
-    protected boolean                    forUpdate       = false;
-    protected boolean                    noWait          = false;
-    protected SQLExpr                    waitTime;
-    protected SQLLimit                   limit;
+    protected SQLSelectGroupByClause groupBy;
+    protected List<SQLWindow> windows;
+    protected SQLOrderBy orderBy;
+    protected boolean parenthesized = false;
+    protected boolean forUpdate = false;
+    protected boolean noWait = false;
+    protected SQLExpr waitTime;
+    protected SQLLimit limit;
 
     // for oracle
-    protected List<SQLExpr>              forUpdateOf;
-    protected List<SQLExpr>              distributeBy;
+    protected List<SQLExpr> forUpdateOf;
+    protected List<SQLExpr> distributeBy;
     protected List<SQLSelectOrderByItem> sortBy;
 
-    protected String                     cachedSelectList; // optimized for SelectListCache
-    protected long                       cachedSelectListHash; // optimized for SelectListCache
+    protected String cachedSelectList; // optimized for SelectListCache
+    protected long cachedSelectListHash; // optimized for SelectListCache
 
-    protected List<SQLCommentHint>       hints;
-    protected String                     dbType;
+    protected List<SQLCommentHint> hints;
+    protected String dbType;
 
-    public SQLSelectQueryBlock(){
+    public SQLSelectQueryBlock() {
 
     }
 
@@ -114,7 +112,7 @@ public class SQLSelectQueryBlock extends SQLObjectImpl implements SQLSelectQuery
             where = SQLBinaryOpExpr.and(where, condition);
         }
     }
-    
+
     public SQLOrderBy getOrderBy() {
         return orderBy;
     }
@@ -123,7 +121,7 @@ public class SQLSelectQueryBlock extends SQLObjectImpl implements SQLSelectQuery
         if (orderBy != null) {
             orderBy.setParent(this);
         }
-        
+
         this.orderBy = orderBy;
     }
 
@@ -149,7 +147,7 @@ public class SQLSelectQueryBlock extends SQLObjectImpl implements SQLSelectQuery
     public List<SQLSelectItem> getSelectList() {
         return this.selectList;
     }
-    
+
     public void addSelectItem(SQLSelectItem item) {
         this.selectList.add(item);
         item.setParent(this);
@@ -205,13 +203,13 @@ public class SQLSelectQueryBlock extends SQLObjectImpl implements SQLSelectQuery
     }
 
     public boolean isParenthesized() {
-		return parenthesized;
-	}
+        return parenthesized;
+    }
 
-	public void setParenthesized(boolean parenthesized) {
-		this.parenthesized = parenthesized;
-	}
-	
+    public void setParenthesized(boolean parenthesized) {
+        this.parenthesized = parenthesized;
+    }
+
     public boolean isForUpdate() {
         return forUpdate;
     }
@@ -219,7 +217,7 @@ public class SQLSelectQueryBlock extends SQLObjectImpl implements SQLSelectQuery
     public void setForUpdate(boolean forUpdate) {
         this.forUpdate = forUpdate;
     }
-    
+
     public boolean isNoWait() {
         return noWait;
     }
@@ -227,11 +225,11 @@ public class SQLSelectQueryBlock extends SQLObjectImpl implements SQLSelectQuery
     public void setNoWait(boolean noWait) {
         this.noWait = noWait;
     }
-    
+
     public SQLExpr getWaitTime() {
         return waitTime;
     }
-    
+
     public void setWaitTime(SQLExpr waitTime) {
         if (waitTime != null) {
             waitTime.setParent(this);
@@ -336,7 +334,7 @@ public class SQLSelectQueryBlock extends SQLObjectImpl implements SQLSelectQuery
         this.sortBy.add(item);
     }
 
-	@Override
+    @Override
     protected void accept0(SQLASTVisitor visitor) {
         if (visitor.visit(this)) {
             acceptChild(visitor, this.selectList);

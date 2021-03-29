@@ -15,18 +15,18 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLAlterTableAddColumn extends SQLObjectImpl implements SQLAlterTableItem {
 
     private final List<SQLColumnDefinition> columns = new ArrayList<SQLColumnDefinition>();
-    
-    
+
+
     // for mysql
     private SQLName firstColumn;
     private SQLName afterColumn;
@@ -44,7 +44,7 @@ public class SQLAlterTableAddColumn extends SQLObjectImpl implements SQLAlterTab
     public List<SQLColumnDefinition> getColumns() {
         return columns;
     }
-    
+
     public void addColumn(SQLColumnDefinition column) {
         if (column != null) {
             column.setParent(this);

@@ -28,10 +28,10 @@ public class MySqlPrepareStatement extends MySqlStatementImpl {
     private SQLName name;
     private SQLExpr from;
 
-    public MySqlPrepareStatement(){
+    public MySqlPrepareStatement() {
     }
 
-    public MySqlPrepareStatement(SQLName name, SQLExpr from){
+    public MySqlPrepareStatement(SQLName name, SQLExpr from) {
         this.name = name;
         this.from = from;
     }

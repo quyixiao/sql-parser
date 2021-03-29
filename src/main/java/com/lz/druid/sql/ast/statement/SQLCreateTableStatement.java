@@ -15,8 +15,6 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.*;
-
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
@@ -30,49 +28,50 @@ import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.FnvHash;
 import com.lz.druid.util.ListDG;
 import com.lz.druid.util.lang.Consumer;
-import com.lz.druid.sql.ast.*;
+
+import java.util.*;
 
 public class SQLCreateTableStatement extends SQLStatementImpl implements SQLDDLStatement, SQLCreateStatement {
 
-    protected boolean                          ifNotExiists = false;
-    protected Type                             type;
-    protected SQLExprTableSource               tableSource;
+    protected boolean ifNotExiists = false;
+    protected Type type;
+    protected SQLExprTableSource tableSource;
 
-    protected List<SQLTableElement>            tableElementList = new ArrayList<SQLTableElement>();
+    protected List<SQLTableElement> tableElementList = new ArrayList<SQLTableElement>();
 
     // for postgresql
-    protected SQLExprTableSource               inherits;
+    protected SQLExprTableSource inherits;
 
-    protected SQLSelect                        select;
+    protected SQLSelect select;
 
     protected SQLExpr comment;
 
-    protected SQLExprTableSource               like;
+    protected SQLExprTableSource like;
 
-    protected Boolean                          compress;
-    protected Boolean                          logging;
+    protected Boolean compress;
+    protected Boolean logging;
 
     protected SQLName tablespace;
     protected SQLPartitionBy partitioning;
-    protected SQLName                          storedAs;
+    protected SQLName storedAs;
 
-    protected boolean                          onCommitPreserveRows;
-    protected boolean                          onCommitDeleteRows;
+    protected boolean onCommitPreserveRows;
+    protected boolean onCommitDeleteRows;
 
     // for hive & odps
-    protected SQLExternalRecordFormat          rowFormat;
-    protected final List<SQLColumnDefinition>  partitionColumns = new ArrayList<SQLColumnDefinition>(2);
-    protected final List<SQLName>              clusteredBy = new ArrayList<SQLName>();
+    protected SQLExternalRecordFormat rowFormat;
+    protected final List<SQLColumnDefinition> partitionColumns = new ArrayList<SQLColumnDefinition>(2);
+    protected final List<SQLName> clusteredBy = new ArrayList<SQLName>();
     protected final List<SQLSelectOrderByItem> sortedBy = new ArrayList<SQLSelectOrderByItem>();
-    protected int                              buckets;
+    protected int buckets;
 
     protected Map<String, SQLObject> tableOptions = new LinkedHashMap<String, SQLObject>();
 
-    public SQLCreateTableStatement(){
+    public SQLCreateTableStatement() {
 
     }
 
-    public SQLCreateTableStatement(String dbType){
+    public SQLCreateTableStatement(String dbType) {
         super(dbType);
     }
 
@@ -143,7 +142,7 @@ public class SQLCreateTableStatement extends SQLStatementImpl implements SQLDDLS
     }
 
     public static enum Type {
-                             GLOBAL_TEMPORARY, LOCAL_TEMPORARY
+        GLOBAL_TEMPORARY, LOCAL_TEMPORARY
     }
 
     public List<SQLTableElement> getTableElementList() {
@@ -268,7 +267,7 @@ public class SQLCreateTableStatement extends SQLStatementImpl implements SQLDDLS
         if (attributes == null) {
             attributes = new HashMap<String, Object>(1);
         }
-        
+
         List<String> attrComments = (List<String>) attributes.get("format.body_before_comment");
         if (attrComments == null) {
             attributes.put("format.body_before_comment", comments);
@@ -276,22 +275,22 @@ public class SQLCreateTableStatement extends SQLStatementImpl implements SQLDDLS
             attrComments.addAll(comments);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     public List<String> getBodyBeforeCommentsDirect() {
         if (attributes == null) {
             return null;
         }
-        
+
         return (List<String>) attributes.get("format.body_before_comment");
     }
-    
+
     public boolean hasBodyBeforeComment() {
         List<String> comments = getBodyBeforeCommentsDirect();
         if (comments == null) {
             return false;
         }
-        
+
         return !comments.isEmpty();
     }
 
@@ -737,7 +736,7 @@ public class SQLCreateTableStatement extends SQLStatementImpl implements SQLDDLS
 
             SQLColumnDefinition column
                     = this.findColumn(
-                        propertyExpr.nameHashCode64());
+                    propertyExpr.nameHashCode64());
 
             if (column != null) {
                 column.setComment(comment.clone());
@@ -950,7 +949,6 @@ public class SQLCreateTableStatement extends SQLStatementImpl implements SQLDDLS
                 }
             }
         }
-
 
 
         return true;

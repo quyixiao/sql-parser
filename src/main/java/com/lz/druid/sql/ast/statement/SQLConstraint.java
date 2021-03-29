@@ -18,9 +18,6 @@ package com.lz.druid.sql.ast.statement;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObject;
 
 public interface SQLConstraint extends SQLObject {
 
@@ -29,6 +26,7 @@ public interface SQLConstraint extends SQLObject {
     void setName(SQLName value);
 
     SQLExpr getComment();
+
     void setComment(SQLExpr x);
 
     void simplify();

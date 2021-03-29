@@ -19,10 +19,6 @@ import com.lz.druid.sql.parser.Keywords;
 import com.lz.druid.sql.parser.Lexer;
 import com.lz.druid.sql.parser.SQLParserFeature;
 import com.lz.druid.sql.parser.Token;
-import com.lz.druid.sql.parser.Keywords;
-import com.lz.druid.sql.parser.Lexer;
-import com.lz.druid.sql.parser.SQLParserFeature;
-import com.lz.druid.sql.parser.Token;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,12 +52,12 @@ public class HiveLexer extends Lexer {
         DEFAULT_HIVE_KEYWORDS = new Keywords(map);
     }
 
-    public HiveLexer(String input){
+    public HiveLexer(String input) {
         super(input);
         super.keywods = DEFAULT_HIVE_KEYWORDS;
     }
 
-    public HiveLexer(String input, SQLParserFeature... features){
+    public HiveLexer(String input, SQLParserFeature... features) {
         super(input);
         super.keywods = DEFAULT_HIVE_KEYWORDS;
         for (SQLParserFeature feature : features) {

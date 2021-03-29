@@ -21,17 +21,11 @@ import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.SQLCommentHint;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 
 import java.util.List;
 
 public abstract class SQLConstraintImpl extends SQLObjectImpl implements SQLConstraint {
-    protected String  dbType;
+    protected String dbType;
     protected SQLName name;
     protected Boolean enable;
     protected Boolean validate;
@@ -40,7 +34,7 @@ public abstract class SQLConstraintImpl extends SQLObjectImpl implements SQLCons
 
     public List<SQLCommentHint> hints;
 
-    public SQLConstraintImpl(){
+    public SQLConstraintImpl() {
 
     }
 

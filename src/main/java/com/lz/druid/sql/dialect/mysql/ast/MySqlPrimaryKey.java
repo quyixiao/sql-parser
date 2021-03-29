@@ -21,7 +21,7 @@ import com.lz.druid.util.JdbcConstants;
 
 public class MySqlPrimaryKey extends MySqlKey implements SQLPrimaryKey {
 
-    public MySqlPrimaryKey(){
+    public MySqlPrimaryKey() {
         dbType = JdbcConstants.MYSQL;
     }
 

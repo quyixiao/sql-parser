@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.odps.ast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
@@ -27,18 +24,22 @@ import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OdpsGrantStmt extends SQLGrantStatement {
 
     private SQLObjectType subjectType;
 
-    private boolean       isSuper = false;
+    private boolean isSuper = false;
 
-    private boolean       isLabel = false;
+    private boolean isLabel = false;
     private SQLExpr label;
-    private List<SQLName> columns = new ArrayList<SQLName>(); ;
-    private SQLExpr       expire;
+    private List<SQLName> columns = new ArrayList<SQLName>();
+    ;
+    private SQLExpr expire;
 
-    public OdpsGrantStmt(){
+    public OdpsGrantStmt() {
         super(JdbcConstants.ODPS);
     }
 

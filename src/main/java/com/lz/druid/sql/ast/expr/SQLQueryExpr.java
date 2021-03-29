@@ -15,10 +15,6 @@
  */
 package com.lz.druid.sql.ast.expr;
 
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLDataType;
 import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.ast.SQLObject;
@@ -26,21 +22,21 @@ import com.lz.druid.sql.ast.statement.SQLSelect;
 import com.lz.druid.sql.ast.statement.SQLSelectItem;
 import com.lz.druid.sql.ast.statement.SQLSelectQueryBlock;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLDataType;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
+
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 
 public class SQLQueryExpr extends SQLExprImpl implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    public SQLSelect          subQuery;
+    public SQLSelect subQuery;
 
-    public SQLQueryExpr(){
+    public SQLQueryExpr() {
 
     }
 
-    public SQLQueryExpr(SQLSelect select){
+    public SQLQueryExpr(SQLSelect select) {
         setSubQuery(select);
     }
 

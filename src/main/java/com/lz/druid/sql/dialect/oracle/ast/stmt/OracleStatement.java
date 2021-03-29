@@ -17,7 +17,6 @@ package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
 import com.lz.druid.sql.ast.SQLStatement;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObject;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObject;
 
 public interface OracleStatement extends SQLStatement, OracleSQLObject {
 

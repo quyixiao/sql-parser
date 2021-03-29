@@ -17,8 +17,6 @@ package com.lz.druid.sql.ast.expr;
 
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.io.Serializable;
 import java.util.ArrayList;

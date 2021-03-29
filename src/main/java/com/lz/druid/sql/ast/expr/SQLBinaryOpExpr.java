@@ -15,45 +15,44 @@
  */
 package com.lz.druid.sql.ast.expr;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.visitor.ParameterizedVisitor;
 import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.Utils;
-import com.lz.druid.sql.ast.*;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class SQLBinaryOpExpr extends SQLExprImpl implements SQLReplaceable, Serializable {
 
-    private static final long   serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     protected SQLExpr left;
-    protected SQLExpr           right;
+    protected SQLExpr right;
     protected SQLBinaryOperator operator;
-    protected String            dbType;
+    protected String dbType;
 
-    private boolean             bracket  = false;
+    private boolean bracket = false;
 
     // only for parameterized output
     protected transient List<SQLObject> mergedList;
 
-    public SQLBinaryOpExpr(){
+    public SQLBinaryOpExpr() {
 
     }
 
-    public SQLBinaryOpExpr(String dbType){
+    public SQLBinaryOpExpr(String dbType) {
         this.dbType = dbType;
     }
 
-    public SQLBinaryOpExpr(SQLExpr left, SQLBinaryOperator operator, SQLExpr right){
+    public SQLBinaryOpExpr(SQLExpr left, SQLBinaryOperator operator, SQLExpr right) {
         this(left, operator, right, null);
     }
-    
-    public SQLBinaryOpExpr(SQLExpr left, SQLBinaryOperator operator, SQLExpr right, String dbType){
+
+    public SQLBinaryOpExpr(SQLExpr left, SQLBinaryOperator operator, SQLExpr right, String dbType) {
         if (left != null) {
             left.setParent(this);
         }
@@ -77,7 +76,7 @@ public class SQLBinaryOpExpr extends SQLExprImpl implements SQLReplaceable, Seri
         this.dbType = dbType;
     }
 
-    public SQLBinaryOpExpr(SQLExpr left, SQLExpr right, SQLBinaryOperator operator){
+    public SQLBinaryOpExpr(SQLExpr left, SQLExpr right, SQLBinaryOperator operator) {
 
         setLeft(left);
         setRight(right);
@@ -169,13 +168,13 @@ public class SQLBinaryOpExpr extends SQLExprImpl implements SQLReplaceable, Seri
 
         return operator == other.operator
                 && SQLExprUtils.equals(left, other.left)
-                &&  SQLExprUtils.equals(right, other.right);
+                && SQLExprUtils.equals(right, other.right);
     }
 
     public boolean equals(SQLBinaryOpExpr other) {
         return operator == other.operator
                 && SQLExprUtils.equals(left, other.left)
-                &&  SQLExprUtils.equals(right, other.right);
+                && SQLExprUtils.equals(right, other.right);
     }
 
 
@@ -192,9 +191,9 @@ public class SQLBinaryOpExpr extends SQLExprImpl implements SQLReplaceable, Seri
         }
 
         return (Utils.equals(this.left, other.left)
-                    && Utils.equals(this.right, other.right))
+                && Utils.equals(this.right, other.right))
                 || (Utils.equals(this.left, other.right)
-                    && Utils.equals(this.right, other.left));
+                && Utils.equals(this.right, other.left));
     }
 
     public SQLBinaryOpExpr clone() {
@@ -281,7 +280,7 @@ public class SQLBinaryOpExpr extends SQLExprImpl implements SQLReplaceable, Seri
 
         List<SQLExpr> rightList = new ArrayList<SQLExpr>();
         rightList.add(binaryExpr.getRight());
-        for (SQLExpr left = binaryExpr.getLeft();;) {
+        for (SQLExpr left = binaryExpr.getLeft(); ; ) {
             if (left instanceof SQLBinaryOpExpr) {
                 SQLBinaryOpExpr leftBinary = (SQLBinaryOpExpr) left;
                 if (leftBinary.operator == op) {
@@ -298,7 +297,7 @@ public class SQLBinaryOpExpr extends SQLExprImpl implements SQLReplaceable, Seri
         }
 
         for (int i = rightList.size() - 1; i >= 0; --i) {
-            SQLExpr right  = rightList.get(i);
+            SQLExpr right = rightList.get(i);
 
             if (right instanceof SQLBinaryOpExpr) {
                 SQLBinaryOpExpr binaryRight = (SQLBinaryOpExpr) right;
@@ -524,6 +523,7 @@ public class SQLBinaryOpExpr extends SQLExprImpl implements SQLReplaceable, Seri
 
     /**
      * only for parameterized output
+     *
      * @param v
      * @param x
      * @return
@@ -531,7 +531,7 @@ public class SQLBinaryOpExpr extends SQLExprImpl implements SQLReplaceable, Seri
     public static SQLBinaryOpExpr merge(ParameterizedVisitor v, SQLBinaryOpExpr x) {
         SQLObject parent = x.parent;
 
-        for (;;) {
+        for (; ; ) {
             if (x.right instanceof SQLBinaryOpExpr) {
                 SQLBinaryOpExpr rightBinary = (SQLBinaryOpExpr) x.right;
                 if (x.left instanceof SQLBinaryOpExpr) {
@@ -593,6 +593,7 @@ public class SQLBinaryOpExpr extends SQLExprImpl implements SQLReplaceable, Seri
 
     /**
      * only for parameterized output
+     *
      * @param item
      * @return
      */
@@ -605,6 +606,7 @@ public class SQLBinaryOpExpr extends SQLExprImpl implements SQLReplaceable, Seri
 
     /**
      * only for parameterized output
+     *
      * @return
      */
     public List<SQLObject> getMergedList() {
@@ -613,6 +615,7 @@ public class SQLBinaryOpExpr extends SQLExprImpl implements SQLReplaceable, Seri
 
     /**
      * only for parameterized output
+     *
      * @param a
      * @param b
      * @return

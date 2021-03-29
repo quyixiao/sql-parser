@@ -16,7 +16,6 @@
 package com.lz.druid.sql.dialect.h2.visitor;
 
 import com.lz.druid.sql.visitor.SchemaStatVisitor;
-import com.lz.druid.sql.visitor.SchemaStatVisitor;
 
 public class H2SchemaStatVisitor extends SchemaStatVisitor implements H2ASTVisitor {
 }

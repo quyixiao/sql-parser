@@ -17,7 +17,6 @@ package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public class OracleAlterViewStatement extends OracleStatementImpl implements OracleAlterStatement {
 

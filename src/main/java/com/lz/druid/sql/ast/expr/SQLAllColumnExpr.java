@@ -18,8 +18,6 @@ package com.lz.druid.sql.ast.expr;
 import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.ast.statement.SQLTableSource;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +25,7 @@ import java.util.List;
 public final class SQLAllColumnExpr extends SQLExprImpl {
     private transient SQLTableSource resolvedTableSource;
 
-    public SQLAllColumnExpr(){
+    public SQLAllColumnExpr() {
 
     }
 

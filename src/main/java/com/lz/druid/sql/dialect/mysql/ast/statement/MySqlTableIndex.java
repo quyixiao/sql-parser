@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
@@ -27,13 +24,16 @@ import com.lz.druid.sql.ast.statement.SQLTableElement;
 import com.lz.druid.sql.dialect.mysql.ast.MySqlObjectImpl;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MySqlTableIndex extends MySqlObjectImpl implements SQLTableElement {
 
     private SQLName name;
-    private String                     indexType;
+    private String indexType;
     private List<SQLSelectOrderByItem> columns = new ArrayList<SQLSelectOrderByItem>();
 
-    public MySqlTableIndex(){
+    public MySqlTableIndex() {
 
     }
 
@@ -56,7 +56,7 @@ public class MySqlTableIndex extends MySqlObjectImpl implements SQLTableElement 
     public List<SQLSelectOrderByItem> getColumns() {
         return columns;
     }
-    
+
     public void addColumn(SQLSelectOrderByItem column) {
         if (column != null) {
             column.setParent(this);

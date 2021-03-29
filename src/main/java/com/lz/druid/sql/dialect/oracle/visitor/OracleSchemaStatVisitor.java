@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.oracle.visitor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
@@ -25,31 +22,12 @@ import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.SQLStatement;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.ast.statement.SQLMergeStatement.MergeInsertClause;
 import com.lz.druid.sql.ast.statement.SQLMergeStatement.MergeUpdateClause;
 import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalDay;
 import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalYear;
-import com.lz.druid.sql.dialect.oracle.ast.clause.CycleClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.CellAssignment;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.CellAssignmentItem;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.MainModelClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelColumn;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelColumnClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelRulesClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.QueryPartitionClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ReturnRowsClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleLobStorageClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleReturningClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleStorageClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleWithSubqueryEntry;
-import com.lz.druid.sql.dialect.oracle.ast.clause.PartitionExtensionClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.SampleClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.SearchClause;
-import com.lz.druid.sql.dialect.oracle.ast.expr.*;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
+import com.lz.druid.sql.dialect.oracle.ast.clause.*;
+import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.*;
 import com.lz.druid.sql.dialect.oracle.ast.expr.*;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleMultiInsertStatement.ConditionalInsertClause;
@@ -65,13 +43,16 @@ import com.lz.druid.stat.TableStat.Mode;
 import com.lz.druid.util.FnvHash;
 import com.lz.druid.util.JdbcConstants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OracleSchemaStatVisitor extends SchemaStatVisitor implements OracleASTVisitor {
 
-    public OracleSchemaStatVisitor(){
+    public OracleSchemaStatVisitor() {
         this(new ArrayList<Object>());
     }
 
-    public OracleSchemaStatVisitor(List<Object> parameters){
+    public OracleSchemaStatVisitor(List<Object> parameters) {
         super(JdbcConstants.ORACLE, parameters);
     }
 

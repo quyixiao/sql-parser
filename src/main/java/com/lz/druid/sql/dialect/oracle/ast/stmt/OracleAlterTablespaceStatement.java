@@ -20,7 +20,7 @@ import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public class OracleAlterTablespaceStatement extends OracleStatementImpl implements OracleAlterStatement {
 
-    private SQLName                   name;
+    private SQLName name;
     private OracleAlterTablespaceItem item;
 
     @Override

@@ -19,9 +19,6 @@ import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.statement.SQLAlterStatement;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
 public class MySqlAlterTablespaceStatement extends MySqlStatementImpl implements SQLAlterStatement {
     private SQLName name;

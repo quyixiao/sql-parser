@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLHint;
 import com.lz.druid.sql.ast.statement.SQLErrorLoggingClause;
 import com.lz.druid.sql.ast.statement.SQLInsertStatement;
@@ -26,15 +23,15 @@ import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleOutputVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleReturningClause;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleOutputVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OracleInsertStatement extends SQLInsertStatement implements OracleStatement {
 
     private OracleReturningClause returning;
     private SQLErrorLoggingClause errorLogging;
-    private List<SQLHint>         hints = new ArrayList<SQLHint>();
+    private List<SQLHint> hints = new ArrayList<SQLHint>();
 
     public OracleInsertStatement() {
         dbType = JdbcConstants.ORACLE;
@@ -96,9 +93,9 @@ public class OracleInsertStatement extends SQLInsertStatement implements OracleS
 
         visitor.endVisit(this);
     }
-    
+
     public void output(StringBuffer buf) {
-    	new OracleOutputVisitor(buf).visit(this);
+        new OracleOutputVisitor(buf).visit(this);
     }
 
     public OracleInsertStatement clone() {

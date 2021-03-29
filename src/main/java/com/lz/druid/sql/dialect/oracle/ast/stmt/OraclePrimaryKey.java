@@ -15,27 +15,21 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.statement.SQLPrimaryKey;
 import com.lz.druid.sql.ast.statement.SQLPrimaryKeyImpl;
 import com.lz.druid.sql.ast.statement.SQLTableConstraint;
 import com.lz.druid.sql.ast.statement.SQLTableElement;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public class OraclePrimaryKey extends SQLPrimaryKeyImpl implements OracleConstraint, SQLPrimaryKey, SQLTableElement, SQLTableConstraint {
 
     private OracleUsingIndexClause using;
-    private SQLName                exceptionsInto;
-    private Boolean                enable;
-    private Initially              initially;
-    private Boolean                deferrable;
+    private SQLName exceptionsInto;
+    private Boolean enable;
+    private Initially initially;
+    private Boolean deferrable;
 
     @Override
     protected void accept0(SQLASTVisitor visitor) {

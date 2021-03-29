@@ -28,15 +28,15 @@ public class MySqlExplainStatement extends SQLExplainStatement implements MySqlS
     private SQLName tableName;
     private SQLName columnName;
     private SQLExpr wild;
-    private String  format;
+    private String format;
     private SQLExpr connectionId;
 
     public MySqlExplainStatement() {
-        super (JdbcConstants.MYSQL);
+        super(JdbcConstants.MYSQL);
     }
 
-       public MySqlExplainStatement(String dbType) {
-        super (dbType);
+    public MySqlExplainStatement(String dbType) {
+        super(dbType);
     }
 
 

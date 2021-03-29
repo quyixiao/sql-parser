@@ -15,35 +15,28 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.SQLUtils;
+import com.lz.druid.sql.ast.*;
+import com.lz.druid.sql.ast.expr.SQLCharExpr;
+import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
+import com.lz.druid.sql.ast.expr.SQLLiteralExpr;
+import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLCharExpr;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLLiteralExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLCharExpr;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLLiteralExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-
 public class SQLCreateViewStatement extends SQLStatementImpl implements SQLCreateStatement {
 
-    private boolean     orReplace   = false;
-    private boolean     force       = false;
+    private boolean orReplace = false;
+    private boolean force = false;
     // protected SQLName   name;
     protected SQLSelect subQuery;
-    protected boolean   ifNotExists = false;
+    protected boolean ifNotExists = false;
 
-    protected String    algorithm;
+    protected String algorithm;
     protected SQLName definer;
-    protected String    sqlSecurity;
+    protected String sqlSecurity;
 
     protected SQLExprTableSource tableSource;
 
@@ -56,11 +49,11 @@ public class SQLCreateViewStatement extends SQLStatementImpl implements SQLCreat
 
     private SQLLiteralExpr comment;
 
-    public SQLCreateViewStatement(){
+    public SQLCreateViewStatement() {
 
     }
 
-    public SQLCreateViewStatement(String dbType){
+    public SQLCreateViewStatement(String dbType) {
         super(dbType);
     }
 
@@ -172,7 +165,7 @@ public class SQLCreateViewStatement extends SQLStatementImpl implements SQLCreat
     public List<SQLTableElement> getColumns() {
         return columns;
     }
-    
+
     public void addColumn(SQLTableElement column) {
         if (column != null) {
             column.setParent(this);
@@ -261,12 +254,12 @@ public class SQLCreateViewStatement extends SQLStatementImpl implements SQLCreat
     }
 
     public static enum Level {
-                              CASCADED, LOCAL
+        CASCADED, LOCAL
     }
 
     public static class Column extends SQLObjectImpl {
 
-        private SQLExpr     expr;
+        private SQLExpr expr;
         private SQLCharExpr comment;
 
         public SQLExpr getExpr() {

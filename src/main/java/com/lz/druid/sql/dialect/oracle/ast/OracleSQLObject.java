@@ -17,7 +17,6 @@ package com.lz.druid.sql.dialect.oracle.ast;
 
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public interface OracleSQLObject extends SQLObject {
 

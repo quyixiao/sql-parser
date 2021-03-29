@@ -20,15 +20,13 @@ import com.lz.druid.sql.ast.statement.SQLUnique;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObject;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObject;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public class OracleUnique extends SQLUnique implements OracleConstraint, OracleSQLObject {
 
     private OracleUsingIndexClause using;
-    private SQLName                exceptionsInto;
-    private Initially              initially;
-    private Boolean                deferrable;
+    private SQLName exceptionsInto;
+    private Initially initially;
+    private Boolean deferrable;
 
     @Override
     protected void accept0(SQLASTVisitor visitor) {

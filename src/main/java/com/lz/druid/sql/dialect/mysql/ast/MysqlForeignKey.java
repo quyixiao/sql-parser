@@ -26,8 +26,8 @@ import com.lz.druid.util.JdbcConstants;
  */
 public class MysqlForeignKey extends SQLForeignKeyImpl {
     private SQLName indexName;
-    private boolean  hasConstraint;
-    private Match    referenceMatch;
+    private boolean hasConstraint;
+    private Match referenceMatch;
     protected Option onUpdate;
     protected Option onDelete;
 

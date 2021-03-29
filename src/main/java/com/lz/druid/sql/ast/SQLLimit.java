@@ -15,9 +15,7 @@
  */
 package com.lz.druid.sql.ast;
 
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.lz.druid.sql.ast.expr.SQLIntegerExpr;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 /**

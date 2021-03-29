@@ -23,11 +23,11 @@ public class OracleBinaryDoubleExpr extends SQLNumericLiteralExpr implements Ora
 
     private Double value;
 
-    public OracleBinaryDoubleExpr(){
+    public OracleBinaryDoubleExpr() {
 
     }
 
-    public OracleBinaryDoubleExpr(Double value){
+    public OracleBinaryDoubleExpr(Double value) {
         super();
         this.value = value;
     }

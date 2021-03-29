@@ -24,6 +24,7 @@ import com.lz.druid.sql.ast.SQLObject;
 public interface OracleSegmentAttributes extends SQLObject {
 
     SQLName getTablespace();
+
     void setTablespace(SQLName name);
 
     Boolean getCompress();
@@ -35,24 +36,31 @@ public interface OracleSegmentAttributes extends SQLObject {
     void setCompressLevel(Integer compressLevel);
 
     Integer getInitrans();
+
     void setInitrans(Integer initrans);
 
     Integer getMaxtrans();
+
     void setMaxtrans(Integer maxtrans);
 
     Integer getPctincrease();
+
     void setPctincrease(Integer pctincrease);
 
     Integer getPctused();
+
     void setPctused(Integer pctused);
 
     Integer getPctfree();
+
     void setPctfree(Integer ptcfree);
 
     Boolean getLogging();
+
     void setLogging(Boolean logging);
 
     SQLObject getStorage();
+
     void setStorage(SQLObject storage);
 
     boolean isCompressForOltp();

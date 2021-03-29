@@ -15,25 +15,21 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.ast.SQLParameter;
+import com.lz.druid.sql.ast.SQLStatement;
+import com.lz.druid.sql.ast.SQLStatementImpl;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lz.druid.sql.ast.SQLParameter;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLParameter;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-
 public class SQLBlockStatement extends SQLStatementImpl {
-    private String             labelName;
-    private String             endLabel;
-    private List<SQLParameter> parameters    = new ArrayList<SQLParameter>();
+    private String labelName;
+    private String endLabel;
+    private List<SQLParameter> parameters = new ArrayList<SQLParameter>();
     private List<SQLStatement> statementList = new ArrayList<SQLStatement>();
-    public SQLStatement        exception;
-    private boolean            endOfCommit;
+    public SQLStatement exception;
+    private boolean endOfCommit;
 
     public SQLBlockStatement() {
 
@@ -46,7 +42,7 @@ public class SQLBlockStatement extends SQLStatementImpl {
     public void setStatementList(List<SQLStatement> statementList) {
         this.statementList = statementList;
     }
-    
+
     public String getLabelName() {
         return labelName;
     }

@@ -15,10 +15,7 @@ package com.lz.druid.sql.ast.statement;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.SQLStatementImpl;
@@ -33,11 +30,11 @@ public class SQLDropTriggerStatement extends SQLStatementImpl implements SQLDrop
     private boolean ifExists;
 
     public SQLDropTriggerStatement() {
-        
+
     }
-    
+
     public SQLDropTriggerStatement(String dbType) {
-        super (dbType);
+        super(dbType);
     }
 
     public SQLName getName() {

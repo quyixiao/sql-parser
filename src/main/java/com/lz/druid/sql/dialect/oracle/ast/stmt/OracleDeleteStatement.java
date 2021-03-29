@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLHint;
 import com.lz.druid.sql.ast.statement.SQLDeleteStatement;
 import com.lz.druid.sql.dialect.oracle.ast.clause.OracleReturningClause;
@@ -25,15 +22,17 @@ import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OracleDeleteStatement extends SQLDeleteStatement {
 
 
-
-    private final List<SQLHint>   hints     = new ArrayList<SQLHint>();
+    private final List<SQLHint> hints = new ArrayList<SQLHint>();
     private OracleReturningClause returning = null;
 
-    public OracleDeleteStatement(){
-        super (JdbcConstants.ORACLE);
+    public OracleDeleteStatement() {
+        super(JdbcConstants.ORACLE);
     }
 
     public OracleReturningClause getReturning() {

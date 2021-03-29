@@ -17,17 +17,15 @@ package com.lz.druid.sql.parser;
 
 import com.lz.druid.sql.ast.statement.SQLSelectQueryBlock;
 import com.lz.druid.util.FnvHash;
-import com.lz.druid.util.FnvHash;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Slf4j
 public class SQLSelectListCache {
-    private final String                    dbType;
-    private final List<Entry>               entries         = new CopyOnWriteArrayList<Entry>();
+    private final String dbType;
+    private final List<Entry> entries = new CopyOnWriteArrayList<Entry>();
 
     public SQLSelectListCache(String dbType) {
         this.dbType = dbType;
@@ -39,7 +37,7 @@ public class SQLSelectListCache {
         }
 
         SQLSelectParser selectParser = SQLParserUtils.createSQLStatementParser(select, dbType)
-                                                     .createSQLSelectParser();
+                .createSQLSelectParser();
         SQLSelectQueryBlock queryBlock = SQLParserUtils.createSelectQueryBlock(dbType);
         selectParser.accept(Token.SELECT);
 
@@ -95,10 +93,10 @@ public class SQLSelectListCache {
     }
 
     private static class Entry {
-        public final String              sql;
+        public final String sql;
         public final SQLSelectQueryBlock queryBlock;
-        public final String              printSql;
-        public final long                printSqlHash;
+        public final String printSql;
+        public final long printSqlHash;
 
         public Entry(String sql, SQLSelectQueryBlock queryBlock, String printSql, long printSqlHash) {
             this.sql = sql;

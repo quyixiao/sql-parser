@@ -28,8 +28,8 @@ public class OracleLockTableStatement extends OracleStatementImpl {
 
     private SQLExprTableSource table;
     private LockMode lockMode;
-    private boolean  noWait = false;
-    private SQLExpr  wait;
+    private boolean noWait = false;
+    private SQLExpr wait;
 
     public boolean isNoWait() {
         return noWait;

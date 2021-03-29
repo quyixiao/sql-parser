@@ -17,22 +17,17 @@ package com.lz.druid.sql.ast.statement;
 
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleStatementImpl;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLExprStatement extends SQLStatementImpl {
 
     private SQLExpr expr;
 
-    public SQLExprStatement(){
+    public SQLExprStatement() {
 
     }
 
-    public SQLExprStatement(SQLExpr expr){
+    public SQLExprStatement(SQLExpr expr) {
         this.expr = expr;
     }
 

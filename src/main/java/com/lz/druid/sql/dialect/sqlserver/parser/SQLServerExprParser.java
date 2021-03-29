@@ -15,12 +15,8 @@
  */
 package com.lz.druid.sql.dialect.sqlserver.parser;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.SQLColumnDefinition;
 import com.lz.druid.sql.ast.statement.SQLExprTableSource;
@@ -34,7 +30,9 @@ import com.lz.druid.sql.parser.SQLParserFeature;
 import com.lz.druid.sql.parser.Token;
 import com.lz.druid.util.FnvHash;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.dialect.sqlserver.ast.SQLServerTop;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class SQLServerExprParser extends SQLExprParser {
     public final static String[] AGGREGATE_FUNCTIONS;
@@ -61,20 +59,20 @@ public class SQLServerExprParser extends SQLExprParser {
         }
     }
 
-    public SQLServerExprParser(Lexer lexer){
+    public SQLServerExprParser(Lexer lexer) {
         super(lexer);
         this.dbType = JdbcConstants.SQL_SERVER;
         this.aggregateFunctions = AGGREGATE_FUNCTIONS;
         this.aggregateFunctionHashCodes = AGGREGATE_FUNCTIONS_CODES;
     }
 
-    public SQLServerExprParser(String sql){
+    public SQLServerExprParser(String sql) {
         this(new SQLServerLexer(sql));
         this.lexer.nextToken();
         this.dbType = JdbcConstants.SQL_SERVER;
     }
 
-    public SQLServerExprParser(String sql, SQLParserFeature... features){
+    public SQLServerExprParser(String sql, SQLParserFeature... features) {
         this(new SQLServerLexer(sql, features));
         this.lexer.nextToken();
         this.dbType = JdbcConstants.SQL_SERVER;
@@ -190,14 +188,14 @@ public class SQLServerExprParser extends SQLExprParser {
 
         return null;
     }
-    
+
     protected SQLServerOutput parserOutput() {
         if (lexer.identifierEquals("OUTPUT")) {
             lexer.nextToken();
             SQLServerOutput output = new SQLServerOutput();
 
             final List<SQLSelectItem> selectList = output.getSelectList();
-            for (;;) {
+            for (; ; ) {
                 final SQLSelectItem selectItem = parseSelectItem();
                 selectList.add(selectItem);
 
@@ -252,12 +250,12 @@ public class SQLServerExprParser extends SQLExprParser {
             SQLColumnDefinition.Identity identity = new SQLColumnDefinition.Identity();
             if (lexer.token() == Token.LPAREN) {
                 lexer.nextToken();
-    
+
                 SQLIntegerExpr seed = (SQLIntegerExpr) this.primary();
                 accept(Token.COMMA);
                 SQLIntegerExpr increment = (SQLIntegerExpr) this.primary();
                 accept(Token.RPAREN);
-                
+
                 identity.setSeed((Integer) seed.getNumber());
                 identity.setIncrement((Integer) increment.getNumber());
             }

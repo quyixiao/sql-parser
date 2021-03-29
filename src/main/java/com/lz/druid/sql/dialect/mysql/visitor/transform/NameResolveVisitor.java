@@ -18,14 +18,10 @@ package com.lz.druid.sql.dialect.mysql.visitor.transform;
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitorAdapter;
 import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitorAdapter;
 
 /**
  * Created by wenshao on 26/07/2017.

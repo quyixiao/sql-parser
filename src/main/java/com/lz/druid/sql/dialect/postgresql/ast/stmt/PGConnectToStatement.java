@@ -22,7 +22,6 @@ import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitor;
 
 public class PGConnectToStatement extends SQLStatementImpl implements PGSQLStatement {
     private SQLName target;

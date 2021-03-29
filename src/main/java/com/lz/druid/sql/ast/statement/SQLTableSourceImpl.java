@@ -15,31 +15,26 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.SQLUtils;
+import com.lz.druid.sql.ast.SQLExpr;
+import com.lz.druid.sql.ast.SQLHint;
+import com.lz.druid.sql.ast.SQLObjectImpl;
+import com.lz.druid.util.FnvHash;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLHint;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLHint;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.util.FnvHash;
-
 public abstract class SQLTableSourceImpl extends SQLObjectImpl implements SQLTableSource {
-    protected String        alias;
+    protected String alias;
     protected List<SQLHint> hints;
     protected SQLExpr flashback;
-    protected long          aliasHashCod64;
+    protected long aliasHashCod64;
 
-    public SQLTableSourceImpl(){
+    public SQLTableSourceImpl() {
 
     }
 
-    public SQLTableSourceImpl(String alias){
+    public SQLTableSourceImpl(String alias) {
         this.alias = alias;
     }
 

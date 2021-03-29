@@ -28,11 +28,11 @@ public class OracleDatetimeExpr extends OracleSQLObjectImpl implements SQLExpr {
     private SQLExpr expr;
     private SQLExpr timeZone;
 
-    public OracleDatetimeExpr(){
+    public OracleDatetimeExpr() {
 
     }
 
-    public OracleDatetimeExpr(SQLExpr expr, SQLExpr timeZone){
+    public OracleDatetimeExpr(SQLExpr expr, SQLExpr timeZone) {
         this.expr = expr;
         this.timeZone = timeZone;
     }

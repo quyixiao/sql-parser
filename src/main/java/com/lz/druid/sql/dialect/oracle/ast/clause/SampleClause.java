@@ -15,22 +15,20 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.clause;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SampleClause extends OracleSQLObjectImpl {
 
-    private boolean       block   = false;
+    private boolean block = false;
 
     private List<SQLExpr> percent = new ArrayList<SQLExpr>();
 
-    private SQLExpr       seedValue;
+    private SQLExpr seedValue;
 
     public boolean isBlock() {
         return block;

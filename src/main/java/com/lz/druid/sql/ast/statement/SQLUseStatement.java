@@ -26,13 +26,13 @@ import java.util.List;
 public class SQLUseStatement extends SQLStatementImpl {
 
     private SQLName database;
-    
+
     public SQLUseStatement() {
-        
+
     }
-    
+
     public SQLUseStatement(String dbType) {
-        super (dbType);
+        super(dbType);
     }
 
     public SQLName getDatabase() {

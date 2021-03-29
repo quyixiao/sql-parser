@@ -15,8 +15,6 @@
  */
 package com.lz.druid.sql.dialect.postgresql.parser;
 
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLLimit;
 import com.lz.druid.sql.ast.SQLParameter;
@@ -31,19 +29,20 @@ import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGSelectQueryBlock;
 import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGSelectQueryBlock.IntoOption;
 import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGValuesQuery;
 import com.lz.druid.sql.parser.*;
-import com.lz.druid.sql.parser.*;
+
+import java.util.List;
 
 public class PGSelectParser extends SQLSelectParser {
 
-    public PGSelectParser(SQLExprParser exprParser){
+    public PGSelectParser(SQLExprParser exprParser) {
         super(exprParser);
     }
 
-    public PGSelectParser(SQLExprParser exprParser, SQLSelectListCache selectListCache){
+    public PGSelectParser(SQLExprParser exprParser, SQLSelectListCache selectListCache) {
         super(exprParser, selectListCache);
     }
 
-    public PGSelectParser(String sql){
+    public PGSelectParser(String sql) {
         this(new PGExprParser(sql));
     }
 
@@ -90,7 +89,7 @@ public class PGSelectParser extends SQLSelectParser {
                 if (lexer.token() == Token.ON) {
                     lexer.nextToken();
 
-                    for (;;) {
+                    for (; ; ) {
                         SQLExpr expr = this.createExprParser().expr();
                         queryBlock.getDistinctOn().add(expr);
                         if (lexer.token() == Token.COMMA) {
@@ -144,7 +143,7 @@ public class PGSelectParser extends SQLSelectParser {
 
         queryBlock.setOrderBy(this.createExprParser().parseOrderBy());
 
-        for (;;) {
+        for (; ; ) {
             if (lexer.token() == Token.LIMIT) {
                 SQLLimit limit = new SQLLimit();
 
@@ -221,7 +220,7 @@ public class PGSelectParser extends SQLSelectParser {
             }
 
             if (lexer.token() == Token.OF) {
-                for (;;) {
+                for (; ; ) {
                     SQLExpr expr = this.createExprParser().expr();
                     forClause.getOf().add(expr);
                     if (lexer.token() == Token.COMMA) {
@@ -261,7 +260,7 @@ public class PGSelectParser extends SQLSelectParser {
                 if (alias != null) {
                     functionTableSource.setAlias(alias);
                 }
-                
+
                 lexer.nextToken();
                 parserParameters(functionTableSource.getParameters());
                 accept(Token.RPAREN);
@@ -278,7 +277,7 @@ public class PGSelectParser extends SQLSelectParser {
     }
 
     private void parserParameters(List<SQLParameter> parameters) {
-        for (;;) {
+        for (; ; ) {
             SQLParameter parameter = new SQLParameter();
 
             parameter.setName(this.exprParser.name());

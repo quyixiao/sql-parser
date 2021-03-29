@@ -16,29 +16,22 @@
 package com.lz.druid.sql.dialect.mysql.ast;
 
 import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.statement.SQLSelectOrderByItem;
 import com.lz.druid.sql.ast.statement.SQLTableConstraint;
 import com.lz.druid.sql.ast.statement.SQLUnique;
 import com.lz.druid.sql.ast.statement.SQLUniqueConstraint;
-import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlAlterTableChangeColumn;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
 
 public class MySqlKey extends SQLUnique implements SQLUniqueConstraint, SQLTableConstraint {
 
-    private String  indexType;
+    private String indexType;
 
     private boolean hasConstaint;
 
     private SQLExpr keyBlockSize;
 
-    public MySqlKey(){
+    public MySqlKey() {
         dbType = JdbcConstants.MYSQL;
     }
 

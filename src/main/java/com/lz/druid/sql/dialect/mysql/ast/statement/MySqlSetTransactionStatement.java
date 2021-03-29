@@ -17,8 +17,6 @@ package com.lz.druid.sql.dialect.mysql.ast.statement;
 
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,9 +25,9 @@ public class MySqlSetTransactionStatement extends MySqlStatementImpl {
 
     private Boolean global;
 
-    private String  isolationLevel;
+    private String isolationLevel;
 
-    private String  accessModel;
+    private String accessModel;
 
     private Boolean session;
 

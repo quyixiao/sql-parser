@@ -19,13 +19,8 @@ import com.lz.druid.sql.dialect.sqlserver.ast.SQLServerOutput;
 import com.lz.druid.sql.dialect.sqlserver.ast.SQLServerSelectQueryBlock;
 import com.lz.druid.sql.dialect.sqlserver.ast.SQLServerTop;
 import com.lz.druid.sql.dialect.sqlserver.ast.expr.SQLServerObjectReferenceExpr;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerExecStatement;
+import com.lz.druid.sql.dialect.sqlserver.ast.stmt.*;
 import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerExecStatement.SQLServerParameter;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerInsertStatement;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerRollbackStatement;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerSetTransactionIsolationLevelStatement;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerUpdateStatement;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerWaitForStatement;
 import com.lz.druid.sql.visitor.SQLASTVisitorAdapter;
 
 public class SQLServerASTVisitorAdapter extends SQLASTVisitorAdapter implements SQLServerASTVisitor {
@@ -87,7 +82,7 @@ public class SQLServerASTVisitorAdapter extends SQLASTVisitorAdapter implements 
 
     @Override
     public void endVisit(SQLServerExecStatement x) {
-        
+
     }
 
     @Override
@@ -97,7 +92,7 @@ public class SQLServerASTVisitorAdapter extends SQLASTVisitorAdapter implements 
 
     @Override
     public void endVisit(SQLServerSetTransactionIsolationLevelStatement x) {
-        
+
     }
 
     @Override
@@ -117,7 +112,7 @@ public class SQLServerASTVisitorAdapter extends SQLASTVisitorAdapter implements 
 
     @Override
     public void endVisit(SQLServerRollbackStatement x) {
-        
+
     }
 
     @Override
@@ -127,7 +122,7 @@ public class SQLServerASTVisitorAdapter extends SQLASTVisitorAdapter implements 
 
     @Override
     public void endVisit(SQLServerWaitForStatement x) {
-        
+
     }
 
     @Override

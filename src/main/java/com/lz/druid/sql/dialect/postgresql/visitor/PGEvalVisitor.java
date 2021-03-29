@@ -15,42 +15,30 @@
  */
 package com.lz.druid.sql.dialect.postgresql.visitor;
 
+import com.lz.druid.sql.ast.expr.*;
+import com.lz.druid.sql.visitor.SQLEvalVisitor;
+import com.lz.druid.sql.visitor.SQLEvalVisitorUtils;
+import com.lz.druid.sql.visitor.functions.Function;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lz.druid.sql.ast.expr.SQLBinaryExpr;
-import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
-import com.lz.druid.sql.ast.expr.SQLCaseExpr;
-import com.lz.druid.sql.ast.expr.SQLCharExpr;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLInListExpr;
-import com.lz.druid.sql.ast.expr.SQLIntegerExpr;
-import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
-import com.lz.druid.sql.ast.expr.SQLNullExpr;
-import com.lz.druid.sql.ast.expr.SQLNumberExpr;
-import com.lz.druid.sql.ast.expr.SQLQueryExpr;
-import com.lz.druid.sql.ast.expr.SQLUnaryExpr;
-import com.lz.druid.sql.ast.expr.SQLVariantRefExpr;
-import com.lz.druid.sql.visitor.SQLEvalVisitor;
-import com.lz.druid.sql.visitor.SQLEvalVisitorUtils;
-import com.lz.druid.sql.visitor.functions.Function;
-
 public class PGEvalVisitor extends PGASTVisitorAdapter implements SQLEvalVisitor {
 
-    private Map<String, Function> functions        = new HashMap<String, Function>();
-    private List<Object>          parameters       = new ArrayList<Object>();
+    private Map<String, Function> functions = new HashMap<String, Function>();
+    private List<Object> parameters = new ArrayList<Object>();
 
-    private int                   variantIndex     = -1;
+    private int variantIndex = -1;
 
-    private boolean               markVariantIndex = true;
+    private boolean markVariantIndex = true;
 
-    public PGEvalVisitor(){
+    public PGEvalVisitor() {
         this(new ArrayList<Object>(1));
     }
 
-    public PGEvalVisitor(List<Object> parameters){
+    public PGEvalVisitor(List<Object> parameters) {
         this.parameters = parameters;
     }
 
@@ -136,7 +124,7 @@ public class PGEvalVisitor extends PGASTVisitorAdapter implements SQLEvalVisitor
     public void registerFunction(String funcName, Function function) {
         functions.put(funcName, function);
     }
-    
+
     @Override
     public void unregisterFunction(String funcName) {
         functions.remove(funcName);
@@ -145,7 +133,7 @@ public class PGEvalVisitor extends PGASTVisitorAdapter implements SQLEvalVisitor
     public boolean visit(SQLIdentifierExpr x) {
         return SQLEvalVisitorUtils.visit(this, x);
     }
-    
+
     @Override
     public boolean visit(SQLBinaryExpr x) {
         return SQLEvalVisitorUtils.visit(this, x);

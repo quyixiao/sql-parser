@@ -15,15 +15,14 @@
  */
 package com.lz.druid.sql.dialect.postgresql.parser;
 
-import static com.lz.druid.sql.parser.CharTypes.isIdentifierChar;
-import static com.lz.druid.sql.parser.Token.LITERAL_CHARS;
+import com.lz.druid.sql.parser.*;
+import com.lz.druid.util.JdbcConstants;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.lz.druid.sql.parser.*;
-import com.lz.druid.sql.parser.*;
-import com.lz.druid.util.JdbcConstants;
+import static com.lz.druid.sql.parser.CharTypes.isIdentifierChar;
+import static com.lz.druid.sql.parser.Token.LITERAL_CHARS;
 
 public class PGLexer extends Lexer {
 
@@ -59,10 +58,10 @@ public class PGLexer extends Lexer {
         map.put("SHARE", Token.SHARE);
         map.put("SHOW", Token.SHOW);
         map.put("START", Token.START);
-        
+
         map.put("USING", Token.USING);
         map.put("WINDOW", Token.WINDOW);
-        
+
         map.put("TRUE", Token.TRUE);
         map.put("FALSE", Token.FALSE);
         map.put("ARRAY", Token.ARRAY);
@@ -73,7 +72,7 @@ public class PGLexer extends Lexer {
         DEFAULT_PG_KEYWORDS = new Keywords(map);
     }
 
-    public PGLexer(String input, SQLParserFeature... features){
+    public PGLexer(String input, SQLParserFeature... features) {
         super(input);
         super.keywods = DEFAULT_PG_KEYWORDS;
         super.dbType = JdbcConstants.POSTGRESQL;
@@ -81,12 +80,12 @@ public class PGLexer extends Lexer {
             config(feature, true);
         }
     }
-    
+
     protected void scanString() {
         mark = pos;
         boolean hasSpecial = false;
 
-        for (;;) {
+        for (; ; ) {
             if (isEOF()) {
                 lexError("unclosed.str.lit");
                 return;
@@ -171,7 +170,7 @@ public class PGLexer extends Lexer {
             stringVal = new String(buf, 0, bufPos);
         }
     }
-    
+
     public void scanSharp() {
         scanChar();
         if (ch == '>') {
@@ -209,7 +208,7 @@ public class PGLexer extends Lexer {
             return;
         }
 
-        for (;;) {
+        for (; ; ) {
             ch = charAt(++pos);
 
             if (!isIdentifierChar(ch)) {

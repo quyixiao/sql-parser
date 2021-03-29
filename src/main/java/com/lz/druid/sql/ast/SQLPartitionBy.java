@@ -19,17 +19,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class SQLPartitionBy extends SQLObjectImpl {
-    protected SQLSubPartitionBy  subPartitionBy;
-    protected SQLExpr            partitionsCount;
-    protected boolean            linear;
+    protected SQLSubPartitionBy subPartitionBy;
+    protected SQLExpr partitionsCount;
+    protected boolean linear;
     protected List<SQLPartition> partitions = new ArrayList<SQLPartition>();
-    protected List<SQLName>      storeIn    = new ArrayList<SQLName>();
-    protected List<SQLExpr>      columns    = new ArrayList<SQLExpr>();
+    protected List<SQLName> storeIn = new ArrayList<SQLName>();
+    protected List<SQLExpr> columns = new ArrayList<SQLExpr>();
 
     public List<SQLPartition> getPartitions() {
         return partitions;
     }
-    
+
     public void addPartition(SQLPartition partition) {
         if (partition != null) {
             partition.setParent(this);

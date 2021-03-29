@@ -15,40 +15,39 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLCreateTriggerStatement extends SQLStatementImpl implements SQLCreateStatement {
 
     private SQLName name;
-    private boolean                  orReplace      = false;
-    private TriggerType              triggerType;
+    private boolean orReplace = false;
+    private TriggerType triggerType;
 
-    private SQLName                  definer;
+    private SQLName definer;
 
-    private boolean                  update;
-    private boolean                  delete;
-    private boolean                  insert;
+    private boolean update;
+    private boolean delete;
+    private boolean insert;
 
-    private SQLExprTableSource       on;
+    private SQLExprTableSource on;
 
-    private boolean                  forEachRow     = false;
+    private boolean forEachRow = false;
 
-    private List<SQLName>            updateOfColumns = new ArrayList<SQLName>();
+    private List<SQLName> updateOfColumns = new ArrayList<SQLName>();
 
     private SQLExpr when;
     private SQLStatement body;
-    
+
     public SQLCreateTriggerStatement() {
-        
+
     }
-    
+
     public SQLCreateTriggerStatement(String dbType) {
-        super (dbType);
+        super(dbType);
     }
 
     protected void accept0(SQLASTVisitor visitor) {

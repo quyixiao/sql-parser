@@ -24,9 +24,9 @@ import com.lz.druid.util.JdbcConstants;
 public class OdpsShowPartitionsStmt extends SQLStatementImpl {
 
     private SQLExprTableSource tableSource;
-    
+
     public OdpsShowPartitionsStmt() {
-        super (JdbcConstants.ODPS);
+        super(JdbcConstants.ODPS);
     }
 
     public SQLExprTableSource getTableSource() {
@@ -41,7 +41,7 @@ public class OdpsShowPartitionsStmt extends SQLStatementImpl {
     protected void accept0(SQLASTVisitor visitor) {
         accept0((OdpsASTVisitor) visitor);
     }
-    
+
     protected void accept0(OdpsASTVisitor visitor) {
         if (visitor.visit(this)) {
             acceptChild(visitor, tableSource);

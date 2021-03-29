@@ -23,11 +23,11 @@ import com.lz.druid.util.JdbcConstants;
 
 public class PGSelectStatement extends SQLSelectStatement implements PGSQLStatement {
 
-    public PGSelectStatement(){
+    public PGSelectStatement() {
         super(JdbcConstants.POSTGRESQL);
     }
 
-    public PGSelectStatement(SQLSelect select){
+    public PGSelectStatement(SQLSelect select) {
         super(select, JdbcConstants.POSTGRESQL);
     }
 

@@ -31,28 +31,9 @@ import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlDeclareStatement;
 import com.lz.druid.sql.dialect.mysql.ast.clause.MySqlRepeatStatement;
 import com.lz.druid.sql.dialect.mysql.ast.statement.*;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitorAdapter;
-import com.lz.druid.sql.dialect.odps.ast.*;
 import com.lz.druid.sql.dialect.odps.ast.OdpsCreateTableStatement;
 import com.lz.druid.sql.dialect.odps.ast.OdpsSelectQueryBlock;
 import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitorAdapter;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitorAdapter;
-import com.lz.druid.sql.dialect.postgresql.ast.stmt.*;
-import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitorAdapter;
-import com.lz.druid.sql.dialect.sqlserver.ast.SQLServerSelectQueryBlock;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerInsertStatement;
-import com.lz.druid.sql.dialect.sqlserver.ast.stmt.SQLServerUpdateStatement;
-import com.lz.druid.sql.dialect.sqlserver.visitor.SQLServerASTVisitorAdapter;
-import com.lz.druid.sql.visitor.SQLASTVisitorAdapter;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.util.PGUtils;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.dialect.mysql.ast.MysqlForeignKey;
-import com.lz.druid.sql.dialect.mysql.ast.statement.*;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitorAdapter;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitorAdapter;
 import com.lz.druid.sql.dialect.postgresql.ast.stmt.*;
@@ -1846,8 +1827,7 @@ class SchemaResolveVisitorFactory {
         } else {
             for (SchemaResolveVisitor.Context parentCtx = ctx;
                  parentCtx != null;
-                 parentCtx = parentCtx.parent)
-            {
+                 parentCtx = parentCtx.parent) {
                 SQLDeclareItem declareItem = parentCtx.findDeclare(hash);
                 if (declareItem != null) {
                     x.setResolvedDeclareItem(declareItem);
@@ -1893,7 +1873,7 @@ class SchemaResolveVisitorFactory {
         }
 
         if (tableSource instanceof SQLExprTableSource) {
-                    SQLExpr expr = ((SQLExprTableSource) tableSource).getExpr();
+            SQLExpr expr = ((SQLExprTableSource) tableSource).getExpr();
             if (expr instanceof SQLIdentifierExpr) {
                 SQLIdentifierExpr identExpr = (SQLIdentifierExpr) expr;
                 long identHash = identExpr.nameHashCode64();
@@ -1927,8 +1907,7 @@ class SchemaResolveVisitorFactory {
                 && x.getResolvedTableSource() == null) {
             for (SchemaResolveVisitor.Context parentCtx = ctx;
                  parentCtx != null;
-                 parentCtx = parentCtx.parent)
-            {
+                 parentCtx = parentCtx.parent) {
                 SQLDeclareItem declareItem = parentCtx.findDeclare(hash);
                 if (declareItem != null) {
                     x.setResolvedDeclareItem(declareItem);
@@ -2096,7 +2075,7 @@ class SchemaResolveVisitorFactory {
 
             from.accept(visitor);
         } else if (x.getParent() != null && x.getParent().getParent() instanceof HiveInsert
-                && x.getParent().getParent().getParent() instanceof HiveMultiInsertStatement){
+                && x.getParent().getParent().getParent() instanceof HiveMultiInsertStatement) {
             HiveMultiInsertStatement insert = (HiveMultiInsertStatement) x.getParent().getParent().getParent();
             if (insert.getFrom() instanceof SQLExprTableSource) {
                 from = insert.getFrom();
@@ -2473,7 +2452,7 @@ class SchemaResolveVisitorFactory {
             on.accept(visitor);
         }
 
-        SQLMergeStatement.MergeUpdateClause updateClause  = x.getUpdateClause();
+        SQLMergeStatement.MergeUpdateClause updateClause = x.getUpdateClause();
         if (updateClause != null) {
             for (SQLUpdateSetItem item : updateClause.getItems()) {
                 SQLExpr column = item.getColumn();
@@ -2551,6 +2530,7 @@ class SchemaResolveVisitorFactory {
 
         visitor.popContext();
     }
+
     static void resolve(SchemaResolveVisitor visitor, SQLCreateProcedureStatement x) {
         SchemaResolveVisitor.Context ctx = visitor.createContext(x);
 

@@ -24,11 +24,11 @@ public class MySqlCharExpr extends SQLCharExpr implements MySqlExpr {
     private String charset;
     private String collate;
 
-    public MySqlCharExpr(){
+    public MySqlCharExpr() {
 
     }
 
-    public MySqlCharExpr(String text){
+    public MySqlCharExpr(String text) {
         super(text);
     }
 
@@ -53,7 +53,7 @@ public class MySqlCharExpr extends SQLCharExpr implements MySqlExpr {
             buf.append(charset);
             buf.append(' ');
         }
-        if (super.text!=null){
+        if (super.text != null) {
             super.output(buf);
         }
 
@@ -77,15 +77,15 @@ public class MySqlCharExpr extends SQLCharExpr implements MySqlExpr {
         visitor.visit(this);
         visitor.endVisit(this);
     }
-    
+
     public String toString() {
         StringBuffer buf = new StringBuffer();
         output(buf);
         return buf.toString();
     }
-    
+
     public MySqlCharExpr clone() {
-    	MySqlCharExpr x = new MySqlCharExpr(text);
+        MySqlCharExpr x = new MySqlCharExpr(text);
         x.setCharset(charset);
         x.setCollate(collate);
         return x;

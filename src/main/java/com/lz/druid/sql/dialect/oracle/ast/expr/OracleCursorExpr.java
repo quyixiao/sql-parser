@@ -20,7 +20,6 @@ import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.statement.SQLSelect;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
@@ -29,7 +28,7 @@ public class OracleCursorExpr extends SQLExprImpl implements OracleExpr {
 
     private SQLSelect query;
 
-    public OracleCursorExpr(){
+    public OracleCursorExpr() {
 
     }
 
@@ -41,7 +40,7 @@ public class OracleCursorExpr extends SQLExprImpl implements OracleExpr {
         return x;
     }
 
-    public OracleCursorExpr(SQLSelect query){
+    public OracleCursorExpr(SQLSelect query) {
         setQuery(query);
     }
 

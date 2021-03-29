@@ -15,27 +15,27 @@
  */
 package com.lz.druid.wall.spi;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import com.lz.druid.support.AggregateType;
 import com.lz.druid.support.MField;
 import com.lz.druid.support.MTable;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 @MTable(name = "druid_wall_function")
 public class WallFunctionStatValue {
 
-    @MField(groupBy=true, aggregate= AggregateType.None)
+    @MField(groupBy = true, aggregate = AggregateType.None)
     private String name;
 
-    @MField(aggregate=AggregateType.Sum)
-    private long   invokeCount;
+    @MField(aggregate = AggregateType.Sum)
+    private long invokeCount;
 
-    public WallFunctionStatValue(){
+    public WallFunctionStatValue() {
 
     }
 
-    public WallFunctionStatValue(String name){
+    public WallFunctionStatValue(String name) {
         this.name = name;
     }
 

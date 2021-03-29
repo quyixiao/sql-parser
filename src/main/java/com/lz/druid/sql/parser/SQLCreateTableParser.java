@@ -15,18 +15,13 @@
  */
 package com.lz.druid.sql.parser;
 
-import java.util.List;
+import com.lz.druid.sql.ast.SQLExpr;
+import com.lz.druid.sql.ast.SQLName;
+import com.lz.druid.sql.ast.statement.*;
+import com.lz.druid.util.FnvHash;
+import com.lz.druid.util.JdbcConstants;
 
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.util.JdbcConstants;
+import java.util.List;
 
 public class SQLCreateTableParser extends SQLDDLParser {
 
@@ -116,7 +111,7 @@ public class SQLCreateTableParser extends SQLDDLParser {
                     constraint.setParent(createTable);
                     createTable.getTableElementList().add((SQLTableElement) constraint);
                 } else if (token == Token.TABLESPACE) {
-                    throw new ParserException("TODO "  + lexer.info());
+                    throw new ParserException("TODO " + lexer.info());
                 } else {
                     SQLColumnDefinition column = this.exprParser.parseColumn();
                     createTable.getTableElementList().add(column);
@@ -155,7 +150,7 @@ public class SQLCreateTableParser extends SQLDDLParser {
             lexer.nextToken();
             accept(Token.LPAREN);
 
-            for (;;) {
+            for (; ; ) {
                 String name = lexer.stringVal();
                 lexer.nextToken();
                 accept(Token.EQ);

@@ -15,10 +15,10 @@
  */
 package com.lz.druid.wall.spi;
 
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
+
+import java.util.List;
 
 public interface WallVisitor extends SQLASTVisitor {
 
@@ -37,9 +37,9 @@ public interface WallVisitor extends SQLASTVisitor {
     boolean isSqlModified();
 
     void setSqlModified(boolean sqlModified);
-    
+
     String getDbType();
-    
+
     boolean isSqlEndOfComment();
 
     void setSqlEndOfComment(boolean sqlEndOfComment);

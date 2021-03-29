@@ -20,10 +20,9 @@ import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public abstract class OracleStatementImpl extends SQLStatementImpl implements OracleStatement {
-    
+
     public OracleStatementImpl() {
         super(JdbcConstants.ORACLE);
     }

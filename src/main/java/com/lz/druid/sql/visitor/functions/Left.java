@@ -15,12 +15,12 @@
  */
 package com.lz.druid.sql.visitor.functions;
 
-import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
 import com.lz.druid.sql.visitor.SQLEvalVisitor;
 import com.lz.druid.sql.visitor.SQLEvalVisitorUtils;
+
+import static com.lz.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
 
 public class Left implements Function {
 
@@ -44,7 +44,7 @@ public class Left implements Function {
 
         String strValue = param0Value.toString();
         int intValue = SQLEvalVisitorUtils.castToInteger(param1Value);
-        
+
         if (intValue > strValue.length()) {
             return SQLEvalVisitor.EVAL_ERROR;
         }

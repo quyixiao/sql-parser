@@ -19,11 +19,11 @@ import com.lz.druid.sql.ast.statement.SQLTableConstraint;
 
 public class SQLDDLParser extends SQLStatementParser {
 
-    public SQLDDLParser(String sql){
+    public SQLDDLParser(String sql) {
         super(sql);
     }
 
-    public SQLDDLParser(SQLExprParser exprParser){
+    public SQLDDLParser(SQLExprParser exprParser) {
         super(exprParser);
     }
 

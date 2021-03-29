@@ -16,13 +16,12 @@
 package com.lz.druid.sql.dialect.oracle.ast;
 
 import com.lz.druid.sql.ast.SQLDataTypeImpl;
-import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class OracleDataTypeIntervalYear extends SQLDataTypeImpl implements OracleSQLObject {
 
-    public OracleDataTypeIntervalYear(){
+    public OracleDataTypeIntervalYear() {
         this.setName("INTERVAL YEAR");
     }
 

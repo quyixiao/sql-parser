@@ -15,7 +15,6 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.stmt;
 
-import com.lz.druid.sql.ast.SQLStatement;
 import com.lz.druid.sql.ast.statement.SQLAlterStatement;
 
 public interface OracleAlterStatement extends SQLAlterStatement, OracleStatement {

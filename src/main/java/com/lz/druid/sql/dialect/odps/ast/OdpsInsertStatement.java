@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.odps.ast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.ast.statement.SQLTableSource;
 import com.lz.druid.sql.dialect.hive.ast.HiveInsert;
@@ -25,14 +22,17 @@ import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OdpsInsertStatement extends SQLStatementImpl {
 
     private SQLTableSource from;
 
-    private List<HiveInsert>       items = new ArrayList<HiveInsert>();
-    
+    private List<HiveInsert> items = new ArrayList<HiveInsert>();
+
     public OdpsInsertStatement() {
-        super (JdbcConstants.ODPS);
+        super(JdbcConstants.ODPS);
     }
 
     public void setFrom(SQLTableSource from) {
@@ -46,7 +46,7 @@ public class OdpsInsertStatement extends SQLStatementImpl {
     public List<HiveInsert> getItems() {
         return items;
     }
-    
+
     public void addItem(HiveInsert item) {
         if (item != null) {
             item.setParent(this);
@@ -58,7 +58,7 @@ public class OdpsInsertStatement extends SQLStatementImpl {
     protected void accept0(SQLASTVisitor visitor) {
         accept0((OdpsASTVisitor) visitor);
     }
-    
+
     protected void accept0(OdpsASTVisitor visitor) {
         if (visitor.visit(this)) {
             acceptChild(visitor, from);

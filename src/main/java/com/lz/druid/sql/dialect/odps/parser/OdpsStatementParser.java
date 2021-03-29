@@ -15,51 +15,28 @@
  */
 package com.lz.druid.sql.dialect.odps.parser;
 
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.SQLStatement;
 import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.statement.SQLCreateTableStatement;
-import com.lz.druid.sql.ast.statement.SQLExprTableSource;
-import com.lz.druid.sql.ast.statement.SQLObjectType;
-import com.lz.druid.sql.ast.statement.SQLSelect;
-import com.lz.druid.sql.ast.statement.SQLSelectStatement;
-import com.lz.druid.sql.ast.statement.SQLSetStatement;
-import com.lz.druid.sql.ast.statement.SQLShowTablesStatement;
-import com.lz.druid.sql.ast.statement.SQLSubqueryTableSource;
-import com.lz.druid.sql.dialect.odps.ast.OdpsAddStatisticStatement;
-import com.lz.druid.sql.dialect.odps.ast.OdpsAnalyzeTableStatement;
-import com.lz.druid.sql.dialect.odps.ast.OdpsGrantStmt;
+import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.dialect.hive.ast.HiveInsert;
-import com.lz.druid.sql.dialect.odps.ast.OdpsInsertStatement;
-import com.lz.druid.sql.dialect.odps.ast.OdpsListStmt;
-import com.lz.druid.sql.dialect.odps.ast.OdpsReadStatement;
-import com.lz.druid.sql.dialect.odps.ast.OdpsRemoveStatisticStatement;
-import com.lz.druid.sql.dialect.odps.ast.OdpsSetLabelStatement;
-import com.lz.druid.sql.dialect.odps.ast.OdpsShowGrantsStmt;
-import com.lz.druid.sql.dialect.odps.ast.OdpsShowPartitionsStmt;
-import com.lz.druid.sql.dialect.odps.ast.OdpsShowStatisticStmt;
-import com.lz.druid.sql.dialect.odps.ast.OdpsStatisticClause;
-import com.lz.druid.sql.parser.ParserException;
-import com.lz.druid.sql.parser.SQLCreateTableParser;
-import com.lz.druid.sql.parser.SQLExprParser;
-import com.lz.druid.sql.parser.SQLSelectParser;
-import com.lz.druid.sql.parser.SQLStatementParser;
-import com.lz.druid.sql.parser.Token;
+import com.lz.druid.sql.dialect.odps.ast.*;
+import com.lz.druid.sql.parser.*;
 import com.lz.druid.util.JdbcConstants;
+
+import java.util.List;
 
 public class OdpsStatementParser extends SQLStatementParser {
 
-    public OdpsStatementParser(String sql){
+    public OdpsStatementParser(String sql) {
         super(new OdpsLexer(sql, true, true), JdbcConstants.ODPS);
         this.exprParser = new OdpsExprParser(this.lexer);
         this.lexer.nextToken();
     }
 
-    public OdpsStatementParser(SQLExprParser exprParser){
+    public OdpsStatementParser(SQLExprParser exprParser) {
         super(exprParser);
     }
 
@@ -252,7 +229,7 @@ public class OdpsStatementParser extends SQLStatementParser {
             }
         }
 
-        for (;;) {
+        for (; ; ) {
             HiveInsert insert = parseHiveInsert();
             stmt.addItem(insert);
 
@@ -465,7 +442,7 @@ public class OdpsStatementParser extends SQLStatementParser {
     }
 
     protected void parsePrivileages(List<SQLExpr> privileges, SQLObject parent) {
-        for (;;) {
+        for (; ; ) {
             String privilege = null;
             if (lexer.token() == Token.ALL) {
                 lexer.nextToken();

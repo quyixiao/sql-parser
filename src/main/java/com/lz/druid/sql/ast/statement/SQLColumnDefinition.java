@@ -15,49 +15,42 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.SQLUtils;
+import com.lz.druid.sql.ast.*;
+import com.lz.druid.sql.ast.expr.SQLCharExpr;
+import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
+import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLCharExpr;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLCharExpr;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-
 public class SQLColumnDefinition extends SQLObjectImpl implements SQLTableElement, SQLObjectWithDataType, SQLReplaceable {
-    protected String                          dbType;
+    protected String dbType;
 
     protected SQLName name;
     protected SQLDataType dataType;
-    protected SQLExpr                         defaultExpr;
-    protected final List<SQLColumnConstraint> constraints   = new ArrayList<SQLColumnConstraint>(0);
-    protected SQLExpr                         comment;
+    protected SQLExpr defaultExpr;
+    protected final List<SQLColumnConstraint> constraints = new ArrayList<SQLColumnConstraint>(0);
+    protected SQLExpr comment;
 
-    protected Boolean                         enable;
-    protected Boolean                         validate;
-    protected Boolean                         rely;
+    protected Boolean enable;
+    protected Boolean validate;
+    protected Boolean rely;
 
     // for mysql
-    protected boolean                         autoIncrement = false;
-    protected SQLExpr                         onUpdate;
-    protected SQLExpr                         storage;
-    protected SQLExpr                         charsetExpr;
-    protected SQLExpr                         asExpr;
-    protected boolean                         sorted        = false;
-    protected boolean                         virtual       = false;
+    protected boolean autoIncrement = false;
+    protected SQLExpr onUpdate;
+    protected SQLExpr storage;
+    protected SQLExpr charsetExpr;
+    protected SQLExpr asExpr;
+    protected boolean sorted = false;
+    protected boolean virtual = false;
 
-    protected Identity                        identity;
-    protected SQLExpr                         generatedAlawsAs;
+    protected Identity identity;
+    protected SQLExpr generatedAlawsAs;
 
-    public SQLColumnDefinition(){
+    public SQLColumnDefinition() {
 
     }
 
@@ -161,7 +154,7 @@ public class SQLColumnDefinition extends SQLObjectImpl implements SQLTableElemen
     public List<SQLColumnConstraint> getConstraints() {
         return constraints;
     }
-    
+
     public void addConstraint(SQLColumnConstraint constraint) {
         if (constraint != null) {
             constraint.setParent(this);
@@ -290,7 +283,7 @@ public class SQLColumnDefinition extends SQLObjectImpl implements SQLTableElemen
 
         private boolean notForReplication;
 
-        public Identity(){
+        public Identity() {
 
         }
 
@@ -324,7 +317,7 @@ public class SQLColumnDefinition extends SQLObjectImpl implements SQLTableElemen
             visitor.endVisit(this);
         }
 
-        public Identity clone () {
+        public Identity clone() {
             Identity x = new Identity();
             x.seed = seed;
             x.increment = increment;
@@ -349,7 +342,7 @@ public class SQLColumnDefinition extends SQLObjectImpl implements SQLTableElemen
         SQLColumnDefinition x = new SQLColumnDefinition();
         x.setDbType(dbType);
 
-        if(name != null) {
+        if (name != null) {
             x.setName(name.clone());
         }
 

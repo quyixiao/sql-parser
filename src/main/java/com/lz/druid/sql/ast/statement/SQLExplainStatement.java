@@ -15,31 +15,26 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.ast.SQLCommentHint;
+import com.lz.druid.sql.ast.SQLObject;
+import com.lz.druid.sql.ast.SQLStatement;
+import com.lz.druid.sql.ast.SQLStatementImpl;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.lz.druid.sql.ast.SQLCommentHint;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLCommentHint;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLExplainStatement extends SQLStatementImpl {
     private String type;
     protected SQLStatement statement;
     private List<SQLCommentHint> hints;
-    
+
     public SQLExplainStatement() {
-        
+
     }
-    
+
     public SQLExplainStatement(String dbType) {
-        super (dbType);
+        super(dbType);
     }
 
     public SQLStatement getStatement() {

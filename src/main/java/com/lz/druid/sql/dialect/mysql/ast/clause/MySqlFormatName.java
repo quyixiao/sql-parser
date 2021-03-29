@@ -17,6 +17,6 @@ package com.lz.druid.sql.dialect.mysql.ast.clause;
 
 public enum MySqlFormatName {
 
-	TRADITIONAL,
-	JSON
+    TRADITIONAL,
+    JSON
 }

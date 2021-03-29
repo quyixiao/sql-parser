@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.dialect.hive.ast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.statement.SQLAssignItem;
 import com.lz.druid.sql.ast.statement.SQLExprTableSource;
@@ -27,10 +24,13 @@ import com.lz.druid.sql.dialect.hive.visitor.HiveASTVisitor;
 import com.lz.druid.sql.dialect.odps.visitor.OdpsASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HiveInsert extends SQLInsertInto {
 
-    private boolean              overwrite  = false;
-    private List<SQLAssignItem>  partitions = new ArrayList<SQLAssignItem>();
+    private boolean overwrite = false;
+    private List<SQLAssignItem> partitions = new ArrayList<SQLAssignItem>();
 
     public HiveInsert() {
 
@@ -47,7 +47,7 @@ public class HiveInsert extends SQLInsertInto {
     public List<SQLAssignItem> getPartitions() {
         return partitions;
     }
-    
+
     public void addPartition(SQLAssignItem partition) {
         if (partition != null) {
             partition.setParent(this);

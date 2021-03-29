@@ -15,10 +15,6 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;

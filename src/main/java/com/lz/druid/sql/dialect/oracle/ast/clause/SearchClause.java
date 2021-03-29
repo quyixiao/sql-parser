@@ -15,15 +15,13 @@
  */
 package com.lz.druid.sql.dialect.oracle.ast.clause;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.lz.druid.sql.ast.statement.SQLSelectOrderByItem;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchClause extends OracleSQLObjectImpl {
 
@@ -31,11 +29,11 @@ public class SearchClause extends OracleSQLObjectImpl {
         DEPTH, BREADTH
     }
 
-    private Type                          type;
+    private Type type;
 
     private final List<SQLSelectOrderByItem> items = new ArrayList<SQLSelectOrderByItem>();
 
-    private SQLIdentifierExpr             orderingColumn;
+    private SQLIdentifierExpr orderingColumn;
 
     public Type getType() {
         return type;
@@ -48,7 +46,7 @@ public class SearchClause extends OracleSQLObjectImpl {
     public List<SQLSelectOrderByItem> getItems() {
         return items;
     }
-    
+
     public void addItem(SQLSelectOrderByItem item) {
         if (item != null) {
             item.setParent(this);

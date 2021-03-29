@@ -17,8 +17,6 @@ package com.lz.druid.sql.dialect.postgresql.visitor;
 
 import com.lz.druid.sql.dialect.postgresql.ast.expr.*;
 import com.lz.druid.sql.dialect.postgresql.ast.stmt.*;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.*;
-import com.lz.druid.sql.dialect.postgresql.ast.stmt.*;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public interface PGASTVisitor extends SQLASTVisitor {
@@ -58,59 +56,61 @@ public interface PGASTVisitor extends SQLASTVisitor {
     void endVisit(PGFunctionTableSource x);
 
     boolean visit(PGFunctionTableSource x);
-    
+
     void endVisit(PGTypeCastExpr x);
-    
+
     boolean visit(PGTypeCastExpr x);
-    
+
     void endVisit(PGValuesQuery x);
-    
+
     boolean visit(PGValuesQuery x);
-    
+
     void endVisit(PGExtractExpr x);
-    
+
     boolean visit(PGExtractExpr x);
-    
+
     void endVisit(PGBoxExpr x);
-    
+
     boolean visit(PGBoxExpr x);
-    
+
     void endVisit(PGPointExpr x);
-    
+
     boolean visit(PGPointExpr x);
-    
+
     void endVisit(PGMacAddrExpr x);
-    
+
     boolean visit(PGMacAddrExpr x);
-    
+
     void endVisit(PGInetExpr x);
-    
+
     boolean visit(PGInetExpr x);
-    
+
     void endVisit(PGCidrExpr x);
-    
+
     boolean visit(PGCidrExpr x);
-    
+
     void endVisit(PGPolygonExpr x);
-    
+
     boolean visit(PGPolygonExpr x);
-    
+
     void endVisit(PGCircleExpr x);
-    
+
     boolean visit(PGCircleExpr x);
-    
+
     void endVisit(PGLineSegmentsExpr x);
-    
+
     boolean visit(PGLineSegmentsExpr x);
 
     void endVisit(PGShowStatement x);
-    
+
     boolean visit(PGShowStatement x);
 
     void endVisit(PGStartTransactionStatement x);
+
     boolean visit(PGStartTransactionStatement x);
 
     void endVisit(PGConnectToStatement x);
+
     boolean visit(PGConnectToStatement x);
 
 }

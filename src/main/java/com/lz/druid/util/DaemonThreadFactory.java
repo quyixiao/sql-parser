@@ -24,10 +24,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DaemonThreadFactory implements ThreadFactory {
 
     private AtomicInteger threadNo = new AtomicInteger(1);
-    private final String  nameStart;
-    private final String  nameEnd  = "]";
+    private final String nameStart;
+    private final String nameEnd = "]";
 
-    public DaemonThreadFactory(String poolName){
+    public DaemonThreadFactory(String poolName) {
         nameStart = "[" + poolName + "-";
     }
 

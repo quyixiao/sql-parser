@@ -15,17 +15,16 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLDeclareStatement extends SQLStatementImpl {
 
     protected List<SQLDeclareItem> items = new ArrayList<SQLDeclareItem>();
-    
+
     public SQLDeclareStatement() {
 
     }

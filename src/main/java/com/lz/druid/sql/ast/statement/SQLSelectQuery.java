@@ -16,10 +16,10 @@
 package com.lz.druid.sql.ast.statement;
 
 import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLObject;
 
 public interface SQLSelectQuery extends SQLObject {
     boolean isBracket();
+
     void setBracket(boolean bracket);
 
     SQLSelectQuery clone();

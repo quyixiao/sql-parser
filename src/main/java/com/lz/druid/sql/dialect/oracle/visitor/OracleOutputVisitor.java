@@ -15,39 +15,14 @@
  */
 package com.lz.druid.sql.dialect.oracle.visitor;
 
-import java.util.List;
-
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.ast.statement.SQLJoinTableSource.JoinType;
 import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalDay;
 import com.lz.druid.sql.dialect.oracle.ast.OracleDataTypeIntervalYear;
-import com.lz.druid.sql.dialect.oracle.ast.clause.CycleClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.CellAssignment;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.CellAssignmentItem;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.CellReferenceOption;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.MainModelClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelColumn;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelColumnClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelRuleOption;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ModelRulesClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.QueryPartitionClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ReferenceModelClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.ReturnRowsClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleLobStorageClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleReturningClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleStorageClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.OracleWithSubqueryEntry;
-import com.lz.druid.sql.dialect.oracle.ast.clause.PartitionExtensionClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.SampleClause;
-import com.lz.druid.sql.dialect.oracle.ast.clause.SearchClause;
-import com.lz.druid.sql.dialect.oracle.ast.expr.*;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
+import com.lz.druid.sql.dialect.oracle.ast.clause.*;
+import com.lz.druid.sql.dialect.oracle.ast.clause.ModelClause.*;
 import com.lz.druid.sql.dialect.oracle.ast.expr.*;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.*;
 import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleAlterIndexStatement.Rebuild;
@@ -65,18 +40,21 @@ import com.lz.druid.sql.dialect.oracle.parser.OracleProcedureDataType;
 import com.lz.druid.sql.visitor.SQLASTOutputVisitor;
 import com.lz.druid.util.JdbcConstants;
 
+import java.util.List;
+
 public class OracleOutputVisitor extends SQLASTOutputVisitor implements OracleASTVisitor {
 
     private final boolean printPostSemi;
+
     {
         this.dbType = JdbcConstants.ORACLE;
     }
 
-    public OracleOutputVisitor(Appendable appender){
+    public OracleOutputVisitor(Appendable appender) {
         this(appender, true);
     }
 
-    public OracleOutputVisitor(Appendable appender, boolean printPostSemi){
+    public OracleOutputVisitor(Appendable appender, boolean printPostSemi) {
         super(appender);
         this.printPostSemi = printPostSemi;
     }
@@ -95,7 +73,7 @@ public class OracleOutputVisitor extends SQLASTOutputVisitor implements OracleAS
 
     public boolean visit(OracleAnalytic x) {
         print0(ucase ? "OVER (" : "over (");
-        
+
         boolean space = false;
         if (x.getPartitionBy().size() > 0) {
             print0(ucase ? "PARTITION BY " : "partition by ");
@@ -126,7 +104,7 @@ public class OracleOutputVisitor extends SQLASTOutputVisitor implements OracleAS
         }
 
         print(')');
-        
+
         return false;
     }
 
@@ -600,7 +578,7 @@ public class OracleOutputVisitor extends SQLASTOutputVisitor implements OracleAS
 
     public boolean visit(OracleUpdateStatement x) {
         print0(ucase ? "UPDATE " : "update ");
-        
+
         if (x.getHints().size() > 0) {
             printAndAccept(x.getHints(), ", ");
             print(' ');
@@ -1136,16 +1114,16 @@ public class OracleOutputVisitor extends SQLASTOutputVisitor implements OracleAS
     @Override
     public boolean visit(OracleInsertStatement x) {
         //visit((SQLInsertStatement) x);
-        
+
         print0(ucase ? "INSERT " : "insert ");
-        
+
         if (x.getHints().size() > 0) {
             printAndAccept(x.getHints(), ", ");
             print(' ');
         }
 
         print0(ucase ? "INTO " : "into ");
-        
+
         x.getTableSource().accept(this);
 
         printInsertColumns(x.getColumns());
@@ -2496,7 +2474,6 @@ public class OracleOutputVisitor extends SQLASTOutputVisitor implements OracleAS
     }
 
 
-
     @Override
     public boolean visit(SQLCreateFunctionStatement x) {
         boolean create = x.isCreate();
@@ -3234,7 +3211,7 @@ public class OracleOutputVisitor extends SQLASTOutputVisitor implements OracleAS
                             && ((OracleFunctionDataType) dataType).getBlock() != null) {
                         // skip
                         println();
-                    } else  if (dataType instanceof OracleProcedureDataType
+                    } else if (dataType instanceof OracleProcedureDataType
                             && ((OracleProcedureDataType) dataType).getBlock() != null) {
                         // skip
                         println();

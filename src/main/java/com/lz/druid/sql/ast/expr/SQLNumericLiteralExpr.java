@@ -16,14 +16,13 @@
 package com.lz.druid.sql.ast.expr;
 
 import com.lz.druid.sql.ast.SQLExprImpl;
-import com.lz.druid.sql.ast.SQLExprImpl;
 
 import java.util.Collections;
 import java.util.List;
 
 public abstract class SQLNumericLiteralExpr extends SQLExprImpl implements SQLLiteralExpr {
 
-    public SQLNumericLiteralExpr(){
+    public SQLNumericLiteralExpr() {
 
     }
 

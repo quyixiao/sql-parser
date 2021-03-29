@@ -18,24 +18,18 @@ package com.lz.druid.sql.ast.expr;
 import com.lz.druid.sql.ast.SQLDataType;
 import com.lz.druid.sql.ast.SQLDataTypeImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLDataType;
-import com.lz.druid.sql.ast.SQLDataTypeImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
-import java.util.Collections;
-import java.util.List;
-
-public class SQLIntegerExpr extends SQLNumericLiteralExpr implements SQLValuableExpr{
+public class SQLIntegerExpr extends SQLNumericLiteralExpr implements SQLValuableExpr {
     public static final SQLDataType DEFAULT_DATA_TYPE = new SQLDataTypeImpl("bigint");
 
     private Number number;
 
-    public SQLIntegerExpr(Number number){
+    public SQLIntegerExpr(Number number) {
 
         this.number = number;
     }
 
-    public SQLIntegerExpr(){
+    public SQLIntegerExpr() {
 
     }
 

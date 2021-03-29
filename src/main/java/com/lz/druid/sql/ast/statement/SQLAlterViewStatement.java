@@ -16,12 +16,6 @@
 package com.lz.druid.sql.ast.statement;
 
 import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.expr.SQLLiteralExpr;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObject;
@@ -36,14 +30,14 @@ import java.util.List;
 
 public class SQLAlterViewStatement extends SQLStatementImpl implements SQLCreateStatement {
 
-    private boolean     force       = false;
+    private boolean force = false;
     // protected SQLName   name;
     protected SQLSelect subQuery;
-    protected boolean   ifNotExists = false;
+    protected boolean ifNotExists = false;
 
-    protected String    algorithm;
+    protected String algorithm;
     protected SQLName definer;
-    protected String    sqlSecurity;
+    protected String sqlSecurity;
 
     protected SQLExprTableSource tableSource;
 
@@ -56,11 +50,11 @@ public class SQLAlterViewStatement extends SQLStatementImpl implements SQLCreate
 
     private SQLLiteralExpr comment;
 
-    public SQLAlterViewStatement(){
+    public SQLAlterViewStatement() {
 
     }
 
-    public SQLAlterViewStatement(String dbType){
+    public SQLAlterViewStatement(String dbType) {
         super(dbType);
     }
 
@@ -164,7 +158,7 @@ public class SQLAlterViewStatement extends SQLStatementImpl implements SQLCreate
     public List<SQLTableElement> getColumns() {
         return columns;
     }
-    
+
     public void addColumn(SQLTableElement column) {
         if (column != null) {
             column.setParent(this);

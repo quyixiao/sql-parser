@@ -20,7 +20,6 @@ import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.SQLExprTableSource;
 import com.lz.druid.sql.ast.statement.SQLSelect;
 import com.lz.druid.sql.ast.statement.SQLSelectItem;
@@ -36,14 +35,6 @@ import com.lz.druid.util.JdbcConstants;
 import com.lz.druid.util.JdbcUtils;
 import com.lz.druid.util.Utils;
 import com.lz.druid.wall.spi.WallVisitorUtils;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleEvalVisitor;
-import com.lz.druid.sql.dialect.postgresql.visitor.PGEvalVisitor;
-import com.lz.druid.sql.dialect.sqlserver.visitor.SQLServerEvalVisitor;
-import com.lz.druid.sql.visitor.functions.*;
-import com.lz.druid.wall.spi.WallVisitorUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -51,8 +42,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Pattern;
-
-import static com.lz.druid.sql.visitor.SQLEvalVisitor.*;
 
 public class SQLEvalVisitorUtils {
 

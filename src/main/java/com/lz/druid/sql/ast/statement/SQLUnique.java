@@ -15,9 +15,6 @@
  */
 package com.lz.druid.sql.ast.statement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
@@ -25,18 +22,21 @@ import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.lz.druid.sql.ast.expr.SQLMethodInvokeExpr;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SQLUnique extends SQLConstraintImpl implements SQLUniqueConstraint, SQLTableElement {
 
     protected final List<SQLSelectOrderByItem> columns = new ArrayList<SQLSelectOrderByItem>();
 
-    public SQLUnique(){
+    public SQLUnique() {
 
     }
 
     public List<SQLSelectOrderByItem> getColumns() {
         return columns;
     }
-    
+
     public void addColumn(SQLExpr column) {
         if (column == null) {
             return;

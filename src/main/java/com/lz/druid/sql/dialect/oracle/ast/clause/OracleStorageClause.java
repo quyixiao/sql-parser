@@ -18,21 +18,19 @@ package com.lz.druid.sql.dialect.oracle.ast.clause;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
-import com.lz.druid.sql.dialect.oracle.ast.OracleSQLObjectImpl;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 public class OracleStorageClause extends OracleSQLObjectImpl {
 
-    private SQLExpr        initial;
-    private SQLExpr        next;
-    private SQLExpr        minExtents;
-    private SQLExpr        maxExtents;
-    private SQLExpr        maxSize;
-    private SQLExpr        pctIncrease;
-    private SQLExpr        freeLists;
-    private SQLExpr        freeListGroups;
-    private SQLExpr        bufferPool;
-    private SQLExpr        objno;
+    private SQLExpr initial;
+    private SQLExpr next;
+    private SQLExpr minExtents;
+    private SQLExpr maxExtents;
+    private SQLExpr maxSize;
+    private SQLExpr pctIncrease;
+    private SQLExpr freeLists;
+    private SQLExpr freeListGroups;
+    private SQLExpr bufferPool;
+    private SQLExpr objno;
     private FlashCacheType flashCache;
     private FlashCacheType cellFlashCache;
 

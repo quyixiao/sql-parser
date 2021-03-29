@@ -29,37 +29,37 @@ import java.util.List;
 import java.util.Set;
 
 public class MySqlUtils {
-    static Class<?>       utilClass;
-    static boolean        utilClassError = false;
-    static boolean        utilClass_isJdbc4 = false;
+    static Class<?> utilClass;
+    static boolean utilClassError = false;
+    static boolean utilClass_isJdbc4 = false;
 
-    static Class<?>       class_5_connection= null;
-    static Method         method_5_getPinGlobalTxToPhysicalConnection = null;
-    static Class<?>       class_5_suspendableXAConnection = null;
+    static Class<?> class_5_connection = null;
+    static Method method_5_getPinGlobalTxToPhysicalConnection = null;
+    static Class<?> class_5_suspendableXAConnection = null;
     static Constructor<?> constructor_5_suspendableXAConnection = null;
-    static Class<?>       class_5_JDBC4SuspendableXAConnection = null;
+    static Class<?> class_5_JDBC4SuspendableXAConnection = null;
     static Constructor<?> constructor_5_JDBC4SuspendableXAConnection = null;
-    static Class<?>       class_5_MysqlXAConnection = null;
+    static Class<?> class_5_MysqlXAConnection = null;
     static Constructor<?> constructor_5_MysqlXAConnection = null;
 
-    static Class<?>       class_5_ConnectionImpl = null;
-    static Method         method_5_getId         = null;
+    static Class<?> class_5_ConnectionImpl = null;
+    static Method method_5_getId = null;
 
-    static Class<?>       class_6_ConnectionImpl = null;
-    static Method         method_6_getId         = null;
+    static Class<?> class_6_ConnectionImpl = null;
+    static Method method_6_getId = null;
 
-    volatile static Class<?>       class_6_connection= null;
-    volatile static Method         method_6_getPropertySet = null;
-    volatile static Method         method_6_getBooleanReadableProperty = null;
-    volatile static Method         method_6_getValue = null;
-    volatile static boolean        method_6_getValue_error = false;
+    volatile static Class<?> class_6_connection = null;
+    volatile static Method method_6_getPropertySet = null;
+    volatile static Method method_6_getBooleanReadableProperty = null;
+    volatile static Method method_6_getValue = null;
+    volatile static boolean method_6_getValue_error = false;
 
-    volatile static Class<?>       class_6_suspendableXAConnection = null;
-    volatile static Method         method_6_getInstance = null;
-    volatile static boolean        method_6_getInstance_error = false;
-    volatile static Method         method_6_getInstanceXA = null;
-    volatile static boolean        method_6_getInstanceXA_error = false;
-    volatile static Class<?>       class_6_JDBC4SuspendableXAConnection = null;
+    volatile static Class<?> class_6_suspendableXAConnection = null;
+    volatile static Method method_6_getInstance = null;
+    volatile static boolean method_6_getInstance_error = false;
+    volatile static Method method_6_getInstanceXA = null;
+    volatile static boolean method_6_getInstanceXA_error = false;
+    volatile static Class<?> class_6_JDBC4SuspendableXAConnection = null;
 
 
     public static XAConnection createXAConnection(Driver driver, Connection physicalConn) throws SQLException {
@@ -110,7 +110,7 @@ public class MySqlUtils {
                     class_6_connection = Class.forName("com.mysql.cj.api.jdbc.JdbcConnection");
                 } catch (Throwable t) {
                 }
-                
+
                 try {
                     // maybe 8.0.11 or higher version, try again with com.mysql.cj.jdbc.JdbcConnection
                     if (class_6_connection == null) {
@@ -118,8 +118,7 @@ public class MySqlUtils {
                         method_6_getPropertySet = class_6_connection.getMethod("getPropertySet");
                         method_6_getBooleanReadableProperty = Class.forName("com.mysql.cj.conf.PropertySet").getMethod("getBooleanReadableProperty", String.class);
                         method_6_getValue = Class.forName("com.mysql.cj.conf.ReadableProperty").getMethod("getValue");
-                    }
-                    else { 
+                    } else {
                         method_6_getPropertySet = class_6_connection.getMethod("getPropertySet");
                         method_6_getBooleanReadableProperty = Class.forName("com.mysql.cj.api.conf.PropertySet").getMethod("getBooleanReadableProperty", String.class);
                         method_6_getValue = Class.forName("com.mysql.cj.api.conf.ReadableProperty").getMethod("getValue");
@@ -218,7 +217,7 @@ public class MySqlUtils {
             return null;
         }
 
-        return  "KILL QUERY " + threadId;
+        return "KILL QUERY " + threadId;
 
     }
 
@@ -329,7 +328,7 @@ public class MySqlUtils {
         }
         String ddlScript = buf.toString();
 
-        if (! (sorted || simplify)) {
+        if (!(sorted || simplify)) {
             return ddlScript;
         }
 
@@ -349,20 +348,20 @@ public class MySqlUtils {
         return SQLUtils.toSQLString(stmtList, JdbcConstants.MYSQL);
     }
 
-    private static transient Class   class_connectionImpl                     = null;
-    private static transient boolean class_connectionImpl_Error               = false;
-    private static transient Method  method_getIO                             = null;
-    private static transient boolean method_getIO_error                       = false;
-    private static transient Class   class_MysqlIO                            = null;
-    private static transient boolean class_MysqlIO_Error                      = false;
-    private static transient Method  method_getLastPacketReceivedTimeMs       = null;
+    private static transient Class class_connectionImpl = null;
+    private static transient boolean class_connectionImpl_Error = false;
+    private static transient Method method_getIO = null;
+    private static transient boolean method_getIO_error = false;
+    private static transient Class class_MysqlIO = null;
+    private static transient boolean class_MysqlIO_Error = false;
+    private static transient Method method_getLastPacketReceivedTimeMs = null;
     private static transient boolean method_getLastPacketReceivedTimeMs_error = false;
 
     public static long getLastPacketReceivedTimeMs(Connection conn) throws SQLException {
         if (class_connectionImpl == null && !class_connectionImpl_Error) {
             try {
                 class_connectionImpl = Utils.loadClass("com.mysql.jdbc.MySQLConnection");
-            } catch (Throwable error){
+            } catch (Throwable error) {
                 class_connectionImpl_Error = true;
             }
         }
@@ -374,7 +373,7 @@ public class MySqlUtils {
         if (method_getIO == null && !method_getIO_error) {
             try {
                 method_getIO = class_connectionImpl.getMethod("getIO");
-            } catch (Throwable error){
+            } catch (Throwable error) {
                 method_getIO_error = true;
             }
         }
@@ -386,7 +385,7 @@ public class MySqlUtils {
         if (class_MysqlIO == null && !class_MysqlIO_Error) {
             try {
                 class_MysqlIO = Utils.loadClass("com.mysql.jdbc.MysqlIO");
-            } catch (Throwable error){
+            } catch (Throwable error) {
                 class_MysqlIO_Error = true;
             }
         }
@@ -400,7 +399,7 @@ public class MySqlUtils {
                 Method method = class_MysqlIO.getDeclaredMethod("getLastPacketReceivedTimeMs");
                 method.setAccessible(true);
                 method_getLastPacketReceivedTimeMs = method;
-            } catch (Throwable error){
+            } catch (Throwable error) {
                 method_getLastPacketReceivedTimeMs_error = true;
             }
         }

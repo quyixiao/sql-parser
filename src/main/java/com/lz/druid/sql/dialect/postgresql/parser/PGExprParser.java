@@ -18,18 +18,7 @@ package com.lz.druid.sql.dialect.postgresql.parser;
 import com.lz.druid.sql.ast.SQLDataType;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGBoxExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGCidrExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGCircleExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGDateField;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGExtractExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGInetExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGLineSegmentsExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGMacAddrExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGPointExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGPolygonExpr;
-import com.lz.druid.sql.dialect.postgresql.ast.expr.PGTypeCastExpr;
+import com.lz.druid.sql.dialect.postgresql.ast.expr.*;
 import com.lz.druid.sql.parser.Lexer;
 import com.lz.druid.sql.parser.SQLExprParser;
 import com.lz.druid.sql.parser.SQLParserFeature;
@@ -46,7 +35,7 @@ public class PGExprParser extends SQLExprParser {
     public final static long[] AGGREGATE_FUNCTIONS_CODES;
 
     static {
-        String[] strings = { "AVG", "COUNT", "MAX", "MIN", "STDDEV", "SUM", "ROW_NUMBER" };
+        String[] strings = {"AVG", "COUNT", "MAX", "MIN", "STDDEV", "SUM", "ROW_NUMBER"};
         AGGREGATE_FUNCTIONS_CODES = FnvHash.fnv1a_64_lower(strings, true);
         AGGREGATE_FUNCTIONS = new String[AGGREGATE_FUNCTIONS_CODES.length];
         for (String str : strings) {
@@ -56,25 +45,25 @@ public class PGExprParser extends SQLExprParser {
         }
     }
 
-    public PGExprParser(String sql){
+    public PGExprParser(String sql) {
         this(new PGLexer(sql));
         this.lexer.nextToken();
         this.dbType = JdbcConstants.POSTGRESQL;
     }
 
-    public PGExprParser(String sql, SQLParserFeature... features){
+    public PGExprParser(String sql, SQLParserFeature... features) {
         this(new PGLexer(sql));
         this.lexer.nextToken();
         this.dbType = JdbcConstants.POSTGRESQL;
     }
 
-    public PGExprParser(Lexer lexer){
+    public PGExprParser(Lexer lexer) {
         super(lexer);
         this.aggregateFunctions = AGGREGATE_FUNCTIONS;
         this.aggregateFunctionHashCodes = AGGREGATE_FUNCTIONS_CODES;
         this.dbType = JdbcConstants.POSTGRESQL;
     }
-    
+
     @Override
     public SQLDataType parseDataType() {
         if (lexer.token() == Token.TYPE) {
@@ -82,7 +71,7 @@ public class PGExprParser extends SQLExprParser {
         }
         return super.parseDataType();
     }
-    
+
     public PGSelectParser createSelectParser() {
         return new PGSelectParser(this);
     }
@@ -122,7 +111,7 @@ public class PGExprParser extends SQLExprParser {
             lexer.nextToken();
 
             SQLValuesExpr values = new SQLValuesExpr();
-            for (;;) {
+            for (; ; ) {
                 accept(Token.LPAREN);
                 SQLListExpr listExpr = new SQLListExpr();
                 exprList(listExpr.getItems(), listExpr);
@@ -140,7 +129,7 @@ public class PGExprParser extends SQLExprParser {
             }
             return values;
         }
-        
+
         return super.primary();
     }
 
@@ -160,15 +149,15 @@ public class PGExprParser extends SQLExprParser {
         if (lexer.token() == Token.COLONCOLON) {
             lexer.nextToken();
             SQLDataType dataType = this.parseDataType();
-            
+
             PGTypeCastExpr castExpr = new PGTypeCastExpr();
-            
+
             castExpr.setExpr(expr);
             castExpr.setDataType(dataType);
 
             return primaryRest(castExpr);
         }
-        
+
         if (lexer.token() == Token.LBRACKET) {
             SQLArrayExpr array = new SQLArrayExpr();
             array.setExpr(expr);
@@ -177,9 +166,9 @@ public class PGExprParser extends SQLExprParser {
             accept(Token.RBRACKET);
             return primaryRest(array);
         }
-        
+
         if (expr.getClass() == SQLIdentifierExpr.class) {
-            String ident = ((SQLIdentifierExpr)expr).getName();
+            String ident = ((SQLIdentifierExpr) expr).getName();
 
             if (lexer.token() == Token.COMMA || lexer.token() == Token.RPAREN) {
                 return super.primaryRest(expr);
@@ -218,7 +207,7 @@ public class PGExprParser extends SQLExprParser {
 
 
                 return primaryRest(timestamp);
-            } else  if ("TIMESTAMPTZ".equalsIgnoreCase(ident)) {
+            } else if ("TIMESTAMPTZ".equalsIgnoreCase(ident)) {
                 if (lexer.token() != Token.LITERAL_ALIAS //
                         && lexer.token() != Token.LITERAL_CHARS //
                         && lexer.token() != Token.WITH) {
@@ -247,23 +236,23 @@ public class PGExprParser extends SQLExprParser {
                 return primaryRest(timestamp);
             } else if ("EXTRACT".equalsIgnoreCase(ident)) {
                 accept(Token.LPAREN);
-                
+
                 PGExtractExpr extract = new PGExtractExpr();
-                
+
                 String fieldName = lexer.stringVal();
                 PGDateField field = PGDateField.valueOf(fieldName.toUpperCase());
                 lexer.nextToken();
-                
+
                 extract.setField(field);
-                
+
                 accept(Token.FROM);
                 SQLExpr source = this.expr();
-                
+
                 extract.setSource(source);
-                
+
                 accept(Token.RPAREN);
-                
-                return primaryRest(extract);     
+
+                return primaryRest(extract);
             } else if ("POINT".equalsIgnoreCase(ident)) {
                 SQLExpr value = this.primary();
                 PGPointExpr point = new PGPointExpr();
@@ -324,14 +313,14 @@ public class PGExprParser extends SQLExprParser {
         }
         // 某些关键字在alias时,不作为关键字,仍然是作用为别名
         switch (lexer.token()) {
-        case INTERSECT:
-            // 具体可以参考SQLParser::alias()的方法实现
-            alias = lexer.stringVal();
-            lexer.nextToken();
-            return alias;
-        // TODO other cases
-        default:
-            break;
+            case INTERSECT:
+                // 具体可以参考SQLParser::alias()的方法实现
+                alias = lexer.stringVal();
+                lexer.nextToken();
+                return alias;
+            // TODO other cases
+            default:
+                break;
         }
         return alias;
     }

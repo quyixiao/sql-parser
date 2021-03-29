@@ -16,7 +16,6 @@
 package com.lz.druid.sql.dialect.mysql.ast.expr;
 
 import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLExpr;
 
 public interface MySqlExpr extends SQLExpr {
 

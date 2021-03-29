@@ -18,11 +18,6 @@ package com.lz.druid.sql.ast.expr;
 import com.lz.druid.sql.SQLUtils;
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.FnvHash;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.FnvHash;
 
@@ -30,21 +25,21 @@ import java.util.Collections;
 import java.util.List;
 
 public final class SQLIdentifierExpr extends SQLExprImpl implements SQLName {
-    protected String    name;
-    private   long      hashCode64;
+    protected String name;
+    private long hashCode64;
 
     private SQLObject resolvedColumn;
-    private   SQLObject resolvedOwnerObject;
+    private SQLObject resolvedOwnerObject;
 
-    public SQLIdentifierExpr(){
+    public SQLIdentifierExpr() {
 
     }
 
-    public SQLIdentifierExpr(String name){
+    public SQLIdentifierExpr(String name) {
         this.name = name;
     }
 
-    public SQLIdentifierExpr(String name, long hash_lower){
+    public SQLIdentifierExpr(String name, long hash_lower) {
         this.name = name;
         this.hashCode64 = hash_lower;
     }
@@ -101,7 +96,7 @@ public final class SQLIdentifierExpr extends SQLExprImpl implements SQLName {
     @Override
     public int hashCode() {
         long value = hashCode64();
-        return (int)(value ^ (value >>> 32));
+        return (int) (value ^ (value >>> 32));
     }
 
     @Override
@@ -128,7 +123,7 @@ public final class SQLIdentifierExpr extends SQLExprImpl implements SQLName {
     public SQLIdentifierExpr simplify() {
         String normalized = SQLUtils.normalize(name);
         if (normalized != name) {
-           return new SQLIdentifierExpr(normalized, hashCode64);
+            return new SQLIdentifierExpr(normalized, hashCode64);
         }
         return this;
     }

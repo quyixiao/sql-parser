@@ -15,17 +15,17 @@
  */
 package com.lz.druid.wall.spi;
 
-import static com.lz.druid.util.JdbcSqlStatUtils.get;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 
+import static com.lz.druid.util.JdbcSqlStatUtils.get;
+
 public class WallFunctionStat {
 
-    private volatile long                                 invokeCount;
+    private volatile long invokeCount;
     final static AtomicLongFieldUpdater<WallFunctionStat> invokeCountUpdater = AtomicLongFieldUpdater.newUpdater(WallFunctionStat.class,
-                                                                                                                 "invokeCount");
+            "invokeCount");
 
     public long getInvokeCount() {
         return invokeCount;

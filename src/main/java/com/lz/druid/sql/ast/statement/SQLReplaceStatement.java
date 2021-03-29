@@ -20,22 +20,17 @@ import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.ast.expr.SQLQueryExpr;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.ast.expr.SQLQueryExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SQLReplaceStatement extends SQLStatementImpl {
-    protected boolean             lowPriority = false;
-    protected boolean             delayed     = false;
+    protected boolean lowPriority = false;
+    protected boolean delayed = false;
 
-    protected SQLExprTableSource  tableSource;
-    protected final List<SQLExpr> columns     = new ArrayList<SQLExpr>();
-    protected List<SQLInsertStatement.ValuesClause>  valuesList  = new ArrayList<SQLInsertStatement.ValuesClause>();
+    protected SQLExprTableSource tableSource;
+    protected final List<SQLExpr> columns = new ArrayList<SQLExpr>();
+    protected List<SQLInsertStatement.ValuesClause> valuesList = new ArrayList<SQLInsertStatement.ValuesClause>();
     protected SQLQueryExpr query;
 
 

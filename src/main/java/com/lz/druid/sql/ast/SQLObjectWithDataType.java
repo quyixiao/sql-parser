@@ -17,5 +17,6 @@ package com.lz.druid.sql.ast;
 
 public interface SQLObjectWithDataType extends SQLObject {
     SQLDataType getDataType();
+
     void setDataType(SQLDataType dataType);
 }

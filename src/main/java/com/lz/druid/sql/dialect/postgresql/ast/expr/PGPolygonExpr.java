@@ -18,7 +18,6 @@ package com.lz.druid.sql.dialect.postgresql.ast.expr;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLObject;
 import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitor;
-import com.lz.druid.sql.dialect.postgresql.visitor.PGASTVisitor;
 
 import java.util.Collections;
 import java.util.List;

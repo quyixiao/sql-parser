@@ -21,7 +21,7 @@ import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public abstract class PGSQLObjectImpl extends SQLObjectImpl implements PGSQLObject {
 
-    public PGSQLObjectImpl(){
+    public PGSQLObjectImpl() {
 
     }
 

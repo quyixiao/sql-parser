@@ -18,12 +18,9 @@ package com.lz.druid.sql.visitor;
 import com.lz.druid.sql.ast.*;
 import com.lz.druid.sql.ast.expr.*;
 import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.ast.statement.*;
 import com.lz.druid.sql.ast.statement.SQLInsertStatement.ValuesClause;
 import com.lz.druid.sql.ast.statement.SQLMergeStatement.MergeInsertClause;
 import com.lz.druid.sql.ast.statement.SQLMergeStatement.MergeUpdateClause;
-import com.lz.druid.sql.ast.*;
 
 public class SQLASTVisitorAdapter implements SQLASTVisitor {
     protected int features;
@@ -633,11 +630,11 @@ public class SQLASTVisitorAdapter implements SQLASTVisitor {
     public boolean visit(SQLOver x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(SQLKeep x) {
     }
-    
+
     @Override
     public boolean visit(SQLKeep x) {
         return true;
@@ -1502,15 +1499,15 @@ public class SQLASTVisitorAdapter implements SQLASTVisitor {
     public void endVisit(SQLAlterTableRepairPartition x) {
 
     }
-    
+
     @Override
     public boolean visit(SQLSequenceExpr x) {
         return true;
     }
-    
+
     @Override
     public void endVisit(SQLSequenceExpr x) {
-        
+
     }
 
     @Override
@@ -1520,7 +1517,7 @@ public class SQLASTVisitorAdapter implements SQLASTVisitor {
 
     @Override
     public void endVisit(SQLMergeStatement x) {
-        
+
     }
 
     @Override
@@ -1530,7 +1527,7 @@ public class SQLASTVisitorAdapter implements SQLASTVisitor {
 
     @Override
     public void endVisit(MergeUpdateClause x) {
-        
+
     }
 
     @Override
@@ -1540,7 +1537,7 @@ public class SQLASTVisitorAdapter implements SQLASTVisitor {
 
     @Override
     public void endVisit(MergeInsertClause x) {
-        
+
     }
 
     @Override
@@ -1555,7 +1552,7 @@ public class SQLASTVisitorAdapter implements SQLASTVisitor {
 
     @Override
     public boolean visit(SQLNullConstraint x) {
-	return true;
+        return true;
     }
 
     @Override

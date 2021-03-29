@@ -15,25 +15,22 @@
  */
 package com.lz.druid.sql.ast.expr;
 
+import com.lz.druid.sql.ast.*;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLBetweenExpr extends SQLExprImpl implements Serializable, SQLReplaceable {
 
     private static final long serialVersionUID = 1L;
     public SQLExpr testExpr;
-    private boolean           not;
-    public SQLExpr            beginExpr;
-    public SQLExpr            endExpr;
+    private boolean not;
+    public SQLExpr beginExpr;
+    public SQLExpr endExpr;
 
-    public SQLBetweenExpr(){
+    public SQLBetweenExpr() {
 
     }
 
@@ -52,13 +49,13 @@ public class SQLBetweenExpr extends SQLExprImpl implements Serializable, SQLRepl
         return x;
     }
 
-    public SQLBetweenExpr(SQLExpr testExpr, SQLExpr beginExpr, SQLExpr endExpr){
+    public SQLBetweenExpr(SQLExpr testExpr, SQLExpr beginExpr, SQLExpr endExpr) {
         setTestExpr(testExpr);
         setBeginExpr(beginExpr);
         setEndExpr(endExpr);
     }
 
-    public SQLBetweenExpr(SQLExpr testExpr, boolean not, SQLExpr beginExpr, SQLExpr endExpr){
+    public SQLBetweenExpr(SQLExpr testExpr, boolean not, SQLExpr beginExpr, SQLExpr endExpr) {
         this(testExpr, beginExpr, endExpr);
         this.not = not;
     }

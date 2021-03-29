@@ -22,21 +22,20 @@ import com.lz.druid.sql.ast.expr.SQLIntegerExpr;
 import com.lz.druid.sql.ast.expr.SQLLiteralExpr;
 import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.dialect.oracle.visitor.OracleASTVisitor;
 
 import java.util.Collections;
 import java.util.List;
 
 public class OracleIntervalExpr extends SQLExprImpl implements SQLLiteralExpr, OracleExpr {
 
-    private SQLExpr            value;
+    private SQLExpr value;
     private OracleIntervalType type;
-    private SQLExpr            precision;
-    private Integer            factionalSecondsPrecision;
+    private SQLExpr precision;
+    private Integer factionalSecondsPrecision;
     private OracleIntervalType toType;
-    private SQLExpr            toFactionalSecondsPrecision;
+    private SQLExpr toFactionalSecondsPrecision;
 
-    public OracleIntervalExpr(){
+    public OracleIntervalExpr() {
 
     }
 

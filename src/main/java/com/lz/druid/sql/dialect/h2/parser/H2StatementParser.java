@@ -27,29 +27,17 @@ import com.lz.druid.sql.parser.SQLParserFeature;
 import com.lz.druid.sql.parser.SQLStatementParser;
 import com.lz.druid.sql.parser.Token;
 import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.expr.SQLQueryExpr;
-import com.lz.druid.sql.ast.statement.SQLInsertInto;
-import com.lz.druid.sql.ast.statement.SQLInsertStatement;
-import com.lz.druid.sql.ast.statement.SQLReplaceStatement;
-import com.lz.druid.sql.ast.statement.SQLSelect;
-import com.lz.druid.sql.parser.Lexer;
-import com.lz.druid.sql.parser.SQLParserFeature;
-import com.lz.druid.sql.parser.SQLStatementParser;
-import com.lz.druid.sql.parser.Token;
-import com.lz.druid.util.JdbcConstants;
 
 public class H2StatementParser extends SQLStatementParser {
     public H2StatementParser(String sql) {
-        super (new H2ExprParser(sql));
+        super(new H2ExprParser(sql));
     }
 
     public H2StatementParser(String sql, SQLParserFeature... features) {
-        super (new H2ExprParser(sql, features));
+        super(new H2ExprParser(sql, features));
     }
 
-    public H2StatementParser(Lexer lexer){
+    public H2StatementParser(Lexer lexer) {
         super(new H2ExprParser(lexer));
     }
 

@@ -16,16 +16,9 @@
 package com.lz.druid.sql.dialect.mysql.ast.statement;
 
 import com.lz.druid.sql.ast.SQLExpr;
+import com.lz.druid.sql.ast.SQLLimit;
 import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLOrderBy;
 import com.lz.druid.sql.ast.statement.SQLUpdateStatement;
-import com.lz.druid.sql.ast.SQLLimit;
-import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLLimit;
-import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.dialect.mysql.visitor.MySqlASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 import com.lz.druid.util.JdbcConstants;
@@ -33,18 +26,18 @@ import com.lz.druid.util.JdbcConstants;
 public class MySqlUpdateStatement extends SQLUpdateStatement implements MySqlStatement {
     private SQLLimit limit;
 
-    private boolean             lowPriority        = false;
-    private boolean             ignore             = false;
-    private boolean             commitOnSuccess    = false;
-    private boolean             rollBackOnFail     = false;
-    private boolean             queryOnPk          = false;
+    private boolean lowPriority = false;
+    private boolean ignore = false;
+    private boolean commitOnSuccess = false;
+    private boolean rollBackOnFail = false;
+    private boolean queryOnPk = false;
     private SQLExpr targetAffectRow;
 
     // for petadata
-    private boolean             forceAllPartitions = false;
+    private boolean forceAllPartitions = false;
     private SQLName forcePartition;
 
-    public MySqlUpdateStatement(){
+    public MySqlUpdateStatement() {
         super(JdbcConstants.MYSQL);
     }
 

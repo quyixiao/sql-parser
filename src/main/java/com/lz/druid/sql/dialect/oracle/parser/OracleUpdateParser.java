@@ -29,13 +29,13 @@ public class OracleUpdateParser extends SQLStatementParser {
         super(new OracleExprParser(sql));
     }
 
-    public OracleUpdateParser(Lexer lexer){
+    public OracleUpdateParser(Lexer lexer) {
         super(new OracleExprParser(lexer));
     }
 
     public OracleUpdateStatement parseUpdateStatement() {
         OracleUpdateStatement update = new OracleUpdateStatement();
-        
+
         if (lexer.token() == Token.UPDATE) {
             lexer.nextToken();
 
@@ -74,7 +74,7 @@ public class OracleUpdateParser extends SQLStatementParser {
         if (lexer.identifierEquals("RETURN") || lexer.token() == Token.RETURNING) {
             lexer.nextToken();
 
-            for (;;) {
+            for (; ; ) {
                 SQLExpr item = this.exprParser.expr();
                 update.getReturning().add(item);
 
@@ -88,7 +88,7 @@ public class OracleUpdateParser extends SQLStatementParser {
 
             accept(Token.INTO);
 
-            for (;;) {
+            for (; ; ) {
                 SQLExpr item = this.exprParser.expr();
                 update.getReturningInto().add(item);
 

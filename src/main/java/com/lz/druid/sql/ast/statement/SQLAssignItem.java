@@ -19,20 +19,16 @@ import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.ast.SQLReplaceable;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.ast.SQLReplaceable;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLAssignItem extends SQLObjectImpl implements SQLReplaceable {
 
     private SQLExpr target;
     private SQLExpr value;
 
-    public SQLAssignItem(){
+    public SQLAssignItem() {
     }
 
-    public SQLAssignItem(SQLExpr target, SQLExpr value){
+    public SQLAssignItem(SQLExpr target, SQLExpr value) {
         setTarget(target);
         setValue(value);
     }

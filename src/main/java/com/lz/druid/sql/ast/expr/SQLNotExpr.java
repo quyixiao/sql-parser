@@ -15,25 +15,25 @@
  */
 package com.lz.druid.sql.ast.expr;
 
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.List;
-
 import com.lz.druid.sql.ast.SQLDataType;
 import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLExprImpl;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
+
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 
 public final class SQLNotExpr extends SQLExprImpl implements Serializable {
 
     private static final long serialVersionUID = 1L;
     public SQLExpr expr;
 
-    public SQLNotExpr(){
+    public SQLNotExpr() {
 
     }
 
-    public SQLNotExpr(SQLExpr x){
+    public SQLNotExpr(SQLExpr x) {
         if (x != null) {
             x.setParent(this);
         }

@@ -15,43 +15,31 @@
  */
 package com.lz.druid.sql.builder.impl;
 
-import java.util.List;
+import com.lz.druid.sql.SQLUtils;
+import com.lz.druid.sql.ast.SQLExpr;
+import com.lz.druid.sql.ast.SQLStatement;
+import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
+import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
+import com.lz.druid.sql.ast.statement.SQLDeleteStatement;
+import com.lz.druid.sql.ast.statement.SQLExprTableSource;
+import com.lz.druid.sql.builder.SQLDeleteBuilder;
+import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlDeleteStatement;
+import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleDeleteStatement;
+import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGDeleteStatement;
+import com.lz.druid.util.JdbcConstants;
 
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.statement.SQLDeleteStatement;
-import com.lz.druid.sql.ast.statement.SQLExprTableSource;
-import com.lz.druid.sql.builder.SQLDeleteBuilder;
-import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlDeleteStatement;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleDeleteStatement;
-import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGDeleteStatement;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.SQLUtils;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.expr.SQLBinaryOperator;
-import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
-import com.lz.druid.sql.ast.statement.SQLDeleteStatement;
-import com.lz.druid.sql.ast.statement.SQLExprTableSource;
-import com.lz.druid.sql.builder.SQLDeleteBuilder;
-import com.lz.druid.sql.dialect.mysql.ast.statement.MySqlDeleteStatement;
-import com.lz.druid.sql.dialect.oracle.ast.stmt.OracleDeleteStatement;
-import com.lz.druid.sql.dialect.postgresql.ast.stmt.PGDeleteStatement;
-import com.lz.druid.util.JdbcConstants;
+import java.util.List;
 
 public class SQLDeleteBuilderImpl implements SQLDeleteBuilder {
 
     private SQLDeleteStatement stmt;
-    private String             dbType;
+    private String dbType;
 
-    public SQLDeleteBuilderImpl(String dbType){
+    public SQLDeleteBuilderImpl(String dbType) {
         this.dbType = dbType;
     }
-    
-    public SQLDeleteBuilderImpl(String sql, String dbType){
+
+    public SQLDeleteBuilderImpl(String sql, String dbType) {
         List<SQLStatement> stmtList = SQLUtils.parseStatements(sql, dbType);
 
         if (stmtList.size() == 0) {
@@ -67,7 +55,7 @@ public class SQLDeleteBuilderImpl implements SQLDeleteBuilder {
         this.dbType = dbType;
     }
 
-    public SQLDeleteBuilderImpl(SQLDeleteStatement stmt, String dbType){
+    public SQLDeleteBuilderImpl(SQLDeleteStatement stmt, String dbType) {
         this.stmt = stmt;
         this.dbType = dbType;
     }
@@ -138,15 +126,15 @@ public class SQLDeleteBuilderImpl implements SQLDeleteBuilder {
         if (JdbcConstants.ORACLE.equals(dbType)) {
             return new OracleDeleteStatement();
         }
-        
+
         if (JdbcConstants.MYSQL.equals(dbType)) {
             return new MySqlDeleteStatement();
         }
-        
+
         if (JdbcConstants.POSTGRESQL.equals(dbType)) {
             return new PGDeleteStatement();
         }
-        
+
         return new SQLDeleteStatement();
     }
 

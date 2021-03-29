@@ -15,15 +15,13 @@
  */
 package com.lz.druid.sql.dialect.sqlserver.ast;
 
-import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.ast.SQLStatementImpl;
 import com.lz.druid.sql.dialect.sqlserver.visitor.SQLServerASTVisitor;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.dialect.sqlserver.visitor.SQLServerASTVisitor;
 
 public abstract class SQLServerStatementImpl extends SQLStatementImpl implements SQLServerStatement {
 
-    public SQLServerStatementImpl(){
+    public SQLServerStatementImpl() {
 
     }
 

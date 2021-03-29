@@ -15,61 +15,55 @@
  */
 package com.lz.druid.sql.ast.statement;
 
+import com.lz.druid.sql.ast.SQLCommentHint;
+import com.lz.druid.sql.ast.SQLName;
+import com.lz.druid.sql.ast.SQLStatementImpl;
+import com.lz.druid.sql.visitor.SQLASTVisitor;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.lz.druid.sql.ast.SQLCommentHint;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObject;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLCommentHint;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLStatementImpl;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 public class SQLDropTableStatement extends SQLStatementImpl implements SQLDropStatement {
     private List<SQLCommentHint> hints;
 
     protected List<SQLExprTableSource> tableSources = new ArrayList<SQLExprTableSource>();
 
-    private boolean                    purge;
+    private boolean purge;
 
-    protected boolean                  cascade      = false;
-    protected boolean                  restrict     = false;
-    protected boolean                  ifExists     = false;
-    private boolean                    temporary    = false;
+    protected boolean cascade = false;
+    protected boolean restrict = false;
+    protected boolean ifExists = false;
+    private boolean temporary = false;
 
-    public SQLDropTableStatement(){
+    public SQLDropTableStatement() {
 
     }
-    
-    public SQLDropTableStatement(String dbType){
-        super (dbType);
+
+    public SQLDropTableStatement(String dbType) {
+        super(dbType);
     }
 
-    public SQLDropTableStatement(SQLName name, String dbType){
+    public SQLDropTableStatement(SQLName name, String dbType) {
         this(new SQLExprTableSource(name), dbType);
     }
-    
-    public SQLDropTableStatement(SQLName name){
-        this (name, null);
-    }
-    
-    public SQLDropTableStatement(SQLExprTableSource tableSource){
-        this (tableSource, null);
+
+    public SQLDropTableStatement(SQLName name) {
+        this(name, null);
     }
 
-    public SQLDropTableStatement(SQLExprTableSource tableSource, String dbType){
-        this (dbType);
+    public SQLDropTableStatement(SQLExprTableSource tableSource) {
+        this(tableSource, null);
+    }
+
+    public SQLDropTableStatement(SQLExprTableSource tableSource, String dbType) {
+        this(dbType);
         this.tableSources.add(tableSource);
     }
 
     public List<SQLExprTableSource> getTableSources() {
         return tableSources;
     }
-    
+
     public void addPartition(SQLExprTableSource tableSource) {
         if (tableSource != null) {
             tableSource.setParent(this);

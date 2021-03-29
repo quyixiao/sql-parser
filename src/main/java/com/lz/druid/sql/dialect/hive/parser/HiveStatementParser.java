@@ -18,18 +18,11 @@ package com.lz.druid.sql.dialect.hive.parser;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLStatement;
 import com.lz.druid.sql.ast.expr.SQLQueryExpr;
-import com.lz.druid.sql.ast.statement.*;
-import com.lz.druid.sql.dialect.hive.ast.HiveInsert;
-import com.lz.druid.sql.dialect.hive.ast.HiveMultiInsertStatement;
-import com.lz.druid.sql.parser.*;
-import com.lz.druid.util.JdbcConstants;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLStatement;
-import com.lz.druid.sql.ast.expr.SQLQueryExpr;
 import com.lz.druid.sql.ast.statement.SQLExprTableSource;
 import com.lz.druid.sql.ast.statement.SQLReplaceStatement;
 import com.lz.druid.sql.ast.statement.SQLSelect;
 import com.lz.druid.sql.ast.statement.SQLSubqueryTableSource;
+import com.lz.druid.sql.dialect.hive.ast.HiveInsert;
 import com.lz.druid.sql.dialect.hive.ast.HiveMultiInsertStatement;
 import com.lz.druid.sql.parser.*;
 import com.lz.druid.util.JdbcConstants;
@@ -38,14 +31,14 @@ import java.util.List;
 
 public class HiveStatementParser extends SQLStatementParser {
     public HiveStatementParser(String sql) {
-        super (new HiveExprParser(sql));
+        super(new HiveExprParser(sql));
     }
 
     public HiveStatementParser(String sql, SQLParserFeature... features) {
-        super (new HiveExprParser(sql, features));
+        super(new HiveExprParser(sql, features));
     }
 
-    public HiveStatementParser(Lexer lexer){
+    public HiveStatementParser(Lexer lexer) {
         super(new HiveExprParser(lexer));
     }
 
@@ -121,7 +114,7 @@ public class HiveStatementParser extends SQLStatementParser {
                 stmt.setFrom(from);
             }
 
-            for (;;) {
+            for (; ; ) {
                 HiveInsert insert = parseHiveInsert();
                 stmt.addItem(insert);
 

@@ -19,12 +19,6 @@ import com.lz.druid.sql.ast.SQLExpr;
 import com.lz.druid.sql.ast.SQLName;
 import com.lz.druid.sql.ast.SQLObjectImpl;
 import com.lz.druid.sql.ast.SQLReplaceable;
-import com.lz.druid.sql.ast.expr.*;
-import com.lz.druid.sql.visitor.SQLASTVisitor;
-import com.lz.druid.sql.ast.SQLExpr;
-import com.lz.druid.sql.ast.SQLName;
-import com.lz.druid.sql.ast.SQLObjectImpl;
-import com.lz.druid.sql.ast.SQLReplaceable;
 import com.lz.druid.sql.ast.expr.SQLBinaryOpExpr;
 import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
@@ -36,7 +30,7 @@ public class SQLUpdateSetItem extends SQLObjectImpl implements SQLReplaceable {
     private SQLExpr column;
     private SQLExpr value;
 
-    public SQLUpdateSetItem(){
+    public SQLUpdateSetItem() {
 
     }
 
@@ -71,15 +65,15 @@ public class SQLUpdateSetItem extends SQLObjectImpl implements SQLReplaceable {
     @Override
     protected void accept0(SQLASTVisitor visitor) {
         if (visitor.visit(this)) {
-            if(value instanceof SQLVariantRefExpr){
+            if (value instanceof SQLVariantRefExpr) {
                 acceptChild(visitor, column);
-            }else if(value instanceof SQLBinaryOpExpr){
+            } else if (value instanceof SQLBinaryOpExpr) {
                 SQLExpr left = ((SQLBinaryOpExpr) value).getLeft();
-                if(notIdentifierExpr(left)){
+                if (notIdentifierExpr(left)) {
                     acceptChild(visitor, left);
                 }
                 SQLExpr right = ((SQLBinaryOpExpr) value).getRight();
-                if(notIdentifierExpr(right)){
+                if (notIdentifierExpr(right)) {
                     acceptChild(visitor, right);
                 }
             }
