@@ -34,9 +34,11 @@ import com.lz.druid.stat.TableStat.Mode;
 import com.lz.druid.stat.TableStat.Relationship;
 import com.lz.druid.util.FnvHash;
 import com.lz.druid.util.JdbcConstants;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
 
+@Slf4j
 public class SchemaStatVisitor extends SQLASTVisitorAdapter {
 
     protected SchemaRepository repository;
@@ -131,15 +133,15 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
     }
 
     public Column addColumnUnKown() {
-        return addColumn("UNKOWN", "?");
+        return addColumn("UNKOWN", "?", 0);
     }
 
-    public Column addColumn(String tableName, String columnName) {
+    public Column addColumn(String tableName, String columnName, int pos) {
         if ("*".equals(columnName)) {
             return null;
         }
         // todo quyixiao
-        Column column = new Column(tableName, columnName);
+        Column column = new Column(tableName, columnName,pos);
         long tableHashCode64 = column.hashCode64();
         Column temp = this.columns.get(column.hashCode64());
         int i = 0;
@@ -152,7 +154,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
         return column;
     }
 
-    public Column addColumn(SQLName table, String columnName) {
+    public Column addColumn(SQLName table, String columnName, int pos) {
         if ("*".equals(columnName)) {
             return null;
         }
@@ -169,14 +171,9 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
             column = this.columns.get(columnHashCode64);
             i++;
         }
-        column = new Column(tableName, columnName, columnHashCode64);
+        column = new Column(tableName, columnName, columnHashCode64, pos);
         columns.put(columnHashCode64, column);
         // todo quyixiao
-        /*Column column = this.columns.get(columnHashCode64);
-        if (column == null && columnName != null) {
-            column = new Column(tableName, columnName, columnHashCode64);
-            columns.put(columnHashCode64, column);
-        }*/
         return column;
     }
 
@@ -617,7 +614,8 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
                     leftFlag = rightFlag = false;
                 } else if (isIdentifierExpr(left) && isIdentifierExpr(right)) {
                     rightFlag = leftFlag = false;
-                } else if (isIdentifierExpr(left) && right instanceof SQLMethodInvokeExpr) {
+                } else if (isIdentifierExpr(left) &&( right instanceof SQLMethodInvokeExpr
+                        || right instanceof SQLCastExpr || right instanceof SQLQueryExpr)) {
                     leftFlag = false;
                 } else if (left instanceof SQLMethodInvokeExpr && isIdentifierExpr(right)) {
                     rightFlag = false;
@@ -631,9 +629,11 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
             case Add:
                 if (isIdentifierExpr(left) && isIdentifierExpr(right)) {
                     leftFlag = rightFlag = false;
-                } else if (isIdentifierExpr(left) && right instanceof SQLVariantRefExpr) {
+                } else if (isIdentifierExpr(left) && (right instanceof SQLVariantRefExpr
+                        || right instanceof SQLBinaryOpExpr )) {
                     leftFlag = false;
-                } else if (left instanceof SQLVariantRefExpr && isIdentifierExpr(right)) {
+                } else if ((left instanceof SQLVariantRefExpr
+                        || left instanceof SQLBinaryOpExpr)&& isIdentifierExpr(right)) {
                     rightFlag = false;
                 }
                 break;
@@ -782,7 +782,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
                     basic *= FnvHash.PRIME;
                     long columnHashCode64 = FnvHash.hashCode64(basic, column);
 
-                    return new Column(table.toString(), column, columnHashCode64);
+                    return new Column(table.toString(), column, columnHashCode64,propertyExpr.getPos());
                 }
             }
 
@@ -826,7 +826,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
                 basic *= FnvHash.PRIME;
                 long columnHashCode64 = FnvHash.hashCode64(basic, column);
 
-                return new Column(table.toString(), column, columnHashCode64);
+                return new Column(table.toString(), column, columnHashCode64,identifierExpr.getPos());
             }
 
             return new Column("UNKNOWN", column);
@@ -1246,7 +1246,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
                     return false;
                 }
 
-                column = addColumn(table.getName(), ident);
+                column = addColumn(table.getName(), ident, x.getPos());
 
                 if (column != null && isParentGroupBy(x)) {
                     this.groupByColumns.add(column);
@@ -1254,7 +1254,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
             } else if (expr instanceof SQLPropertyExpr) {
                 SQLPropertyExpr table = (SQLPropertyExpr) expr;
                 String tableName = table.toString();
-                column = addColumn(tableName, ident);
+                column = addColumn(tableName, ident, x.getPos());
 
                 if (column != null && isParentGroupBy(x)) {
                     this.groupByColumns.add(column);
@@ -1283,7 +1283,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
                         tableName = table.toString();
                     }
 
-                    column = addColumn(tableName, ident);
+                    column = addColumn(tableName, ident, x.getPos());
                 }
             }
         } else if (tableSource instanceof SQLWithSubqueryClause.Entry
@@ -1315,7 +1315,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
                 }
             }
             if (!skip) {
-                column = handleUnkownColumn(ident);
+                column = handleUnkownColumn(ident, x.getPos());
             }
         }
 
@@ -1379,13 +1379,13 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
             SQLExpr expr = ((SQLExprTableSource) tableSource).getExpr();
             if (expr instanceof SQLIdentifierExpr) {
                 SQLIdentifierExpr table = (SQLIdentifierExpr) expr;
-                column = addColumn(table, ident);
+                column = addColumn(table, ident, x.getPos());
                 if (column != null && isParentGroupBy(x)) {
                     this.groupByColumns.add(column);
                 }
             } else if (expr instanceof SQLPropertyExpr || expr instanceof OracleDbLinkExpr) {
                 String tableName = expr.toString();
-                column = addColumn(tableName, ident);
+                column = addColumn(tableName, ident, x.getPos());
 
                 if (column != null && isParentGroupBy(x)) {
                     this.groupByColumns.add(column);
@@ -1414,7 +1414,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
                         tableName = table.toString();
                     }
 
-                    column = addColumn(tableName, ident);
+                    column = addColumn(tableName, ident, x.getPos());
                 }
             }
         } else if (tableSource instanceof SQLWithSubqueryClause.Entry
@@ -1437,7 +1437,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
                 }
             }
             if (!skip) {
-                column = handleUnkownColumn(ident);
+                column = handleUnkownColumn(ident, x.getPos());
             }
         }
 
@@ -1528,8 +1528,8 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
         }
     }
 
-    protected Column handleUnkownColumn(String columnName) {
-        return addColumn("UNKNOWN", columnName);
+    protected Column handleUnkownColumn(String columnName, int pos) {
+        return addColumn("UNKNOWN", columnName, pos);
     }
 
     public boolean visit(SQLAllColumnExpr x) {
@@ -1577,7 +1577,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
                 if (e instanceof SQLColumnDefinition) {
                     SQLColumnDefinition columnDefinition = (SQLColumnDefinition) e;
                     SQLName columnName = columnDefinition.getName();
-                    Column column = addColumn(tableName.toString(), columnName.toString());
+                    Column column = addColumn(tableName.toString(), columnName.toString(), columnDefinition.getPos());
                     if (isParentSelectItem(x.getParent())) {
                         column.setSelec(true);
                     }
@@ -1586,7 +1586,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
         } else if (expr != null) {
             // todo quyixiao
             if (false) {
-                Column column = addColumn(expr.toString(), "*");
+                Column column = addColumn(expr.toString(), "*", 0);
                 if (isParentSelectItem(x.getParent())) {
                     column.setSelec(true);
                 }
@@ -1620,7 +1620,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
     }
 
     public Column getColumn(String tableName, String columnName) {
-        Column column = new Column(tableName, columnName);
+        Column column = new Column(tableName, columnName,0);
 
         return this.columns.get(column.hashCode64());
     }
@@ -1964,7 +1964,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
         }
 
         String columnName = x.getName().toString();
-        Column column = addColumn(tableName, columnName);
+        Column column = addColumn(tableName, columnName, x.getPos());
         if (x.getDataType() != null) {
             column.setDataType(x.getDataType().getName());
         }
@@ -2006,7 +2006,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
 
         for (SQLColumnDefinition column : x.getColumns()) {
             String columnName = column.getName().toString();
-            addColumn(table, columnName);
+            addColumn(table, columnName, column.getPos());
         }
         return false;
     }
@@ -2113,7 +2113,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
             if (expr instanceof SQLIdentifierExpr) {
                 SQLIdentifierExpr identExpr = (SQLIdentifierExpr) expr;
                 String columnName = identExpr.getName();
-                addColumn(table, columnName);
+                addColumn(table, columnName, identExpr.getPos());
             }
         }
 
@@ -2133,7 +2133,8 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
         stat.incrementReferencedCount();
         for (SQLName column : x.getReferencedColumns()) {
             String columnName = column.getSimpleName();
-            addColumn(table, columnName);
+
+            addColumn(table, columnName, x.getPos());
         }
 
         return false;
@@ -2489,14 +2490,14 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
     @Override
     public boolean visit(SQLDescribeStatement x) {
         String tableName = x.getObject().toString();
-
         TableStat tableStat = this.getTableStat(x.getObject());
         tableStat.incrementDropIndexCount();
-
         SQLName column = x.getColumn();
+
         if (column != null) {
             String columnName = column.toString();
-            this.addColumn(tableName, columnName);
+            log.info("可能会出错 " + columnName);
+            this.addColumn(tableName, columnName, x.getPos());
         }
         return false;
     }

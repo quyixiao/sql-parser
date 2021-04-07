@@ -1898,6 +1898,10 @@ public class Lexer {
         return pos;
     }
 
+    public final int getStartPos() {
+        return startPos;
+    }
+
     /**
      * The value of a literal token, recorded as a string. For integers, leading 0x and 'l' suffixes are suppressed.
      */
@@ -2249,5 +2253,9 @@ public class Lexer {
 
     public String getSource() {
         return text;
+    }
+
+    public int getMark(){
+        return mark;
     }
 }

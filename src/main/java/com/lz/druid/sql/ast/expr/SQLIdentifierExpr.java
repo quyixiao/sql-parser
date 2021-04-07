@@ -44,6 +44,12 @@ public final class SQLIdentifierExpr extends SQLExprImpl implements SQLName {
         this.hashCode64 = hash_lower;
     }
 
+    public SQLIdentifierExpr(String name, long hash_lower,int pos) {
+        this.name = name;
+        this.hashCode64 = hash_lower;
+        this.setPos(pos);
+    }
+
     public String getSimpleName() {
         return name;
     }

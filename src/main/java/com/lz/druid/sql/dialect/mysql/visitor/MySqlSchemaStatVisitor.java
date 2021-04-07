@@ -396,7 +396,7 @@ public class MySqlSchemaStatVisitor extends SchemaStatVisitor implements MySqlAS
 
             SQLName columnName = x.getColumnName();
             if (columnName != null) {
-                addColumn(table, columnName.getSimpleName());
+                addColumn(table, columnName.getSimpleName(),x.getPos());
             }
         }
 
@@ -916,7 +916,7 @@ public class MySqlSchemaStatVisitor extends SchemaStatVisitor implements MySqlAS
 
         SQLName column = x.getColumnName();
         String columnName = column.toString();
-        addColumn(tableName, columnName);
+        addColumn(tableName, columnName,x.getPos());
         return false;
     }
 
@@ -934,7 +934,7 @@ public class MySqlSchemaStatVisitor extends SchemaStatVisitor implements MySqlAS
 
         SQLName column = x.getNewColumnDefinition().getName();
         String columnName = column.toString();
-        addColumn(tableName, columnName);
+        addColumn(tableName, columnName,x.getNewColumnDefinition().getPos());
 
         return false;
     }

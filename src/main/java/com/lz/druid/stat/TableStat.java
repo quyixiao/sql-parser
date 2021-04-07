@@ -397,7 +397,6 @@ public class TableStat {
     }
 
     public static class Column {
-
         private final String table;
         private final String name;
         protected final long hashCode64;
@@ -410,6 +409,7 @@ public class TableStat {
 
         private boolean primaryKey; // for ddl
         private boolean unique; //
+        private int pos;
 
         private Map<String, Object> attributes = new HashMap<String, Object>();
 
@@ -423,6 +423,28 @@ public class TableStat {
         public Column(String table, String name) {
             this.table = table;
             this.name = name;
+
+            int p = table.indexOf('.');
+            if (p != -1) {
+                String dbType = null;
+                if (table.indexOf('`') != -1) {
+                    dbType = JdbcConstants.MYSQL;
+                } else if (table.indexOf('[') != -1) {
+                    dbType = JdbcConstants.SQL_SERVER;
+                } else if (table.indexOf('@') != -1) {
+                    dbType = JdbcConstants.ORACLE;
+                }
+                SQLExpr owner = SQLUtils.toSQLExpr(table, dbType);
+                hashCode64 = new SQLPropertyExpr(owner, name).hashCode64();
+            } else {
+                hashCode64 = FnvHash.hashCode64(table, name);
+            }
+        }
+
+        public Column(String table, String name,int pos) {
+            this.table = table;
+            this.name = name;
+            this.pos = pos;
 
             int p = table.indexOf('.');
             if (p != -1) {
@@ -461,10 +483,11 @@ public class TableStat {
             return hashCode64;
         }
 
-        public Column(String table, String name, long hashCode64) {
+        public Column(String table, String name, long hashCode64,int pos) {
             this.table = table;
             this.name = name;
             this.hashCode64 = hashCode64;
+            this.pos  = pos;
         }
 
         public String getTable() {
@@ -552,6 +575,15 @@ public class TableStat {
          */
         public String getDataType() {
             return dataType;
+        }
+
+
+        public int getPos() {
+            return pos;
+        }
+
+        public void setPos(int pos) {
+            this.pos = pos;
         }
 
         /**

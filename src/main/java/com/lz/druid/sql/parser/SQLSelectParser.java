@@ -403,6 +403,7 @@ public class SQLSelectParser extends SQLParser {
 
             if (lexer.token == Token.IDENTIFIER) {
                 String ident = lexer.stringVal();
+                int mark = lexer.mark;
                 long hash_lower = lexer.hash_lower();
                 lexer.nextTokenEq();
 
@@ -422,7 +423,7 @@ public class SQLSelectParser extends SQLParser {
                         identExpr = new SQLIdentifierExpr(ident, hash_lower);
                     }
                 } else {
-                    identExpr = new SQLIdentifierExpr(ident, hash_lower);
+                    identExpr = new SQLIdentifierExpr(ident, hash_lower,mark);
                 }
 
                 if (lexer.token == Token.DOT) {

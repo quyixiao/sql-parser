@@ -17,6 +17,7 @@ package com.lz.druid.sql.ast;
 
 import com.lz.druid.sql.ast.expr.SQLIdentifierExpr;
 import com.lz.druid.sql.ast.expr.SQLPropertyExpr;
+import com.lz.druid.sql.parser.Lexer;
 import com.lz.druid.sql.visitor.SQLASTVisitor;
 
 import java.util.ArrayList;
@@ -28,8 +29,11 @@ public abstract class SQLObjectImpl implements SQLObject {
 
     protected SQLObject parent;
     protected Map<String, Object> attributes;
+    public static Lexer lexer;
+    private int pos;
 
     public SQLObjectImpl() {
+        pos = lexer.getMark();
     }
 
     public final void accept(SQLASTVisitor visitor) {
@@ -235,5 +239,14 @@ public abstract class SQLObjectImpl implements SQLObject {
             return false;
         }
         return true;
+    }
+
+
+    public int getPos() {
+        return pos;
+    }
+
+    public void setPos(int pos) {
+        this.pos = pos;
     }
 }

@@ -312,6 +312,7 @@ public class SQLExprParser extends SQLParser {
                 break;
             case IDENTIFIER:
                 String ident = lexer.stringVal();
+                int mark = lexer.getMark();
                 long hash_lower = lexer.hash_lower;
                 lexer.nextToken();
 
@@ -333,7 +334,7 @@ public class SQLExprParser extends SQLParser {
                 } else if (JdbcConstants.MYSQL.equalsIgnoreCase(dbType) && ident.startsWith("0x") && (ident.length() % 2) == 0) {
                     sqlExpr = new SQLHexExpr(ident.substring(2));
                 } else {
-                    sqlExpr = new SQLIdentifierExpr(ident, hash_lower);
+                    sqlExpr = new SQLIdentifierExpr(ident, hash_lower,mark);
                 }
                 break;
             case NEW:

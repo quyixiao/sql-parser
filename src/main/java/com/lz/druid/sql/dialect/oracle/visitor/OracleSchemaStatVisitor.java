@@ -859,7 +859,7 @@ public class OracleSchemaStatVisitor extends SchemaStatVisitor implements Oracle
 
         for (SQLColumnDefinition column : x.getColumns()) {
             SQLName columnName = column.getName();
-            addColumn(table, columnName.toString());
+            addColumn(table, columnName.toString(),column.getPos());
 
         }
 
