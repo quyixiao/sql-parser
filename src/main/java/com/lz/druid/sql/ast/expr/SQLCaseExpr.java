@@ -70,7 +70,9 @@ public class SQLCaseExpr extends SQLExprImpl implements SQLReplaceable, Serializ
 
     protected void accept0(SQLASTVisitor visitor) {
         if (visitor.visit(this)) {
-            acceptChild(visitor, this.valueExpr);
+            if(notIdentifierExpr(this.valueExpr)){
+                acceptChild(visitor, this.valueExpr);
+            }
             acceptChild(visitor, this.items);
             acceptChild(visitor, this.elseExpr);
         }

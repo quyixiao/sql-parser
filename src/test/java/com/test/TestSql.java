@@ -811,4 +811,280 @@ public class TestSql {
         printSql(sql);
     }
 
+
+
+
+    @org.junit.Test
+    public void test54() {
+        String sql = "SELECT\n" +
+                "        TB_BORROW_BILL.id id,\n" +
+                "        TB_BORROW_BILL.bill_nper AS billNper,\n" +
+                "        TB_PHONE.real_name_en AS realName,\n" +
+                "        TB_PHONE.user_name_en AS userName,\n" +
+                "        TB_PHONE.id_number_en AS idNumber,\n" +
+                "        TB_PHONE.user_no AS userNo,\n" +
+                "        ((TB_BORROW_BILL.bill_amount - TB_BORROW_BILL.credit_capital - TB_BORROW_BILL.credit_rate) +TB_BORROW_BILL.overdue_amount +TB_BORROW_BILL.sum_overdue +(TB_BORROW_BILL.breach_amount- TB_BORROW_BILL.credit_breach) + TB_BORROW_BILL.penal_sum + TB_BORROW_BILL.differ_amount  - TB_BORROW_BILL.credit_premium ) totalAmount,\n" +
+                "        TB_BORROW_BILL.gmt_plan_repayment AS repayDate,\n" +
+                "        TB_BORROW_BILL.bill_amount AS shouldRepayAmount,\n" +
+                "        case TB_STAGE_BORROW.supplier_code\n" +
+                "            when '100000276' then (TB_BORROW_BILL.bank_capital - TB_BORROW_BILL.credit_bank_capital)\n" +
+                "            when '100000278' then (TB_BORROW_BILL.bank_capital - TB_BORROW_BILL.credit_bank_capital)\n" +
+                "            when '100000277' then (TB_BORROW_BILL.capital_amount - TB_BORROW_BILL.credit_capital)\n" +
+                "            when '100000279' then (TB_BORROW_BILL.capital_amount - TB_BORROW_BILL.credit_capital)\n" +
+                "            when '100000280' then (TB_BORROW_BILL.capital_amount - TB_BORROW_BILL.credit_capital)\n" +
+                "        end capitalAmount,\n" +
+                "        case TB_STAGE_BORROW.supplier_code\n" +
+                "            when '100000276' then (TB_BORROW_BILL.bank_rate - TB_BORROW_BILL.credit_bank_rate)\n" +
+                "            when '100000278' then (TB_BORROW_BILL.bank_rate - TB_BORROW_BILL.credit_bank_rate)\n" +
+                "            when '100000277' then\n" +
+                "            case TB_BORROW_BILL.is_early_settlement\n" +
+                "                when 1 then TB_BORROW_BILL.sum_rate\n" +
+                "                when 0 then (TB_BORROW_BILL.rate_amount - TB_BORROW_BILL.credit_rate)\n" +
+                "            end\n" +
+                "            when '100000279' then\n" +
+                "            case TB_BORROW_BILL.is_early_settlement\n" +
+                "                when 1 then TB_BORROW_BILL.sum_rate\n" +
+                "                when 0 then (TB_BORROW_BILL.init_rate - TB_BORROW_BILL.credit_rate)\n" +
+                "            end\n" +
+                "            when '100000280' then\n" +
+                "            case TB_BORROW_BILL.is_early_settlement\n" +
+                "                when 1 then TB_BORROW_BILL.sum_rate\n" +
+                "                when 0 then (TB_BORROW_BILL.rate_amount - TB_BORROW_BILL.credit_rate)\n" +
+                "            end\n" +
+                "        end rateAmount,\n" +
+                "        (\n" +
+                "        TB_BORROW_BILL.overdue_amount + TB_BORROW_BILL.sum_overdue\n" +
+                "        ) AS overdueAmount,\n" +
+                "        (TB_BORROW_BILL.breach_amount - TB_BORROW_BILL.credit_breach) AS breachAmount,\n" +
+                "        TB_BORROW_BILL.`status` AS repayStatus,\n" +
+                "        case TB_STAGE_BORROW.supplier_code\n" +
+                "            when '100000276' then (\n" +
+                "                TB_BORROW_BILL.bill_amount -\n" +
+                "                TB_BORROW_BILL.bank_amount -\n" +
+                "                TB_BORROW_BILL.credit_premium\n" +
+                "            )\n" +
+                "            when '100000278' then (\n" +
+                "                TB_BORROW_BILL.bill_amount -\n" +
+                "                TB_BORROW_BILL.bank_amount -\n" +
+                "                TB_BORROW_BILL.credit_premium\n" +
+                "            )\n" +
+                "            when '100000277' then 0\n" +
+                "            when '100000279' then 0\n" +
+                "            when '100000280' then TB_BORROW_BILL.premium-TB_BORROW_BILL.credit_premium\n" +
+                "        end insuranceAmount,\n" +
+                "        TB_BORROW_BILL.penal_sum penalSum,\n" +
+                "        TB_BORROW_BILL.borrow_id borrowId,\n" +
+                "        TB_STAGE_BORROW.supplier_code supplierCode,\n" +
+                "        TB_STAGE_BORROW.borrow_nper borrowNper\n" +
+                "        FROM\n" +
+                "        lt_borrow_bill TB_BORROW_BILL\n" +
+                "        LEFT JOIN lt_user_phone TB_PHONE ON TB_PHONE.unique_code = TB_BORROW_BILL.unique_code\n" +
+                "        AND TB_PHONE.is_main = 1\n" +
+                "        LEFT JOIN lt_stage_borrow TB_STAGE_BORROW ON TB_STAGE_BORROW.id = TB_BORROW_BILL.borrow_id\n" +
+                "        WHERE\n" +
+                "        TB_BORROW_BILL.is_delete = 0\n" +
+                "         \n" +
+                "                AND TB_PHONE.user_name_en = ?\n" +
+                "             \n" +
+                "             \n" +
+                "             \n" +
+                "\n" +
+                "             \n" +
+                "\n" +
+                "             \n" +
+                "        LIMIT ?,\n" +
+                "         ?";
+        printSql(sql);
+    }
+
+
+
+    @org.junit.Test
+    public void test55() {
+        String sql = "SELECT sum(t.totalAmount) totalAmountCount,\n" +
+                "\n" +
+                "        sum(t.repayAmount) sumTotalAmountCount,\n" +
+                "\n" +
+                "        sum(t.totalAmount - t.repayAmount) nopayTotalAmountCount,\n" +
+                "\n" +
+                "        sum(t.capitalAmount) capitalAmountCount,\n" +
+                "\n" +
+                "        sum(t.sumCapital) sumCapitalAmountCount,\n" +
+                "\n" +
+                "        sum(t.capitalAmount - t.sumCapital) nopayCapitalAmountCount,\n" +
+                "\n" +
+                "        sum(t.rateAmount) rateAmountCount,\n" +
+                "\n" +
+                "        sum(t.sumRate) sumRateAmountCount,\n" +
+                "\n" +
+                "        sum(t.rateAmount-t.sumRate) nopayRateAmountCount,\n" +
+                "\n" +
+                "        sum(t.overdueAmount) overdueAmountCount,\n" +
+                "\n" +
+                "        sum(t.sumOverdue) sumOverdueCount,\n" +
+                "\n" +
+                "        sum(t.overdueAmount - t.sumOverdue) nopayOverdueCount,\n" +
+                "\n" +
+                "        sum(t.breachAmount) breachAmountCount,\n" +
+                "\n" +
+                "        sum(t.sumBreach) sumBreachCount,\n" +
+                "\n" +
+                "        sum(t.breachAmount - t.sumBreach) nopayBreachCount,\n" +
+                "\n" +
+                "        sum(t.insuranceAmount) insuranceAmountCount,\n" +
+                "\n" +
+                "        sum(t.sumInsuranceAmount) sumInsuranceAmountCount,\n" +
+                "\n" +
+                "        sum(t.insuranceAmount - t.sumInsuranceAmount) nopayInsuranceAmountCount,\n" +
+                "\n" +
+                "        sum(t.penalSum) penalSumCount\n" +
+                "\n" +
+                "        from (\n" +
+                "\n" +
+                "        SELECT\n" +
+                "\n" +
+                "        if(TB_STAGE_BORROW.supplier_code='100000276' or TB_STAGE_BORROW.supplier_code='100000278',\n" +
+                "\n" +
+                "        ((TB_BORROW_BILL.bill_amount - TB_BORROW_BILL.credit_capital - TB_BORROW_BILL.credit_rate)+ TB_BORROW_BILL.overdue_amount + TB_BORROW_BILL.sum_overdue\n" +
+                "\n" +
+                "         +(TB_BORROW_BILL.breach_amount-TB_BORROW_BILL.credit_breach) + TB_BORROW_BILL.penal_sum +   TB_BORROW_BILL.differ_amount),\n" +
+                "\n" +
+                "        ((TB_BORROW_BILL.bill_amount - TB_BORROW_BILL.credit_capital - TB_BORROW_BILL.credit_rate)+TB_BORROW_BILL.overdue_amount +TB_BORROW_BILL.sum_overdue\n" +
+                "\n" +
+                "        +(TB_BORROW_BILL.breach_amount-TB_BORROW_BILL.credit_breach) + TB_BORROW_BILL.penal_sum  - TB_BORROW_BILL.credit_premium + TB_BORROW_BILL.differ_amount)\n" +
+                "\n" +
+                "        )\n" +
+                "\n" +
+                "        totalAmount,\n" +
+                "\n" +
+                "        TB_BORROW_BILL.repayment_amount as repayAmount,\n" +
+                "\n" +
+                "        TB_BORROW_BILL.gmt_plan_repayment AS repayDate,\n" +
+                "\n" +
+                "        if(TB_STAGE_BORROW.supplier_code='100000276' or TB_STAGE_BORROW.supplier_code='100000278',\n" +
+                "\n" +
+                "        TB_BORROW_BILL.bank_capital - TB_BORROW_BILL.credit_bank_capital,\n" +
+                "\n" +
+                "        TB_BORROW_BILL.capital_amount - TB_BORROW_BILL.credit_capital) capitalAmount,\n" +
+                "\n" +
+                "        if( TB_STAGE_BORROW.supplier_code='100000276' or TB_STAGE_BORROW.supplier_code= '100000278', TB_BORROW_BILL.sum_bank_capital, TB_BORROW_BILL.sum_capital\n" +
+                "\n" +
+                "        ) sumCapital,\n" +
+                "\n" +
+                "        if( TB_STAGE_BORROW.supplier_code = '100000276' or  TB_STAGE_BORROW.supplier_code ='100000278' ,TB_BORROW_BILL.sum_bank_rate\n" +
+                "\n" +
+                "        ,TB_BORROW_BILL.sum_rate)sumRate,\n" +
+                "\n" +
+                "        case TB_STAGE_BORROW.supplier_code\n" +
+                "\n" +
+                "        when '100000276' then (TB_BORROW_BILL.bank_rate - TB_BORROW_BILL.credit_bank_rate)\n" +
+                "\n" +
+                "        when '100000278' then (TB_BORROW_BILL.bank_rate - TB_BORROW_BILL.credit_bank_rate)\n" +
+                "\n" +
+                "        when '100000277' then (TB_BORROW_BILL.rate_amount - TB_BORROW_BILL.credit_rate)\n" +
+                "\n" +
+                "        when '100000279' then (TB_BORROW_BILL.init_rate - TB_BORROW_BILL.credit_rate)\n" +
+                "\n" +
+                "        when '100000280' then (TB_BORROW_BILL.rate_amount - TB_BORROW_BILL.credit_rate)\n" +
+                "\n" +
+                "        end rateAmount,\n" +
+                "\n" +
+                "        (\n" +
+                "\n" +
+                "        TB_BORROW_BILL.overdue_amount + TB_BORROW_BILL.sum_overdue\n" +
+                "\n" +
+                "        ) AS overdueAmount,\n" +
+                "\n" +
+                "        (TB_BORROW_BILL.breach_amount - TB_BORROW_BILL.credit_breach) AS breachAmount,\n" +
+                "\n" +
+                "        TB_BORROW_BILL.`status` AS repayStatus,\n" +
+                "\n" +
+                "        case TB_STAGE_BORROW.supplier_code\n" +
+                "\n" +
+                "        when '100000276' then ( TB_BORROW_BILL.bill_amount + TB_BORROW_BILL.overdue_amount +\n" +
+                "\n" +
+                "                                TB_BORROW_BILL.sum_overdue + TB_BORROW_BILL.breach_amount +\n" +
+                "\n" +
+                "                                TB_BORROW_BILL.differ_amount - TB_BORROW_BILL.bank_amount-\n" +
+                "\n" +
+                "                                TB_BORROW_BILL.credit_breach -\n" +
+                "\n" +
+                "                                TB_BORROW_BILL.credit_premium)\n" +
+                "\n" +
+                "        when '100000278' then ( TB_BORROW_BILL.bill_amount + TB_BORROW_BILL.overdue_amount +\n" +
+                "\n" +
+                "                                TB_BORROW_BILL.sum_overdue + TB_BORROW_BILL.breach_amount +\n" +
+                "\n" +
+                "                                TB_BORROW_BILL.differ_amount - TB_BORROW_BILL.bank_amount-\n" +
+                "\n" +
+                "                                TB_BORROW_BILL.credit_breach -\n" +
+                "\n" +
+                "                                TB_BORROW_BILL.credit_premium)\n" +
+                "\n" +
+                "        when '100000277' then 0\n" +
+                "\n" +
+                "        when '100000279' then 0\n" +
+                "\n" +
+                "        when '100000280' then TB_BORROW_BILL.premium - TB_BORROW_BILL.credit_premium\n" +
+                "\n" +
+                "        end insuranceAmount,\n" +
+                "\n" +
+                "        case TB_STAGE_BORROW.supplier_code\n" +
+                "\n" +
+                "        when '100000276' then ( TB_BORROW_BILL.repayment_amount - TB_BORROW_BILL.sum_bank_capital - TB_BORROW_BILL.sum_bank_rate)\n" +
+                "\n" +
+                "        when '100000278' then ( TB_BORROW_BILL.repayment_amount - TB_BORROW_BILL.sum_bank_capital - TB_BORROW_BILL.sum_bank_rate)\n" +
+                "\n" +
+                "        when '100000277' then 0\n" +
+                "\n" +
+                "        when '100000279' then 0\n" +
+                "\n" +
+                "        when '100000280' then TB_BORROW_BILL.sum_premium\n" +
+                "\n" +
+                "        end sumInsuranceAmount,\n" +
+                "\n" +
+                "        TB_BORROW_BILL.sum_breach sumBreach,\n" +
+                "\n" +
+                "        TB_BORROW_BILL.sum_overdue sumOverdue,\n" +
+                "\n" +
+                "        TB_BORROW_BILL.penal_sum penalSum\n" +
+                "\n" +
+                "        FROM\n" +
+                "\n" +
+                "        lt_borrow_bill TB_BORROW_BILL\n" +
+                "\n" +
+                "        LEFT JOIN lt_user_phone TB_PHONE ON TB_PHONE.unique_code = TB_BORROW_BILL.unique_code\n" +
+                "\n" +
+                "        AND TB_PHONE.is_main = 1\n" +
+                "\n" +
+                "        LEFT JOIN lt_stage_borrow TB_STAGE_BORROW ON TB_STAGE_BORROW.id = TB_BORROW_BILL.borrow_id\n" +
+                "\n" +
+                "        WHERE\n" +
+                "\n" +
+                "        TB_BORROW_BILL.is_delete = 0\n" +
+                "\n" +
+                "         \n" +
+                "\n" +
+                "                AND TB_PHONE.user_name_en = ?\n" +
+                "\n" +
+                "             \n" +
+                "\n" +
+                "             \n" +
+                "\n" +
+                "             \n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "             \n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "             \n" +
+                "\n" +
+                "             \n" +
+                "\n" +
+                "        )t ";
+        printSql(sql);
+    }
+
 }

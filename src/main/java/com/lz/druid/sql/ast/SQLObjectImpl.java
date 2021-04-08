@@ -249,4 +249,12 @@ public abstract class SQLObjectImpl implements SQLObject {
     public void setPos(int pos) {
         this.pos = pos;
     }
+
+
+
+
+    public boolean isIdentifierExpr(Object value) {
+        return !notIdentifierExpr(value);
+    }
+
 }
