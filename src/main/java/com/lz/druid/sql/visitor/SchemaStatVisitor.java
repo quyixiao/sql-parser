@@ -829,7 +829,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
                 return new Column(table.toString(), column, columnHashCode64,identifierExpr.getPos());
             }
 
-            return new Column("UNKNOWN", column);
+            return new Column("UNKOWN", column);
         }
 
         if (expr instanceof SQLMethodInvokeExpr) {
@@ -1529,7 +1529,7 @@ public class SchemaStatVisitor extends SQLASTVisitorAdapter {
     }
 
     protected Column handleUnkownColumn(String columnName, int pos) {
-        return addColumn("UNKNOWN", columnName, pos);
+        return addColumn("UNKOWN", columnName, pos);
     }
 
     public boolean visit(SQLAllColumnExpr x) {

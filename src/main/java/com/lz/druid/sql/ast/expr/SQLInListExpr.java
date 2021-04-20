@@ -91,9 +91,11 @@ public final class SQLInListExpr extends SQLExprImpl implements Serializable {
         if (visitor.visit(this)) {
             // todo quyixiao
             if (this.targetList != null && this.targetList.size() > 0) {
-                SQLExpr object = this.targetList.get(0);
-                if (object instanceof SQLVariantRefExpr) {
-                    acceptChild(visitor, this.expr);
+                for(int i =0 ;i < this.targetList.size();i ++){
+                    SQLExpr object = this.targetList.get(i);
+                    if (object instanceof SQLVariantRefExpr) {
+                        acceptChild(visitor, this.expr);
+                    }
                 }
             }
         }

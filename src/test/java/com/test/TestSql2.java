@@ -72,15 +72,13 @@ public class TestSql2 {
 
     @org.junit.Test
     public void test() {
-        String sql = "SELECT *  FROM\n" +
-                "        lt_user_phone\n" +
+        String sql = "SELECT * FROM  lt_resource\n" +
                 "        WHERE\n" +
-                "        unique_code = (SELECT unique_code from lt_user_phone where user_name_en = ? limit 1)\n" +
-                "        AND\n" +
                 "        is_delete = 0\n" +
-                "        AND is_main = 1\n" +
-                "        limit 1";
-        System.out.println(sql.indexOf("username"));
+                "         \n" +
+                "            AND type like concat('%',?,'%')\n" +
+                "         \n" +
+                "        limit ?,?";
         System.out.println(sql);
         printSql(sql);
     }
