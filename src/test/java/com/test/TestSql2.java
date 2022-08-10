@@ -72,13 +72,7 @@ public class TestSql2 {
 
     @org.junit.Test
     public void test() {
-        String sql = "SELECT * FROM  lt_resource\n" +
-                "        WHERE\n" +
-                "        is_delete = 0\n" +
-                "         \n" +
-                "            AND type like concat('%',?,'%')\n" +
-                "         \n" +
-                "        limit ?,?";
+        String sql = "select * from lt_user_phone up  left join lt_stage_borrow sb  on up.unique_code = sb.unique_code where up.user_name = ? and up.real_name = ? and sb.status = ? ";
         System.out.println(sql);
         printSql(sql);
     }
